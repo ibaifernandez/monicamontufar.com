@@ -1,0 +1,77 @@
+commentmeta:w:w
+comments:w:w
+links:w:w
+options:w:w
+postmeta:w:w
+posts:w:w
+term_relationships:w:w
+term_taxonomy:w:w
+termmeta:w:w
+terms:w:w
+usermeta:w:w
+users:w:w
+maspik_options:contact-forms-anti-spam:p
+maspik_spam_logs:contact-forms-anti-spam:p
+e_notes:duplicator-pro:p
+duplicator_backups:duplicator-pro:p
+duplicator_entities:duplicator-pro:p
+e_events:elementor:p
+e_submissions:elementor-pro:p
+e_submissions_values:elementor-pro:p
+e_submissions_actions_log:elementor-pro:p
+e_notes_users_relations:elementor-pro:p
+fbv:filebird-pro:p
+fbv_attachment_folder:filebird-pro:p
+itsec_logs:ithemes-security-pro:p
+itsec_distributed_storage:ithemes-security-pro:p
+itsec_opaque_tokens:ithemes-security-pro:p
+itsec_mutexes:ithemes-security-pro:p
+itsec_fingerprints:ithemes-security-pro:p
+itsec_bans:ithemes-security-pro:p
+itsec_dashboard_events:ithemes-security-pro:p
+itsec_dashboard_lockouts:ithemes-security-pro:p
+itsec_firewall_rules:ithemes-security-pro:p
+itsec_geolocation_cache:ithemes-security-pro:p
+itsec_lockouts:ithemes-security-pro:p
+itsec_temp:ithemes-security-pro:p
+itsec_user_groups:ithemes-security-pro:p
+itsec_vulnerabilities:ithemes-security-pro:p
+itsec_webauthn_credentials:ithemes-security-pro:p
+itsec_webauthn_users:ithemes-security-pro:p
+yoast_seo_meta:wordpress-seo:p
+yoast_migrations:wordpress-seo:p
+yoast_seo_links:wordpress-seo:p
+yoast_indexable:wordpress-seo:p
+actionscheduler_actions:wp-rocket:p
+actionscheduler_claims:wp-rocket:p
+actionscheduler_groups:wp-rocket:p
+actionscheduler_logs:wp-rocket:p
+wpr_above_the_fold:wp-rocket:p
+wpr_rucss_used_css:wp-rocket:p
+wpr_rocket_cache:wp-rocket:p
+wfConfig:wp-rocket:p
+smush_dir_images:wp-rocket (37.5%):p
+wfBlockedIPLog:o:o
+wfBlocks7:o:o
+wfCrawlers:o:o
+wfFileChanges:ithemes-security-pro (84.62%):p
+wfFileMods:o:o
+wfHits:o:o
+wfHoover:o:o
+wfIssues:duplicator-pro (50%):p
+wfKnownFileList:o:o
+wfLiveTrafficHuman:o:o
+wfLocs:duplicator-pro (50%):p
+wfLogins:duplicator-pro (37.5%):p
+wfNotifications:antispam-bee (86.67%):p
+wfPendingIssues:o:o
+wfReverseCache:o:o
+wfSNIPCache:o:o
+wfStatus:wp-rocket (37.5%):p
+wfTrafficRates:o:o
+wfls_2fa_secrets:o:o
+wfls_settings:elementor (84.62%):p
+wpfm_backup:o:o
+yoast_indexable_hierarchy:wordpress-seo (60%):p
+yoast_primary_term:wordpress-seo (75%):p
+yoast_prominent_words:wordpress-seo (47.62%):p

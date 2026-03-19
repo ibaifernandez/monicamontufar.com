@@ -1,0 +1,93 @@
+---
+interface Props {
+  lang?: 'es' | 'en';
+}
+
+const { lang = 'es' } = Astro.props;
+
+const dict = {
+  es: {
+    message: "Utilizamos cookies para ofrecerte la mejor experiencia en nuestra web. Puedes aceptar todas las cookies, configurarlas o rechazar aquellas que no son esenciales.",
+    acceptAll: "Aceptar Todas",
+    essential: "Solo Esenciales",
+    reject: "Rechazar",
+    policyUrl: "/politica-de-privacidad-y-cookies"
+  },
+  en: {
+    message: "We use cookies to offer you the best experience on our website. You can accept all cookies, configure them, or reject non-essential ones.",
+    acceptAll: "Accept All",
+    essential: "Essential Only",
+    reject: "Reject",
+    policyUrl: "/en/politica-de-privacidad-y-cookies"
+  }
+};
+
+const t = dict[lang];
+---
+
+<div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-8 z-[100] transform translate-y-[200%] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] max-w-sm md:max-w-md w-full">
+  <div class="glass-effect bg-[#12110e]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl flex flex-col gap-5 relative overflow-hidden">
+    <!-- Accent line -->
+    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-transparent"></div>
+    
+    <div class="flex items-start gap-4">
+      <span class="material-symbols-outlined text-primary text-3xl shrink-0 mt-1">cookie</span>
+      <div class="text-[13px] text-slate-300 font-light leading-relaxed">
+        {t.message}
+        <a href={t.policyUrl} class="font-medium text-primary hover:text-white transition-colors block mt-2 underline decoration-primary/30 underline-offset-4">Más información / More info</a>
+      </div>
+    </div>
+    
+    <div class="flex flex-col sm:flex-row sm:justify-end gap-2 sm:gap-3 w-full mt-2">
+      <button id="btn-reject" class="px-4 py-2.5 text-[11px] uppercase tracking-wider font-bold text-slate-400 hover:text-white transition-colors border border-white/10 rounded-lg whitespace-nowrap">
+        {t.reject}
+      </button>
+      <button id="btn-essential" class="px-4 py-2.5 text-[11px] uppercase tracking-wider font-bold text-slate-300 bg-white/5 hover:bg-white/10 transition-colors border border-white/5 rounded-lg whitespace-nowrap">
+        {t.essential}
+      </button>
+      <button id="btn-accept" class="px-5 py-2.5 text-[11px] uppercase tracking-wider font-bold text-[#12110E] bg-primary hover:bg-[#ffc926] shadow-lg shadow-primary/20 transition-all border border-transparent rounded-lg whitespace-nowrap">
+        {t.acceptAll}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initCookieBanner() {
+    const banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+    
+    // Check if consent has already been given against LocalStorage
+    const consent = localStorage.getItem('mm_cookie_consent');
+    
+    if (!consent) {
+      // Trigger entrance animation eagerly after render
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          banner.classList.remove('translate-y-[200%]');
+        }, 800);
+      });
+    }
+
+    const setConsent = (level) => {
+      localStorage.setItem('mm_cookie_consent', level);
+      banner.classList.add('translate-y-[200%]');
+      // If scripts needed to be mapped for Analytics based on "level" value, do it here.
+      if(level === 'all') {
+        console.log("Analytics and Tracking enabled organically.");
+      }
+    };
+
+    document.getElementById('btn-accept')?.addEventListener('click', () => setConsent('all'));
+    document.getElementById('btn-essential')?.addEventListener('click', () => setConsent('essential'));
+    document.getElementById('btn-reject')?.addEventListener('click', () => setConsent('none'));
+  }
+
+  // Bind to Astro view transitions and DOM load
+  document.addEventListener('astro:page-load', initCookieBanner);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookieBanner);
+  } else {
+    initCookieBanner();
+  }
+</script>

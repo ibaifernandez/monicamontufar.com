@@ -1,0 +1,1839 @@
+{
+    "manifest_version": "1.0.21",
+    "title": "Inkcraft - Modern Blog and Magazine Elementor Pro Template Kit",
+    "page_builder": "elementor",
+    "kit_version": "1.0.0",
+    "templates": [
+        {
+            "name": "Global Kit Styles",
+            "screenshot": "screenshots\/global-kit-styles.jpg",
+            "source": "templates\/global.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com",
+            "type": "section",
+            "category": "page",
+            "metadata": {
+                "template_type": "global-styles",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "additional_template_information": [
+                    "These are the global theme styles configured through the Elementor Theme Styles area."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Sidebar - Single Post and Archive",
+            "screenshot": "screenshots\/sidebar-single-post-and-archive.jpg",
+            "source": "templates\/sidebar-single-post-and-archive.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/sidebar-single-post-and-archive\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Sidebar - With Author Box",
+            "screenshot": "screenshots\/sidebar-with-author-box.jpg",
+            "source": "templates\/sidebar-with-author-box.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/sidebar-with-author-box\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Sidebar - Without Author Box",
+            "screenshot": "screenshots\/sidebar-without-author-box.jpg",
+            "source": "templates\/sidebar-without-author-box.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/sidebar-without-author-box\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Header",
+            "screenshot": "screenshots\/header.jpg",
+            "source": "templates\/header.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=header",
+            "type": "header",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-header",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "header",
+                "elementor_pro_conditions": [
+                    "include\/general"
+                ],
+                "additional_template_information": [
+                    "This is a \"Header\" template for Elementor Pro.",
+                    "This template will display on: Entire Site."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Footer",
+            "screenshot": "screenshots\/footer.jpg",
+            "source": "templates\/footer.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=footer",
+            "type": "footer",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-footer",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "footer",
+                "elementor_pro_conditions": [
+                    "include\/general"
+                ],
+                "additional_template_information": [
+                    "This is a \"Footer\" template for Elementor Pro.",
+                    "This template will display on: Entire Site."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Home",
+            "screenshot": "screenshots\/home.jpg",
+            "source": "templates\/home.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/home\/",
+            "type": "section",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-home",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Home 2",
+            "screenshot": "screenshots\/home-2.jpg",
+            "source": "templates\/home-2.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/home-2\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Home 3",
+            "screenshot": "screenshots\/home-3.jpg",
+            "source": "templates\/home-3.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/home-3\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Home 4",
+            "screenshot": "screenshots\/home-4.jpg",
+            "source": "templates\/home-4.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/home-4\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Home 5",
+            "screenshot": "screenshots\/home-5.jpg",
+            "source": "templates\/home-5.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/home-5\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Home 6",
+            "screenshot": "screenshots\/home-6.jpg",
+            "source": "templates\/home-6.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/home-6\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Home 7",
+            "screenshot": "screenshots\/home-7.jpg",
+            "source": "templates\/home-7.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/home-7\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Home 8",
+            "screenshot": "screenshots\/home-8.jpg",
+            "source": "templates\/home-8.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/home-8\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Home 9",
+            "screenshot": "screenshots\/home-9.jpg",
+            "source": "templates\/home-9.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/home-9\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Category Layout 1",
+            "screenshot": "screenshots\/category-layout-1.jpg",
+            "source": "templates\/category-layout-1.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=category-layout-1",
+            "type": "archive",
+            "category": "page",
+            "metadata": {
+                "template_type": "archive-category",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "archive",
+                "elementor_pro_conditions": [
+                    "include\/archive\/category"
+                ],
+                "additional_template_information": [
+                    "This is a \"Archive\" template for Elementor Pro.",
+                    "This template will display on: Categories."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Category Layout 2",
+            "screenshot": "screenshots\/category-layout-2.jpg",
+            "source": "templates\/category-layout-2.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=category-layout-2",
+            "type": "archive",
+            "category": "page",
+            "metadata": {
+                "template_type": "archive-category",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "archive",
+                "elementor_pro_conditions": [
+                    "include\/archive\/category\/19"
+                ],
+                "additional_template_information": [
+                    "This is a \"Archive\" template for Elementor Pro.",
+                    "This template will display on: Categories #19."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Single Blog Post 1",
+            "screenshot": "screenshots\/single-blog-post-1.jpg",
+            "source": "templates\/single-blog-post-1.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=single-blog-post-1",
+            "type": "single-post",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-post",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "single-post",
+                "elementor_pro_conditions": [
+                    "include\/singular\/post"
+                ],
+                "additional_template_information": [
+                    "This is a \"Single Post\" template for Elementor Pro.",
+                    "This template will display on: Posts."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Single Blog Post 2",
+            "screenshot": "screenshots\/single-blog-post-2.jpg",
+            "source": "templates\/single-blog-post-2.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=single-blog-post-2",
+            "type": "single-post",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-post",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "single-post",
+                "elementor_pro_conditions": [
+                    "include\/singular\/post\/1334"
+                ],
+                "additional_template_information": [
+                    "This is a \"Single Post\" template for Elementor Pro.",
+                    "This template will display on: Post #1334."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Single Blog Post 3",
+            "screenshot": "screenshots\/single-blog-post-3.jpg",
+            "source": "templates\/single-blog-post-3.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=single-blog-post-3",
+            "type": "single-post",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-post",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "single-post",
+                "elementor_pro_conditions": [
+                    "include\/singular\/post\/1189"
+                ],
+                "additional_template_information": [
+                    "This is a \"Single Post\" template for Elementor Pro.",
+                    "This template will display on: Post #1189."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Single Blog Post 4",
+            "screenshot": "screenshots\/single-blog-post-4.jpg",
+            "source": "templates\/single-blog-post-4.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=single-blog-post-4",
+            "type": "single-post",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-post",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "single-post",
+                "elementor_pro_conditions": [
+                    "include\/singular\/post\/1188"
+                ],
+                "additional_template_information": [
+                    "This is a \"Single Post\" template for Elementor Pro.",
+                    "This template will display on: Post #1188."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Author Archive",
+            "screenshot": "screenshots\/author-archive.jpg",
+            "source": "templates\/author-archive.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=author-archive",
+            "type": "archive",
+            "category": "page",
+            "metadata": {
+                "template_type": "archive-blog",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "archive",
+                "elementor_pro_conditions": [
+                    "include\/archive\/author"
+                ],
+                "additional_template_information": [
+                    "This is a \"Archive\" template for Elementor Pro.",
+                    "This template will display on: Author Archive."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Other Archive",
+            "screenshot": "screenshots\/other-archive.jpg",
+            "source": "templates\/other-archive.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=other-archive",
+            "type": "archive",
+            "category": "page",
+            "metadata": {
+                "template_type": "archive-blog",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "archive",
+                "elementor_pro_conditions": [
+                    "include\/archive"
+                ],
+                "additional_template_information": [
+                    "This is a \"Archive\" template for Elementor Pro.",
+                    "This template will display on: All Archives."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Blog Archive",
+            "screenshot": "screenshots\/blog-archive.jpg",
+            "source": "templates\/blog-archive.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=blog-archive",
+            "type": "archive",
+            "category": "page",
+            "metadata": {
+                "template_type": "archive-blog",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "archive",
+                "elementor_pro_conditions": [
+                    "include\/archive\/post_archive"
+                ],
+                "additional_template_information": [
+                    "This is a \"Archive\" template for Elementor Pro.",
+                    "This template will display on: Posts Archive."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "About Me",
+            "screenshot": "screenshots\/about-me.jpg",
+            "source": "templates\/about-me.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/about-me\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Contact Me",
+            "screenshot": "screenshots\/contact-me.jpg",
+            "source": "templates\/contact-me.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/contact\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Search Results",
+            "screenshot": "screenshots\/search-results.jpg",
+            "source": "templates\/search-results.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=search-results",
+            "type": "search-results",
+            "category": "page",
+            "metadata": {
+                "template_type": "archive-search",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "search-results",
+                "elementor_pro_conditions": [
+                    "include\/archive\/search"
+                ],
+                "additional_template_information": [
+                    "This is a \"Search Results\" template for Elementor Pro.",
+                    "This template will display on: Search Results."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Photo Stories",
+            "screenshot": "screenshots\/photo-stories.jpg",
+            "source": "templates\/photo-stories.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/photo-stories\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Single Photo Story",
+            "screenshot": "screenshots\/single-photo-story.jpg",
+            "source": "templates\/single-photo-story.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/single-photo-story\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Testimonials",
+            "screenshot": "screenshots\/testimonials.jpg",
+            "source": "templates\/testimonials.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/testimonials\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "404 Page",
+            "screenshot": "screenshots\/404-page.jpg",
+            "source": "templates\/404-page.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=404-page",
+            "type": "error-404",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-404",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "error-404",
+                "elementor_pro_conditions": [
+                    "include\/singular\/not_found404"
+                ],
+                "additional_template_information": [
+                    "This is a \"Error 404\" template for Elementor Pro.",
+                    "This template will display on: 404 Page."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Coming Soon",
+            "screenshot": "screenshots\/coming-soon.jpg",
+            "source": "templates\/coming-soon.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/coming-soon\/",
+            "type": "page",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-page",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Posts Slider 1",
+            "screenshot": "screenshots\/block-posts-slider-1.jpg",
+            "source": "templates\/block-posts-slider-1.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-posts-slider-1\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Posts Slider 2",
+            "screenshot": "screenshots\/block-posts-slider-2.jpg",
+            "source": "templates\/block-posts-slider-2.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-posts-slider-2\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Posts Slider 3",
+            "screenshot": "screenshots\/block-posts-slider-3.jpg",
+            "source": "templates\/block-posts-slider-3.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-posts-slider-3\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Posts Slider 4",
+            "screenshot": "screenshots\/block-posts-slider-4.jpg",
+            "source": "templates\/block-posts-slider-4.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-posts-slider-4\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Hero Banner 1",
+            "screenshot": "screenshots\/block-hero-banner-1.jpg",
+            "source": "templates\/block-hero-banner-1.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-hero-banner-1\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-hero",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Hero Banner 2",
+            "screenshot": "screenshots\/block-hero-banner-2.jpg",
+            "source": "templates\/block-hero-banner-2.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-hero-banner-2\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-hero",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Posts Grid 1",
+            "screenshot": "screenshots\/block-posts-grid-1.jpg",
+            "source": "templates\/block-posts-grid-1.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-posts-grid-1\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Posts Grid 2",
+            "screenshot": "screenshots\/block-posts-grid-2.jpg",
+            "source": "templates\/block-posts-grid-2.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-posts-grid-2\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Posts Grid 3",
+            "screenshot": "screenshots\/block-posts-grid-3.jpg",
+            "source": "templates\/block-posts-grid-3.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-posts-grid-3\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Posts Grid 4",
+            "screenshot": "screenshots\/block-posts-grid-4.jpg",
+            "source": "templates\/block-posts-grid-4.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-posts-grid-4\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Posts Grid 5",
+            "screenshot": "screenshots\/block-posts-grid-5.jpg",
+            "source": "templates\/block-posts-grid-5.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-posts-grid-5\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Posts Grid 6",
+            "screenshot": "screenshots\/block-posts-grid-6.jpg",
+            "source": "templates\/block-posts-grid-6.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-posts-grid-6\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Posts Grid 7",
+            "screenshot": "screenshots\/block-posts-grid-7.jpg",
+            "source": "templates\/block-posts-grid-7.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-posts-grid-7\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Posts Grid 8",
+            "screenshot": "screenshots\/block-posts-grid-8.jpg",
+            "source": "templates\/block-posts-grid-8.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-posts-grid-8\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Category Posts Box 1",
+            "screenshot": "screenshots\/block-category-posts-box-1.jpg",
+            "source": "templates\/block-category-posts-box-1.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-category-posts-box-1\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Category Posts Box 2",
+            "screenshot": "screenshots\/block-category-posts-box-2.jpg",
+            "source": "templates\/block-category-posts-box-2.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-category-posts-box-2\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Category Posts Box 3",
+            "screenshot": "screenshots\/block-category-posts-box-3.jpg",
+            "source": "templates\/block-category-posts-box-3.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-category-posts-box-3\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Category Posts Box 4",
+            "screenshot": "screenshots\/block-category-posts-box-4.jpg",
+            "source": "templates\/block-category-posts-box-4.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-category-posts-box-4\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Category Posts Box 5",
+            "screenshot": "screenshots\/block-category-posts-box-5.jpg",
+            "source": "templates\/block-category-posts-box-5.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-category-posts-box-5\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Category Posts Box 6",
+            "screenshot": "screenshots\/block-category-posts-box-6.jpg",
+            "source": "templates\/block-category-posts-box-6.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-category-posts-box-6\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Page Title",
+            "screenshot": "screenshots\/block-page-title.jpg",
+            "source": "templates\/block-page-title.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-page-title\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-hero",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Contact Form",
+            "screenshot": "screenshots\/block-contact-form.jpg",
+            "source": "templates\/block-contact-form.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-contact-form\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-contact",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Newsletter Popup",
+            "screenshot": "screenshots\/newsletter-popup.jpg",
+            "source": "templates\/newsletter-popup.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/?elementor_library=newsletter-popup",
+            "type": "popup",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-popup",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "popup",
+                "elementor_pro_conditions": [
+                    "include\/general"
+                ],
+                "additional_template_information": [
+                    "This is a \"Popup\" template for Elementor Pro.",
+                    "This template will display on: Entire Site."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Newsletter Subscription",
+            "screenshot": "screenshots\/block-newsletter-subscription.jpg",
+            "source": "templates\/block-newsletter-subscription.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-newsletter-subscription\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Block - Category Boxes",
+            "screenshot": "screenshots\/block-category-boxes.jpg",
+            "source": "templates\/block-category-boxes.json",
+            "preview_url": "https:\/\/www.inkcraft.hocud.com\/template-kit\/block-category-boxes\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        }
+    ],
+    "required_plugins": [
+        {
+            "name": "Elementor Pro",
+            "version": "3.8.1",
+            "file": "elementor-pro\/elementor-pro.php",
+            "author": "Elementor.com"
+        },
+        {
+            "name": "Elementor",
+            "version": "3.8.1",
+            "file": "elementor\/elementor.php",
+            "author": "Elementor.com"
+        },
+        {
+            "name": "Qi Addons For Elementor",
+            "version": "1.5.5",
+            "file": "qi-addons-for-elementor\/class-qiaddonsforelementor.php",
+            "author": "Qode Interactive"
+        }
+    ],
+    "images": [
+        {
+            "filename": "portrait-of-beautiful-girl-with-eyeglasses-using-laptop-at-home-office--e1668602935545.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/portrait-of-beautiful-girl-with-eyeglasses-using-laptop-at-home-office--e1668602935545-800x800.jpg",
+            "templates": [
+                {
+                    "source": "templates\/sidebar-single-post-and-archive.json",
+                    "name": "Sidebar - Single Post and Archive"
+                },
+                {
+                    "source": "templates\/sidebar-with-author-box.json",
+                    "name": "Sidebar - With Author Box"
+                },
+                {
+                    "source": "templates\/home-3.json",
+                    "name": "Home 3"
+                },
+                {
+                    "source": "templates\/home-5.json",
+                    "name": "Home 5"
+                },
+                {
+                    "source": "templates\/about-me.json",
+                    "name": "About Me"
+                },
+                {
+                    "source": "templates\/contact-me.json",
+                    "name": "Contact Me"
+                },
+                {
+                    "source": "templates\/coming-soon.json",
+                    "name": "Coming Soon"
+                },
+                {
+                    "source": "templates\/newsletter-popup.json",
+                    "name": "Newsletter Popup"
+                }
+            ],
+            "filesize": 42281,
+            "dimensions": [
+                1161,
+                1161
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-2PH3YF4"
+        },
+        {
+            "filename": "Inkcraft-Signature.png",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/Inkcraft-Signature.png",
+            "templates": [
+                {
+                    "source": "templates\/sidebar-single-post-and-archive.json",
+                    "name": "Sidebar - Single Post and Archive"
+                },
+                {
+                    "source": "templates\/sidebar-with-author-box.json",
+                    "name": "Sidebar - With Author Box"
+                },
+                {
+                    "source": "templates\/home-3.json",
+                    "name": "Home 3"
+                },
+                {
+                    "source": "templates\/about-me.json",
+                    "name": "About Me"
+                },
+                {
+                    "source": "templates\/contact-me.json",
+                    "name": "Contact Me"
+                }
+            ],
+            "filesize": 1117,
+            "dimensions": [
+                196,
+                38
+            ],
+            "image_source": "self_created",
+            "person_or_place": "no",
+            "image_urls": ""
+        },
+        {
+            "filename": "modern-oriental-living-room-e1669064738275.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/modern-oriental-living-room-e1669064738275-800x800.jpg",
+            "templates": [
+                {
+                    "source": "templates\/sidebar-single-post-and-archive.json",
+                    "name": "Sidebar - Single Post and Archive"
+                },
+                {
+                    "source": "templates\/sidebar-with-author-box.json",
+                    "name": "Sidebar - With Author Box"
+                },
+                {
+                    "source": "templates\/sidebar-without-author-box.json",
+                    "name": "Sidebar - Without Author Box"
+                }
+            ],
+            "filesize": 171454,
+            "dimensions": [
+                1000,
+                1000
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-CVJFJ5C"
+        },
+        {
+            "filename": "woman-in-desert-walking-on-safari.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/woman-in-desert-walking-on-safari-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/sidebar-with-author-box.json",
+                    "name": "Sidebar - With Author Box"
+                },
+                {
+                    "source": "templates\/sidebar-without-author-box.json",
+                    "name": "Sidebar - Without Author Box"
+                },
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                },
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/home-3.json",
+                    "name": "Home 3"
+                },
+                {
+                    "source": "templates\/home-4.json",
+                    "name": "Home 4"
+                },
+                {
+                    "source": "templates\/home-5.json",
+                    "name": "Home 5"
+                },
+                {
+                    "source": "templates\/home-6.json",
+                    "name": "Home 6"
+                },
+                {
+                    "source": "templates\/home-7.json",
+                    "name": "Home 7"
+                },
+                {
+                    "source": "templates\/home-8.json",
+                    "name": "Home 8"
+                },
+                {
+                    "source": "templates\/home-9.json",
+                    "name": "Home 9"
+                },
+                {
+                    "source": "templates\/about-me.json",
+                    "name": "About Me"
+                },
+                {
+                    "source": "templates\/block-category-boxes.json",
+                    "name": "Block - Category Boxes"
+                }
+            ],
+            "filesize": 69355,
+            "dimensions": [
+                2000,
+                1333
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-V4ESE92"
+        },
+        {
+            "filename": "the-domes-of-suleymaniye-mosque-with-the-bosphorus-strait-and-galata-bridge-in-the-distance-.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/the-domes-of-suleymaniye-mosque-with-the-bosphorus-strait-and-galata-bridge-in-the-distance--800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/sidebar-with-author-box.json",
+                    "name": "Sidebar - With Author Box"
+                },
+                {
+                    "source": "templates\/sidebar-without-author-box.json",
+                    "name": "Sidebar - Without Author Box"
+                },
+                {
+                    "source": "templates\/photo-stories.json",
+                    "name": "Photo Stories"
+                }
+            ],
+            "filesize": 127270,
+            "dimensions": [
+                2000,
+                1333
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-TE4Z69Y"
+        },
+        {
+            "filename": "fashion-portrait-of-elegant-woman-in-dress.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/fashion-portrait-of-elegant-woman-in-dress-800x800.jpg",
+            "templates": [
+                {
+                    "source": "templates\/sidebar-with-author-box.json",
+                    "name": "Sidebar - With Author Box"
+                },
+                {
+                    "source": "templates\/sidebar-without-author-box.json",
+                    "name": "Sidebar - Without Author Box"
+                }
+            ],
+            "filesize": 85169,
+            "dimensions": [
+                2000,
+                2000
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PWR7S2J"
+        },
+        {
+            "filename": "the-great-migration-in-africa.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/the-great-migration-in-africa-800x480.jpg",
+            "templates": [
+                {
+                    "source": "templates\/sidebar-with-author-box.json",
+                    "name": "Sidebar - With Author Box"
+                },
+                {
+                    "source": "templates\/sidebar-without-author-box.json",
+                    "name": "Sidebar - Without Author Box"
+                }
+            ],
+            "filesize": 167169,
+            "dimensions": [
+                2000,
+                1199
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-7BBFA8L"
+        },
+        {
+            "filename": "near-the-pyramids.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/near-the-pyramids-800x1141.jpg",
+            "templates": [
+                {
+                    "source": "templates\/sidebar-with-author-box.json",
+                    "name": "Sidebar - With Author Box"
+                },
+                {
+                    "source": "templates\/sidebar-without-author-box.json",
+                    "name": "Sidebar - Without Author Box"
+                },
+                {
+                    "source": "templates\/single-photo-story.json",
+                    "name": "Single Photo Story"
+                }
+            ],
+            "filesize": 208231,
+            "dimensions": [
+                1402,
+                2000
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PW2RBH3"
+        },
+        {
+            "filename": "wanderlust-and-travel-concept-stylish-traveler-girl-in-hat-looking-at-map-exploring-woods-.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/wanderlust-and-travel-concept-stylish-traveler-girl-in-hat-looking-at-map-exploring-woods--800x548.jpg",
+            "templates": [
+                {
+                    "source": "templates\/sidebar-with-author-box.json",
+                    "name": "Sidebar - With Author Box"
+                },
+                {
+                    "source": "templates\/sidebar-without-author-box.json",
+                    "name": "Sidebar - Without Author Box"
+                }
+            ],
+            "filesize": 77728,
+            "dimensions": [
+                2000,
+                1370
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-MKMTUVR"
+        },
+        {
+            "filename": "smiling-young-people-enjoying-nature-beside-tents-and-talking-outdoor.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/smiling-young-people-enjoying-nature-beside-tents-and-talking-outdoor-800x497.jpg",
+            "templates": [
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                },
+                {
+                    "source": "templates\/category-layout-2.json",
+                    "name": "Category Layout 2"
+                }
+            ],
+            "filesize": 143243,
+            "dimensions": [
+                2000,
+                1243
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-UDQ2M79"
+        },
+        {
+            "filename": "portrait-of-young-beautiful-woman-with-jewelry-1.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/portrait-of-young-beautiful-woman-with-jewelry-1-800x800.jpg",
+            "templates": [
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                }
+            ],
+            "filesize": 117556,
+            "dimensions": [
+                2000,
+                2000
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-P7SBUMT"
+        },
+        {
+            "filename": "young-female-traveler-reading-book-in-the-morning-while-relaxing-on-bed.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/young-female-traveler-reading-book-in-the-morning-while-relaxing-on-bed-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                }
+            ],
+            "filesize": 152164,
+            "dimensions": [
+                2000,
+                1333
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-4UF8MUA"
+        },
+        {
+            "filename": "ballet-woman-studio-monochrome-portrait.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/ballet-woman-studio-monochrome-portrait-800x800.jpg",
+            "templates": [
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                },
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/home-3.json",
+                    "name": "Home 3"
+                },
+                {
+                    "source": "templates\/home-4.json",
+                    "name": "Home 4"
+                },
+                {
+                    "source": "templates\/home-5.json",
+                    "name": "Home 5"
+                },
+                {
+                    "source": "templates\/home-6.json",
+                    "name": "Home 6"
+                },
+                {
+                    "source": "templates\/home-7.json",
+                    "name": "Home 7"
+                },
+                {
+                    "source": "templates\/home-8.json",
+                    "name": "Home 8"
+                },
+                {
+                    "source": "templates\/home-9.json",
+                    "name": "Home 9"
+                },
+                {
+                    "source": "templates\/about-me.json",
+                    "name": "About Me"
+                },
+                {
+                    "source": "templates\/block-category-boxes.json",
+                    "name": "Block - Category Boxes"
+                }
+            ],
+            "filesize": 47224,
+            "dimensions": [
+                2000,
+                2000
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-MP7WYEP"
+        },
+        {
+            "filename": "old-clock-on-a-manuscript-book.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/old-clock-on-a-manuscript-book-800x618.jpg",
+            "templates": [
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                },
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/home-3.json",
+                    "name": "Home 3"
+                },
+                {
+                    "source": "templates\/home-4.json",
+                    "name": "Home 4"
+                },
+                {
+                    "source": "templates\/home-5.json",
+                    "name": "Home 5"
+                },
+                {
+                    "source": "templates\/home-6.json",
+                    "name": "Home 6"
+                },
+                {
+                    "source": "templates\/home-7.json",
+                    "name": "Home 7"
+                },
+                {
+                    "source": "templates\/home-8.json",
+                    "name": "Home 8"
+                },
+                {
+                    "source": "templates\/home-9.json",
+                    "name": "Home 9"
+                },
+                {
+                    "source": "templates\/about-me.json",
+                    "name": "About Me"
+                },
+                {
+                    "source": "templates\/block-category-boxes.json",
+                    "name": "Block - Category Boxes"
+                }
+            ],
+            "filesize": 182729,
+            "dimensions": [
+                2000,
+                1546
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-P264P3B"
+        },
+        {
+            "filename": "portrait-beach-vacation-romantic-walk-couple-relaxing-on-ocean-summer-travel-destination-.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/portrait-beach-vacation-romantic-walk-couple-relaxing-on-ocean-summer-travel-destination--800x532.jpg",
+            "templates": [
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                }
+            ],
+            "filesize": 60467,
+            "dimensions": [
+                2000,
+                1331
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-7BHPUKU"
+        },
+        {
+            "filename": "camel-and-the-pyramids.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/camel-and-the-pyramids-800x455.jpg",
+            "templates": [
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                },
+                {
+                    "source": "templates\/photo-stories.json",
+                    "name": "Photo Stories"
+                },
+                {
+                    "source": "templates\/single-photo-story.json",
+                    "name": "Single Photo Story"
+                }
+            ],
+            "filesize": 172062,
+            "dimensions": [
+                2000,
+                1138
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-CF37ERF"
+        },
+        {
+            "filename": "Inkcraft-white-logo.png",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/Inkcraft-white-logo.png",
+            "templates": [
+                {
+                    "source": "templates\/footer.json",
+                    "name": "Footer"
+                }
+            ],
+            "filesize": 1199,
+            "dimensions": [
+                380,
+                64
+            ],
+            "image_source": "self_created",
+            "person_or_place": "no",
+            "image_urls": ""
+        },
+        {
+            "filename": "businesswoman-meditating-yoga-practice-on-workplace-after-hard-day-deadline-concept-stress-relief.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/businesswoman-meditating-yoga-practice-on-workplace-after-hard-day-deadline-concept-stress-relief-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/home-3.json",
+                    "name": "Home 3"
+                },
+                {
+                    "source": "templates\/home-4.json",
+                    "name": "Home 4"
+                },
+                {
+                    "source": "templates\/home-5.json",
+                    "name": "Home 5"
+                },
+                {
+                    "source": "templates\/home-6.json",
+                    "name": "Home 6"
+                },
+                {
+                    "source": "templates\/home-7.json",
+                    "name": "Home 7"
+                },
+                {
+                    "source": "templates\/home-8.json",
+                    "name": "Home 8"
+                },
+                {
+                    "source": "templates\/home-9.json",
+                    "name": "Home 9"
+                },
+                {
+                    "source": "templates\/about-me.json",
+                    "name": "About Me"
+                },
+                {
+                    "source": "templates\/block-category-boxes.json",
+                    "name": "Block - Category Boxes"
+                }
+            ],
+            "filesize": 243389,
+            "dimensions": [
+                2000,
+                1334
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-DDA76GL"
+        },
+        {
+            "filename": "beautiful-writer-with-eyeglasses-using-laptop-computer-and-writing-her-notes-.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/beautiful-writer-with-eyeglasses-using-laptop-computer-and-writing-her-notes--800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home-2.json",
+                    "name": "Home 2"
+                },
+                {
+                    "source": "templates\/home-9.json",
+                    "name": "Home 9"
+                },
+                {
+                    "source": "templates\/block-hero-banner-1.json",
+                    "name": "Block - Hero Banner 1"
+                },
+                {
+                    "source": "templates\/block-hero-banner-2.json",
+                    "name": "Block - Hero Banner 2"
+                }
+            ],
+            "filesize": 61792,
+            "dimensions": [
+                2000,
+                1333
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-3FJL7D9"
+        },
+        {
+            "filename": "attractive-blogger-writing-her-notes-at-home-.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/attractive-blogger-writing-her-notes-at-home--800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-me.json",
+                    "name": "About Me"
+                }
+            ],
+            "filesize": 67360,
+            "dimensions": [
+                2000,
+                1333
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-UAAF5VR"
+        },
+        {
+            "filename": "glad-prosperous-woman-ceo-writes-in-notepad-plans-her-work-schedule.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/glad-prosperous-woman-ceo-writes-in-notepad-plans-her-work-schedule-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/about-me.json",
+                    "name": "About Me"
+                }
+            ],
+            "filesize": 39821,
+            "dimensions": [
+                2000,
+                1334
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-MSKU7E8"
+        },
+        {
+            "filename": "silhouetted-kids-walking-in-the-ocean-at-sunset-having-fun-during-the-golden-hour-at-sea-.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/silhouetted-kids-walking-in-the-ocean-at-sunset-having-fun-during-the-golden-hour-at-sea--800x552.jpg",
+            "templates": [
+                {
+                    "source": "templates\/photo-stories.json",
+                    "name": "Photo Stories"
+                }
+            ],
+            "filesize": 207070,
+            "dimensions": [
+                2000,
+                1381
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-7Y6VV6W"
+        },
+        {
+            "filename": "famous-gastronomical-street-in-bologna-italy.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/famous-gastronomical-street-in-bologna-italy-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/photo-stories.json",
+                    "name": "Photo Stories"
+                }
+            ],
+            "filesize": 220135,
+            "dimensions": [
+                2000,
+                1334
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/image-A9GFLX4"
+        },
+        {
+            "filename": "desert-and-pyramids.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/desert-and-pyramids-800x238.jpg",
+            "templates": [
+                {
+                    "source": "templates\/single-photo-story.json",
+                    "name": "Single Photo Story"
+                }
+            ],
+            "filesize": 106332,
+            "dimensions": [
+                2000,
+                594
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-8WCT3ZP"
+        },
+        {
+            "filename": "sunset-view-of-pyramid-complex-of-giza-in-cairo-egypt.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/sunset-view-of-pyramid-complex-of-giza-in-cairo-egypt-800x533.jpg",
+            "templates": [
+                {
+                    "source": "templates\/single-photo-story.json",
+                    "name": "Single Photo Story"
+                }
+            ],
+            "filesize": 149787,
+            "dimensions": [
+                2000,
+                1333
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-L3RTJZT"
+        },
+        {
+            "filename": "on-a-giza-pyramid.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/on-a-giza-pyramid-800x532.jpg",
+            "templates": [
+                {
+                    "source": "templates\/single-photo-story.json",
+                    "name": "Single Photo Story"
+                }
+            ],
+            "filesize": 168610,
+            "dimensions": [
+                2000,
+                1330
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-KXJ4KJG"
+        },
+        {
+            "filename": "three-pyramids-and-tourist-guide-with-camel.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/three-pyramids-and-tourist-guide-with-camel-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/single-photo-story.json",
+                    "name": "Single Photo Story"
+                }
+            ],
+            "filesize": 203030,
+            "dimensions": [
+                2000,
+                1335
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-KDUF385"
+        },
+        {
+            "filename": "confident-joyful-redhead-woman-works-on-modern-laptop-poses-in-coworking-space-wears-sweater-e1668080150976.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/confident-joyful-redhead-woman-works-on-modern-laptop-poses-in-coworking-space-wears-sweater-e1668080150976-800x799.jpg",
+            "templates": [
+                {
+                    "source": "templates\/testimonials.json",
+                    "name": "Testimonials"
+                }
+            ],
+            "filesize": 65311,
+            "dimensions": [
+                1335,
+                1333
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-ASF5AEZ"
+        },
+        {
+            "filename": "beautiful-woman-girl-natural-casual-portrait-.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/beautiful-woman-girl-natural-casual-portrait--800x800.jpg",
+            "templates": [
+                {
+                    "source": "templates\/testimonials.json",
+                    "name": "Testimonials"
+                }
+            ],
+            "filesize": 102680,
+            "dimensions": [
+                2000,
+                2000
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-ALSRLJA"
+        },
+        {
+            "filename": "authentic-girls-portrait.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/authentic-girls-portrait-800x800.jpg",
+            "templates": [
+                {
+                    "source": "templates\/testimonials.json",
+                    "name": "Testimonials"
+                }
+            ],
+            "filesize": 102712,
+            "dimensions": [
+                2000,
+                2000
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PWTYK3X"
+        },
+        {
+            "filename": "portrait-of-aged-man-close-up.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/portrait-of-aged-man-close-up-800x800.jpg",
+            "templates": [
+                {
+                    "source": "templates\/testimonials.json",
+                    "name": "Testimonials"
+                }
+            ],
+            "filesize": 206876,
+            "dimensions": [
+                2000,
+                2000
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PT8UCN6"
+        },
+        {
+            "filename": "portrait.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/portrait-800x800.jpg",
+            "templates": [
+                {
+                    "source": "templates\/testimonials.json",
+                    "name": "Testimonials"
+                }
+            ],
+            "filesize": 125216,
+            "dimensions": [
+                2000,
+                2000
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-9WFWD5A"
+        },
+        {
+            "filename": "portrait-of-young-beautiful-woman-with-jewelry.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/portrait-of-young-beautiful-woman-with-jewelry-800x800.jpg",
+            "templates": [
+                {
+                    "source": "templates\/testimonials.json",
+                    "name": "Testimonials"
+                }
+            ],
+            "filesize": 144670,
+            "dimensions": [
+                2000,
+                2000
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-PC52WK5"
+        },
+        {
+            "filename": "thoughtful-european-woman-makes-notes-in-notepad-holds-pen-and-writes-down-some-ideas.jpg",
+            "thumbnail_url": "https:\/\/www.inkcraft.hocud.com\/wp-content\/uploads\/thoughtful-european-woman-makes-notes-in-notepad-holds-pen-and-writes-down-some-ideas-800x534.jpg",
+            "templates": [
+                {
+                    "source": "templates\/404-page.json",
+                    "name": "404 Page"
+                }
+            ],
+            "filesize": 53937,
+            "dimensions": [
+                2000,
+                1334
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-7PUF48G"
+        }
+    ]
+}

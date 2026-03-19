@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
+export async function getStaticPaths() {
+  const dataPath = path.resolve('./src/data/wp-archive/pages.json');
+  try {
+    const rawData = await fs.readFile(dataPath, 'utf-8');
+    const pages = JSON.parse(rawData);
+    
+    return pages.map((page: any) => ({
+      params: { slug: page.slug },
+      props: { page },
+    }));
+  } catch (e) {
+    console.error("Error loading wp pages", e);
+    return [];
+  }
+}
+
+const { page } = Astro.props;
+
+// Strip out absolute local or production domains so Astro uses the /wp-content/ folder 
+// that we just copied into the /public/ directory
+const contentHtml = page.content.rendered
+  .replace(/https?:\/\/localhost:8083/g, '')
+  .replace(/https?:\/\/(www\.)?monicamontufar\.com/g, '');
+---
+
+<BaseLayout 
+  title={`${page.title.rendered} - Replica | Mónica Montúfar`}
+  description={`Replica of WordPress page: ${page.title.rendered}`}
+  lang="es"
+>
+  <!-- Client-side Gatekeeper -->
+  <div id="preview-lock" class="fixed inset-0 z-[99999] bg-[#12110E] flex flex-col items-center justify-center p-6">
+    <div class="glass-effect p-8 rounded-3xl border border-white/10 flex flex-col items-center max-w-sm w-full shadow-2xl">
+      <span class="material-symbols-outlined text-primary text-4xl mb-4">lock</span>
+      <h2 class="font-serif text-3xl text-white mb-2 text-center">Acceso Privado</h2>
+      <p class="text-slate-400 font-light mb-8 text-center text-sm">Visualización de pre-producción. Requiere autorización.</p>
+      
+      <input type="password" id="preview-pin" class="w-full bg-black/50 border border-white/20 text-white px-4 py-3 rounded-xl mb-4 text-center focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all" placeholder="Contraseña de acceso" />
+      <button id="preview-btn" class="w-full bg-primary text-[#12110E] font-bold px-8 py-3 rounded-xl hover:bg-[#ffc926] transition-all shadow-xl shadow-primary/10">Desbloquear Vista</button>
+      
+      <p id="preview-error" class="text-red-400 mt-4 text-xs hidden">Contraseña incorrecta. Inténtelo de nuevo.</p>
+    </div>
+  </div>
+
+  <script>
+    function initGatekeeper() {
+      const lock = document.getElementById('preview-lock');
+      const input = document.getElementById('preview-pin') as HTMLInputElement;
+      const btn = document.getElementById('preview-btn');
+      const error = document.getElementById('preview-error');
+      
+      if(!lock || !input || !btn || !error) return;
+
+      if(sessionStorage.getItem('preview_auth') === 'true') {
+        lock.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        return;
+      } else {
+        document.body.style.overflow = 'hidden';
+      }
+
+      const checkPin = () => {
+        if(input.value === '*monica1977bogota!') {
+          sessionStorage.setItem('preview_auth', 'true');
+          lock.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        } else {
+          error.classList.remove('hidden');
+          input.value = '';
+          input.focus();
+        }
+      };
+
+      btn.addEventListener('click', checkPin);
+      input.addEventListener('keypress', (e) => { if(e.key === 'Enter') checkPin() });
+    }
+
+    document.addEventListener('astro:page-load', initGatekeeper);
+    initGatekeeper();
+  </script>
+
+  <!-- Replica Preview Header -->
+  <div class="bg-gray-900 border-b border-white/10 px-6 py-3 sticky top-0 z-50 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <span class="bg-[#e6b319] text-black text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">Preview Mode</span>
+      <h2 class="text-white/80 font-inter text-sm font-medium">Réplica de WP: <span class="text-white">{page.title.rendered}</span></h2>
+    </div>
+    <a href="/" class="text-xs text-white/50 hover:text-white transition-colors underline underline-offset-4">
+      Volver al Coming Soon
+    </a>
+  </div>
+
+  <article class="max-w-4xl mx-auto px-6 py-12 lg:py-24 prose prose-invert prose-lg md:prose-xl prose-img:rounded-xl prose-img:shadow-2xl prose-a:text-[#e6b319] hover:prose-a:text-[#ffc926] font-outfit">
+    <h1 class="text-4xl md:text-6xl font-serif mb-12" set:html={page.title.rendered} />
+    
+    <!-- Injected HTML from WordPress -->
+    <div class="wp-content" set:html={contentHtml} />
+  </article>
+
+</BaseLayout>
+
+<style is:global>
+  /* Fix typical WordPress injected styles to match premium dark mode */
+  .wp-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+  }
+  .wp-content p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .wp-content h2, .wp-content h3, .wp-content h4 {
+    color: white;
+    font-family: 'Playfair Display', serif;
+    margin-top: 3rem;
+  }
+  .wp-content a {
+    color: #e6b319;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(230, 179, 25, 0.3);
+    transition: all 0.2s;
+  }
+  .wp-content a:hover {
+    border-color: #e6b319;
+  }
+</style>

@@ -1,0 +1,1426 @@
+{
+    "manifest_version": "1.0.19",
+    "title": "BlogHer - Influencer Marketing, Blog & WooCommerce Store Elementor Template Kit",
+    "page_builder": "elementor",
+    "kit_version": "1.0.0",
+    "templates": [
+        {
+            "name": "Global Kit Styles",
+            "screenshot": "screenshots\/global-kit-styles.jpg",
+            "source": "templates\/global.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher",
+            "type": "section",
+            "category": "page",
+            "metadata": {
+                "template_type": "global-styles",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "additional_template_information": [
+                    "These are the global theme styles configured through the Elementor Theme Styles area."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Blog",
+            "screenshot": "screenshots\/blog.jpg",
+            "source": "templates\/blog.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/template-kit\/blog\/",
+            "type": "section",
+            "category": "page",
+            "metadata": {
+                "template_type": "archive-blog",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Hire Me",
+            "screenshot": "screenshots\/hire-me.jpg",
+            "source": "templates\/hire-me.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/template-kit\/hire-me\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-about",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Gallery",
+            "screenshot": "screenshots\/gallery.jpg",
+            "source": "templates\/gallery.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/template-kit\/gallery\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-gallery",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Contact",
+            "screenshot": "screenshots\/contact.jpg",
+            "source": "templates\/contact.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/template-kit\/contact\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-contact",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Home",
+            "screenshot": "screenshots\/home.jpg",
+            "source": "templates\/home.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/template-kit\/home\/",
+            "type": "section",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-home",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Resources",
+            "screenshot": "screenshots\/resources.jpg",
+            "source": "templates\/resources.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/template-kit\/resources\/",
+            "type": "section",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-other",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1"
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "BlogHer - Footer",
+            "screenshot": "screenshots\/blogher-footer.jpg",
+            "source": "templates\/blogher-footer.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/?elementor_library=blogher-footer",
+            "type": "footer",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-footer",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "footer",
+                "elementor_pro_conditions": [
+                    "include\/general"
+                ],
+                "additional_template_information": [
+                    "This is a \"Footer\" template for Elementor Pro.",
+                    "This template will display on: Entire Site."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Search-Popup",
+            "screenshot": "screenshots\/search-popup.jpg",
+            "source": "templates\/search-popup.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/?elementor_library=search-popup",
+            "type": "popup",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-popup",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "popup",
+                "elementor_pro_conditions": [
+                    "include\/general"
+                ],
+                "additional_template_information": [
+                    "This is a \"Popup\" template for Elementor Pro.",
+                    "This template will display on: Entire Site."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Menu-Popup",
+            "screenshot": "screenshots\/menu-popup.jpg",
+            "source": "templates\/menu-popup.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/?elementor_library=menu-popup",
+            "type": "popup",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-popup",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "popup",
+                "elementor_pro_conditions": [
+                    "include\/general"
+                ],
+                "additional_template_information": [
+                    "This is a \"Popup\" template for Elementor Pro.",
+                    "This template will display on: Entire Site."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "BlogHer - Shop",
+            "screenshot": "screenshots\/blogher-shop.jpg",
+            "source": "templates\/blogher-shop.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/?elementor_library=blogher-shop",
+            "type": "product-archive",
+            "category": "page",
+            "metadata": {
+                "template_type": "archive-product",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "product-archive",
+                "elementor_pro_conditions": [
+                    "include\/product_archive"
+                ],
+                "additional_template_information": [
+                    "This is a \"Product Archive\" template for Elementor Pro.",
+                    "This template will display on: All Product Archives."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "BlogHer - Single Post",
+            "screenshot": "screenshots\/blogher-single-post.jpg",
+            "source": "templates\/blogher-single-post.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/?elementor_library=blogher-single-post",
+            "type": "single-post",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-post",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "single-post",
+                "elementor_pro_conditions": [
+                    "include\/singular\/post"
+                ],
+                "additional_template_information": [
+                    "This is a \"Single Post\" template for Elementor Pro.",
+                    "This template will display on: Posts."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "BlogHer - Single Product",
+            "screenshot": "screenshots\/blogher-single-product.jpg",
+            "source": "templates\/blogher-single-product.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/?elementor_library=blogher-single-product",
+            "type": "product",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-product",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "product",
+                "elementor_pro_conditions": [
+                    "include\/product"
+                ],
+                "additional_template_information": [
+                    "This is a \"Product\" template for Elementor Pro.",
+                    "This template will display on: Products."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "BlogHer - Search Results",
+            "screenshot": "screenshots\/blogher-search-results.jpg",
+            "source": "templates\/blogher-search-results.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/?elementor_library=blogher-search-results",
+            "type": "search-results",
+            "category": "page",
+            "metadata": {
+                "template_type": "archive-search",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "search-results",
+                "elementor_pro_conditions": [
+                    "include\/archive\/search"
+                ],
+                "additional_template_information": [
+                    "This is a \"Search Results\" template for Elementor Pro.",
+                    "This template will display on: Search Results."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "BlogHer - Term",
+            "screenshot": "screenshots\/blogher-term.jpg",
+            "source": "templates\/blogher-term.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/?elementor_library=blogher-term",
+            "type": "archive",
+            "category": "page",
+            "metadata": {
+                "template_type": "archive-category",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "archive",
+                "elementor_pro_conditions": [
+                    "include\/archive\/category",
+                    "include\/archive\/post_tag",
+                    "include\/archive\/date",
+                    "include\/archive\/author"
+                ],
+                "additional_template_information": [
+                    "This is a \"Archive\" template for Elementor Pro.",
+                    "This template will display on: Categories &amp; Tags &amp; Date Archive &amp; Author Archive."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "BlogHer - 404 page",
+            "screenshot": "screenshots\/blogher-404-page.jpg",
+            "source": "templates\/blogher-404-page.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/?elementor_library=blogher-404-page",
+            "type": "error-404",
+            "category": "page",
+            "metadata": {
+                "template_type": "single-404",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "error-404",
+                "elementor_pro_conditions": [
+                    "include\/singular\/not_found404"
+                ],
+                "additional_template_information": [
+                    "This is a \"Error 404\" template for Elementor Pro.",
+                    "This template will display on: 404 Page."
+                ]
+            },
+            "elementor_pro_required": true
+        },
+        {
+            "name": "Blogher - Header",
+            "screenshot": "screenshots\/blogher-header.jpg",
+            "source": "templates\/blogher-header.json",
+            "preview_url": "http:\/\/kits.mediumred.com\/blogher\/?elementor_library=blogher-header",
+            "type": "header",
+            "category": "section",
+            "metadata": {
+                "template_type": "section-header",
+                "include_in_zip": "1",
+                "elementor_pro_required": "1",
+                "elementor_library_type": "header",
+                "elementor_pro_conditions": [
+                    "include\/general"
+                ],
+                "additional_template_information": [
+                    "This is a \"Header\" template for Elementor Pro.",
+                    "This template will display on: Entire Site."
+                ]
+            },
+            "elementor_pro_required": true
+        }
+    ],
+    "required_plugins": [
+        {
+            "name": "Elementor Pro",
+            "version": "3.2.1",
+            "file": "elementor-pro\/elementor-pro.php",
+            "author": "Elementor.com"
+        },
+        {
+            "name": "Elementor",
+            "version": "3.2.2",
+            "file": "elementor\/elementor.php",
+            "author": "Elementor.com"
+        },
+        {
+            "name": "WooCommerce",
+            "version": "5.2.2",
+            "file": "woocommerce\/woocommerce.php",
+            "author": "Automattic"
+        }
+    ],
+    "images": [
+        {
+            "filename": "shop-header-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/shop-header-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/blog.json",
+                    "name": "Blog"
+                },
+                {
+                    "source": "templates\/hire-me.json",
+                    "name": "Hire Me"
+                },
+                {
+                    "source": "templates\/gallery.json",
+                    "name": "Gallery"
+                },
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                },
+                {
+                    "source": "templates\/blogher-shop.json",
+                    "name": "BlogHer - Shop"
+                },
+                {
+                    "source": "templates\/blogher-single-post.json",
+                    "name": "BlogHer - Single Post"
+                },
+                {
+                    "source": "templates\/blogher-single-product.json",
+                    "name": "BlogHer - Single Product"
+                },
+                {
+                    "source": "templates\/blogher-search-results.json",
+                    "name": "BlogHer - Search Results"
+                },
+                {
+                    "source": "templates\/blogher-term.json",
+                    "name": "BlogHer - Term"
+                },
+                {
+                    "source": "templates\/blogher-404-page.json",
+                    "name": "BlogHer - 404 page"
+                }
+            ],
+            "filesize": 23127,
+            "dimensions": [
+                1000,
+                667
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/male-apartment-interior-DQAFJ8X"
+        },
+        {
+            "filename": "elegant-bedroom-interior-with-king-size-bed-in-fas-FCDJ7ZN-3.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/elegant-bedroom-interior-with-king-size-bed-in-fas-FCDJ7ZN-3.jpg",
+            "templates": [
+                {
+                    "source": "templates\/blog.json",
+                    "name": "Blog"
+                },
+                {
+                    "source": "templates\/hire-me.json",
+                    "name": "Hire Me"
+                },
+                {
+                    "source": "templates\/gallery.json",
+                    "name": "Gallery"
+                },
+                {
+                    "source": "templates\/contact.json",
+                    "name": "Contact"
+                },
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                },
+                {
+                    "source": "templates\/blogher-shop.json",
+                    "name": "BlogHer - Shop"
+                },
+                {
+                    "source": "templates\/blogher-single-post.json",
+                    "name": "BlogHer - Single Post"
+                },
+                {
+                    "source": "templates\/blogher-single-product.json",
+                    "name": "BlogHer - Single Product"
+                },
+                {
+                    "source": "templates\/blogher-search-results.json",
+                    "name": "BlogHer - Search Results"
+                },
+                {
+                    "source": "templates\/blogher-term.json",
+                    "name": "BlogHer - Term"
+                },
+                {
+                    "source": "templates\/blogher-404-page.json",
+                    "name": "BlogHer - 404 page"
+                }
+            ],
+            "filesize": 30191,
+            "dimensions": [
+                1120,
+                1497
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/elegant-bedroom-interior-with-king-size-bed-in-fas-FCDJ7ZN"
+        },
+        {
+            "filename": "stylish-blonde-girl-standing-near-classic-italian-UR2GUZ6.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/stylish-blonde-girl-standing-near-classic-italian-UR2GUZ6.png",
+            "templates": [
+                {
+                    "source": "templates\/blog.json",
+                    "name": "Blog"
+                },
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                },
+                {
+                    "source": "templates\/blogher-term.json",
+                    "name": "BlogHer - Term"
+                }
+            ],
+            "filesize": 121023,
+            "dimensions": [
+                432,
+                611
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/stylish-blonde-girl-standing-near-classic-italian--UR2GUZ6"
+        },
+        {
+            "filename": "male-apartment-interior-DQAFJ8X-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/male-apartment-interior-DQAFJ8X-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/blog.json",
+                    "name": "Blog"
+                }
+            ],
+            "filesize": 67999,
+            "dimensions": [
+                1000,
+                667
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/male-apartment-interior-DQAFJ8X"
+        },
+        {
+            "filename": "village-in-palawan-T9QDBK8-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/village-in-palawan-T9QDBK8-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/blog.json",
+                    "name": "Blog"
+                },
+                {
+                    "source": "templates\/gallery.json",
+                    "name": "Gallery"
+                }
+            ],
+            "filesize": 102085,
+            "dimensions": [
+                1000,
+                667
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/village-in-palawan-T9QDBK8"
+        },
+        {
+            "filename": "pasta-with-chicken-and-mushroom-RVYQEAZ-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/pasta-with-chicken-and-mushroom-RVYQEAZ-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/blog.json",
+                    "name": "Blog"
+                }
+            ],
+            "filesize": 226123,
+            "dimensions": [
+                1000,
+                668
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/pasta-with-chicken-and-mushroom-RVYQEAZ"
+        },
+        {
+            "filename": "top-view-over-desk-top-daily-planner-and-notebook-ZJWPCU4-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/top-view-over-desk-top-daily-planner-and-notebook-ZJWPCU4-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/blog.json",
+                    "name": "Blog"
+                }
+            ],
+            "filesize": 50102,
+            "dimensions": [
+                700,
+                467
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/top-view-over-desk-top-daily-planner-and-notebook--ZJWPCU4"
+        },
+        {
+            "filename": "pretty-girl-with-bicycle-2A5NE8Z-3-scaled-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/pretty-girl-with-bicycle-2A5NE8Z-3-scaled-2-800x1063.jpg",
+            "templates": [
+                {
+                    "source": "templates\/hire-me.json",
+                    "name": "Hire Me"
+                }
+            ],
+            "filesize": 270641,
+            "dimensions": [
+                1927,
+                2560
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/pretty-girl-with-bicycle-2A5NE8Z"
+        },
+        {
+            "filename": "call.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/call.png",
+            "templates": [
+                {
+                    "source": "templates\/hire-me.json",
+                    "name": "Hire Me"
+                },
+                {
+                    "source": "templates\/contact.json",
+                    "name": "Contact"
+                }
+            ],
+            "filesize": 63503,
+            "dimensions": [
+                512,
+                512
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.flaticon.com\/free-icon\/call_1034131"
+        },
+        {
+            "filename": "mail.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/mail.png",
+            "templates": [
+                {
+                    "source": "templates\/hire-me.json",
+                    "name": "Hire Me"
+                },
+                {
+                    "source": "templates\/contact.json",
+                    "name": "Contact"
+                }
+            ],
+            "filesize": 24230,
+            "dimensions": [
+                512,
+                512
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.flaticon.com\/free-icon\/mail_546394"
+        },
+        {
+            "filename": "tree-2.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/tree-2.png",
+            "templates": [
+                {
+                    "source": "templates\/hire-me.json",
+                    "name": "Hire Me"
+                }
+            ],
+            "filesize": 42449,
+            "dimensions": [
+                512,
+                512
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.flaticon.com\/free-icon\/tree_785202"
+        },
+        {
+            "filename": "client-2.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/client-2.png",
+            "templates": [
+                {
+                    "source": "templates\/hire-me.json",
+                    "name": "Hire Me"
+                }
+            ],
+            "filesize": 32793,
+            "dimensions": [
+                512,
+                512
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.flaticon.com\/free-icon\/client_1848755"
+        },
+        {
+            "filename": "brain.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/brain.png",
+            "templates": [
+                {
+                    "source": "templates\/hire-me.json",
+                    "name": "Hire Me"
+                }
+            ],
+            "filesize": 67822,
+            "dimensions": [
+                512,
+                512
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.flaticon.com\/free-icon\/brain_2630179"
+        },
+        {
+            "filename": "portrait-of-female-bar-owner-standing-by-counter-D38XU6C.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/portrait-of-female-bar-owner-standing-by-counter-D38XU6C.jpg",
+            "templates": [
+                {
+                    "source": "templates\/hire-me.json",
+                    "name": "Hire Me"
+                },
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 77660,
+            "dimensions": [
+                250,
+                250
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-D38XU6C"
+        },
+        {
+            "filename": "portrait-of-smiling-female-owner-of-fashion-store-Z6V4W96.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/portrait-of-smiling-female-owner-of-fashion-store-Z6V4W96.jpg",
+            "templates": [
+                {
+                    "source": "templates\/hire-me.json",
+                    "name": "Hire Me"
+                },
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 76377,
+            "dimensions": [
+                250,
+                250
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-Z6V4W96"
+        },
+        {
+            "filename": "portrait-of-smiling-female-owner-of-florists-stand-ACE9WV2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/portrait-of-smiling-female-owner-of-florists-stand-ACE9WV2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/hire-me.json",
+                    "name": "Hire Me"
+                },
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 64702,
+            "dimensions": [
+                250,
+                250
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-ACE9WV2"
+        },
+        {
+            "filename": "portrait-of-smiling-male-owner-of-fashion-store-st-KV29NBC.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/portrait-of-smiling-male-owner-of-fashion-store-st-KV29NBC.jpg",
+            "templates": [
+                {
+                    "source": "templates\/hire-me.json",
+                    "name": "Hire Me"
+                },
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 78970,
+            "dimensions": [
+                250,
+                250
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/image-KV29NBC"
+        },
+        {
+            "filename": "pretty-girl-with-bicycle-2A5NE8Z-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/pretty-girl-with-bicycle-2A5NE8Z-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/gallery.json",
+                    "name": "Gallery"
+                }
+            ],
+            "filesize": 176434,
+            "dimensions": [
+                1100,
+                1862
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/pretty-girl-with-bicycle-2A5NE8Z"
+        },
+        {
+            "filename": "image.jpeg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/image.jpeg",
+            "templates": [
+                {
+                    "source": "templates\/gallery.json",
+                    "name": "Gallery"
+                }
+            ],
+            "filesize": 67999,
+            "dimensions": [
+                1000,
+                667
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/male-apartment-interior-DQAFJ8X"
+        },
+        {
+            "filename": "healthy-breakfast-set-on-white-background-top-view-D8LT6VC-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/healthy-breakfast-set-on-white-background-top-view-D8LT6VC-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/gallery.json",
+                    "name": "Gallery"
+                }
+            ],
+            "filesize": 88323,
+            "dimensions": [
+                702,
+                1053
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/healthy-breakfast-set-on-white-background-top-view-D8LT6VC"
+        },
+        {
+            "filename": "senior-woman-relaxing-with-magazine-at-home-lookin-SBQNY9M-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/senior-woman-relaxing-with-magazine-at-home-lookin-SBQNY9M-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/gallery.json",
+                    "name": "Gallery"
+                }
+            ],
+            "filesize": 65281,
+            "dimensions": [
+                1000,
+                667
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/senior-woman-relaxing-with-magazine-at-home-lookin-SBQNY9M"
+        },
+        {
+            "filename": "cerro-torre-CPJVEU4-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/cerro-torre-CPJVEU4-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/gallery.json",
+                    "name": "Gallery"
+                }
+            ],
+            "filesize": 110891,
+            "dimensions": [
+                1000,
+                667
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/cerro-torre-CPJVEU4"
+        },
+        {
+            "filename": "asian-woman-portrait-HRVDRK4-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/asian-woman-portrait-HRVDRK4-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/gallery.json",
+                    "name": "Gallery"
+                }
+            ],
+            "filesize": 64162,
+            "dimensions": [
+                700,
+                1050
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/asian-woman-portrait-HRVDRK4"
+        },
+        {
+            "filename": "millennial-white-couple-on-a-road-trip-driving-in-D5U8FVW-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/millennial-white-couple-on-a-road-trip-driving-in-D5U8FVW-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/gallery.json",
+                    "name": "Gallery"
+                }
+            ],
+            "filesize": 63646,
+            "dimensions": [
+                1000,
+                667
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/millennial-white-couple-on-a-road-trip-driving-in--D5U8FVW"
+        },
+        {
+            "filename": "relaxed-woman-taking-a-walk-at-spring-park-listeni-PH5T7NC-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/relaxed-woman-taking-a-walk-at-spring-park-listeni-PH5T7NC-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/gallery.json",
+                    "name": "Gallery"
+                }
+            ],
+            "filesize": 300029,
+            "dimensions": [
+                2216,
+                1477
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/relaxed-woman-taking-a-walk-at-spring-park-listeni-PH5T7NC"
+        },
+        {
+            "filename": "elegant-bedroom-interior-with-king-size-bed-in-fas-FCDJ7ZN-2-3.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/elegant-bedroom-interior-with-king-size-bed-in-fas-FCDJ7ZN-2-3.jpg",
+            "templates": [
+                {
+                    "source": "templates\/contact.json",
+                    "name": "Contact"
+                }
+            ],
+            "filesize": 75312,
+            "dimensions": [
+                2246,
+                1497
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/elegant-bedroom-interior-with-king-size-bed-in-fas-FCDJ7ZN"
+        },
+        {
+            "filename": "world-wide-web-on-grid.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/world-wide-web-on-grid.png",
+            "templates": [
+                {
+                    "source": "templates\/contact.json",
+                    "name": "Contact"
+                }
+            ],
+            "filesize": 86633,
+            "dimensions": [
+                512,
+                512
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.flaticon.com\/free-icon\/world-wide-web-on-grid_18146"
+        },
+        {
+            "filename": "video-camera.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/video-camera.png",
+            "templates": [
+                {
+                    "source": "templates\/contact.json",
+                    "name": "Contact"
+                }
+            ],
+            "filesize": 18905,
+            "dimensions": [
+                512,
+                512
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.flaticon.com\/free-icon\/video-camera_1159798"
+        },
+        {
+            "filename": "hero-background-2.jpg",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/hero-background-2.jpg",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 246778,
+            "dimensions": [
+                2019,
+                1013
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "yes",
+            "image_urls": "https:\/\/elements.envato.com\/sexy-blonde-girl-wearing-stylish-clothes-standing--RHWTXM9"
+        },
+        {
+            "filename": "Group-9@2x.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/Group-9@2x.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 2386,
+            "dimensions": [
+                70,
+                289
+            ],
+            "image_source": "self_created",
+            "person_or_place": "no",
+            "image_urls": ""
+        },
+        {
+            "filename": "signature.gif",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/signature.gif",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                },
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 2080,
+            "dimensions": [
+                304,
+                235
+            ],
+            "image_source": "self_created",
+            "person_or_place": "no",
+            "image_urls": ""
+        },
+        {
+            "filename": "logo1-1-4-150x150-1.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/logo1-1-4-150x150-1.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 5975,
+            "dimensions": [
+                150,
+                150
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/versatile-logo-templates-TAZLZW"
+        },
+        {
+            "filename": "logo2-2-1-150x150-1.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/logo2-2-1-150x150-1.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 7596,
+            "dimensions": [
+                150,
+                150
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/versatile-logo-templates-TAZLZW"
+        },
+        {
+            "filename": "logo3-2-1-150x150-1.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/logo3-2-1-150x150-1.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 7845,
+            "dimensions": [
+                150,
+                150
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/versatile-logo-templates-TAZLZW"
+        },
+        {
+            "filename": "logo4-2-150x150-1.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/logo4-2-150x150-1.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 7407,
+            "dimensions": [
+                150,
+                150
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/versatile-logo-templates-TAZLZW"
+        },
+        {
+            "filename": "logo5-2-150x150-1.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/logo5-2-150x150-1.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 7268,
+            "dimensions": [
+                150,
+                150
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/versatile-logo-templates-TAZLZW"
+        },
+        {
+            "filename": "logo6-2-150x150-1.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/logo6-2-150x150-1.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 7708,
+            "dimensions": [
+                150,
+                150
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/versatile-logo-templates-TAZLZW"
+        },
+        {
+            "filename": "cubes.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/cubes.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 633,
+            "dimensions": [
+                67,
+                100
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.toptal.com\/designers\/subtlepatterns\/"
+        },
+        {
+            "filename": "calendar.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/calendar.png",
+            "templates": [
+                {
+                    "source": "templates\/home.json",
+                    "name": "Home"
+                }
+            ],
+            "filesize": 16275,
+            "dimensions": [
+                512,
+                512
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.flaticon.com\/free-icon\/calendar_3716714"
+        },
+        {
+            "filename": "product-1.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/product-1.png",
+            "templates": [
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 184673,
+            "dimensions": [
+                700,
+                661
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/photography-scene-creator-volume-1-FVRBSY"
+        },
+        {
+            "filename": "product-2.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/product-2.png",
+            "templates": [
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 257588,
+            "dimensions": [
+                700,
+                1094
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/games-entertainment-scene-creator-MH98ET"
+        },
+        {
+            "filename": "product-3.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/product-3.png",
+            "templates": [
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 104544,
+            "dimensions": [
+                700,
+                682
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/games-entertainment-scene-creator-MH98ET"
+        },
+        {
+            "filename": "product-4.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/product-4.png",
+            "templates": [
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 206897,
+            "dimensions": [
+                700,
+                983
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/games-entertainment-scene-creator-MH98ET"
+        },
+        {
+            "filename": "logo-1.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/logo-1.png",
+            "templates": [
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 17769,
+            "dimensions": [
+                376,
+                233
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/versatile-logo-templates-TAZLZW"
+        },
+        {
+            "filename": "logo-2-2.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/logo-2-2.png",
+            "templates": [
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 15912,
+            "dimensions": [
+                376,
+                197
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/versatile-logo-templates-TAZLZW"
+        },
+        {
+            "filename": "logo-4.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/logo-4.png",
+            "templates": [
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 20749,
+            "dimensions": [
+                376,
+                233
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/versatile-logo-templates-TAZLZW"
+        },
+        {
+            "filename": "logo-3.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/logo-3.png",
+            "templates": [
+                {
+                    "source": "templates\/resources.json",
+                    "name": "Resources"
+                }
+            ],
+            "filesize": 19288,
+            "dimensions": [
+                376,
+                233
+            ],
+            "image_source": "envato_elements",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/elements.envato.com\/versatile-logo-templates-TAZLZW"
+        },
+        {
+            "filename": "logo-1.7-black.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/logo-1.7-black.png",
+            "templates": [
+                {
+                    "source": "templates\/blogher-footer.json",
+                    "name": "BlogHer - Footer"
+                }
+            ],
+            "filesize": 12706,
+            "dimensions": [
+                379,
+                301
+            ],
+            "image_source": "self_created",
+            "person_or_place": "no",
+            "image_urls": ""
+        },
+        {
+            "filename": "shipped.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/shipped.png",
+            "templates": [
+                {
+                    "source": "templates\/blogher-single-product.json",
+                    "name": "BlogHer - Single Product"
+                }
+            ],
+            "filesize": 7836,
+            "dimensions": [
+                512,
+                512
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.flaticon.com\/free-icon\/shipped_411763"
+        },
+        {
+            "filename": "credit-cards-payment.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/credit-cards-payment.png",
+            "templates": [
+                {
+                    "source": "templates\/blogher-single-product.json",
+                    "name": "BlogHer - Single Product"
+                }
+            ],
+            "filesize": 10348,
+            "dimensions": [
+                512,
+                512
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.flaticon.com\/free-icon\/credit-cards-payment_71227"
+        },
+        {
+            "filename": "return-of-investment.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/return-of-investment.png",
+            "templates": [
+                {
+                    "source": "templates\/blogher-single-product.json",
+                    "name": "BlogHer - Single Product"
+                }
+            ],
+            "filesize": 25665,
+            "dimensions": [
+                512,
+                512
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.flaticon.com\/free-icon\/return-of-investment_2394090"
+        },
+        {
+            "filename": "badge.png",
+            "thumbnail_url": "http:\/\/kits.mediumred.com\/blogher\/wp-content\/uploads\/2021\/04\/badge.png",
+            "templates": [
+                {
+                    "source": "templates\/blogher-single-product.json",
+                    "name": "BlogHer - Single Product"
+                }
+            ],
+            "filesize": 28015,
+            "dimensions": [
+                512,
+                512
+            ],
+            "image_source": "cc0",
+            "person_or_place": "no",
+            "image_urls": "https:\/\/www.flaticon.com\/free-icon\/badge_3649497"
+        }
+    ]
+}

@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #e6b319;
+  --color-background-light: #f8f7f6;
+  --color-background-dark: #12110e;
+  --color-surface-dark: #1c1a14;
+  --font-display: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
+}
+
+@layer utilities {
+  .glass-effect {
+    background: rgba(28, 26, 20, 0.6);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(230, 179, 25, 0.1);
+  }
+  .text-glow {
+    text-shadow: 0 0 20px rgba(230, 179, 25, 0.3);
+  }
+}
