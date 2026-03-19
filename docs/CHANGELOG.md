@@ -7,6 +7,9 @@ Todos los cambios notables del proyecto se documentarán en este archivo según 
 - `README.md` y `AGENTS.md` fundacionales.
 - `docs/ARCHITECTURE.md`, `ROADMAP.md`, `BACKLOG.md`, `PRD.md`, `AI-RULES.md`.
 - TailwindCSS, Vitest, Playwright.
+- Páginas internas premium: `Sobre Mí` (`/sobre-mi/`, `/en/about-me/`) y `Portafolio` (`/portafolio/`, `/en/portfolio/`).
+- Componentes UI Premium: `InternalHero`, `PremiumCard`, `PortfolioGrid`.
+- Tests de navegación Playwright para rutas internas.
 
 ### Changed
 - None

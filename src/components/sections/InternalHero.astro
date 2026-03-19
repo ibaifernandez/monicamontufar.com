@@ -1,0 +1,50 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  lang?: 'es' | 'en';
+}
+
+const { title, subtitle, lang = 'es' } = Astro.props;
+---
+
+<header class="relative w-full pt-32 pb-24 md:pt-40 md:pb-32 flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+  <!-- subtle background glow -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 max-w-2xl h-64 bg-[#e6b319]/10 blur-[120px] rounded-full pointer-events-none"></div>
+  
+  <div class="relative z-10 max-w-4xl mx-auto space-y-6">
+    <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-4 animate-fade-in-up">
+      {title}
+      <span class="block w-24 h-1 bg-[#e6b319] mx-auto mt-8 rounded-full"></span>
+    </h1>
+    
+    {subtitle && (
+      <p class="font-sans text-lg md:text-xl text-white/70 max-w-2xl mx-auto font-light leading-relaxed animate-fade-in-up" style="animation-delay: 200ms;">
+        {subtitle}
+      </p>
+    )}
+    
+    <div class="mt-8 animate-fade-in-up" style="animation-delay: 400ms;">
+      <a href={lang === 'en' ? '/en/' : '/'} class="inline-flex items-center gap-2 text-sm font-sans text-white/50 hover:text-[#e6b319] transition-colors duration-300 group uppercase tracking-widest font-semibold">
+        <span class="material-symbols-outlined text-lg group-hover:-translate-x-2 transition-transform">arrow_left_alt</span>
+        {lang === 'en' ? 'Back to Home' : 'Volver al Inicio'}
+      </a>
+    </div>
+  </div>
+</header>
+<style>
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+    opacity: 0;
+  }
+</style>

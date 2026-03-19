@@ -12,7 +12,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <header class="fixed top-0 w-full z-50 px-6 py-6 lg:px-12 flex items-center justify-between border-b border-white/5 bg-[#12110E]/80 backdrop-blur-md">
       <div class="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
         <img src="/wp-content/uploads/2023/08/Icono-Mon.png" alt="Icono Mónica Montúfar" class="size-8 object-contain" />
-        <h2 class="text-xl font-bold tracking-tighter uppercase text-slate-100">Mónica Montúfar</h2>
+        <h2 class="text-xl font-bold tracking-tighter text-slate-100">Mónica Montúfar</h2>
       </div>
       <div class="flex items-center gap-6">
         <!-- Social Icons -->
@@ -34,7 +34,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <img src="/images/english.svg" alt="Switch to English" class="w-5 h-5 object-cover rounded-full" />
           </a>
         </nav>
-      </header>
+      </div>
+    </header>
 
     <div class="flex-1 flex flex-col lg:flex-row pt-24 lg:pt-0">
       <!-- Left Content: Editorial Text -->
@@ -113,9 +114,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
 
     <!-- Minimal Footer -->
-    <footer class="bg-[#1c1a14] py-8 px-6 lg:px-24 border-t border-white/5 mt-12">
-      <div class="flex flex-col md:flex-row justify-center items-center gap-6">
-        <p class="text-xs text-slate-500 uppercase tracking-widest font-medium">© 2026 Mónica Montúfar. Todos los derechos reservados.</p>
+    <footer class="bg-[#1c1a14] py-10 px-6 lg:px-24 border-t border-white/5 mt-12">
+      <div class="flex flex-col items-center gap-4 text-center">
+        <p class="text-xs text-slate-500 tracking-widest font-medium">© 2026 Mónica Montúfar. Todos los derechos reservados.</p>
+        <p class="text-xs text-slate-400 font-light tracking-wide mt-2">
+          Desarrollado con ❤️, 🧠 y 🌈 por 
+          <a href="https://portfolio.ibaifernandez.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white hover:underline transition-colors">Ibai Fernández</a> y 
+          <a href="https://portafolio.monicamontufar.com/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white hover:underline transition-colors">Mónica Montúfar</a> @ 
+          <a href="https://aglaya.biz/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-white hover:underline transition-colors font-semibold">AGLAYA</a> · 
+          De LatAm para el 🌎
+        </p>
       </div>
     </footer>
   </div>

@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import InternalHero from '../../../components/sections/InternalHero.astro';
+import PremiumCard from '../../../components/ui/PremiumCard.astro';
+import PortfolioGrid from '../../../components/sections/PortfolioGrid.astro';
+---
+
+<BaseLayout 
+  title="Portfolio • Mónica Montúfar" 
+  description="Discover my Virtual Assistance and Design services."
+  lang="en"
+>
+  <InternalHero 
+    title="Portfolio" 
+    subtitle="Free time and optimized processes while your business scales limitlessly." 
+    lang="en" 
+  />
+
+  <section class="max-w-7xl mx-auto px-6 py-12">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Services</h2>
+      <p class="font-sans text-white/70 max-w-2xl mx-auto text-lg font-light">Comprehensive solutions to optimize your operations and elevate your brand's presence.</p>
+    </div>
+
+    <PortfolioGrid>
+      <PremiumCard 
+        title="Management & Organization"
+        description="Efficient management of schedules, emails, and confidential documentation."
+        image="/wp-content/uploads/2023/08/Papeleria-creativa.png"
+        tags={['Virtual Assistance']}
+      />
+      <PremiumCard 
+        title="Digital Marketing"
+        description="Email marketing strategies, social media management, and newsletter design (Mailchimp, Brevo)."
+        image="/wp-content/uploads/2023/08/Social-media.png"
+        tags={['Social Media', 'Email']}
+      />
+      <PremiumCard 
+        title="Web Support & Design"
+        description="Comprehensive WordPress maintenance, landing page design, and creation of visual assets."
+        image="/wp-content/uploads/2024/05/Diseno-web.jpeg"
+        tags={['WordPress', 'Web Design']}
+      />
+      <PremiumCard 
+        title="Branding"
+        description="Naming, Brand Architecture, and Brand Value. From visual identity to positioning with Illustrator and Photoshop."
+        image="/wp-content/uploads/2023/08/Branding-08.png"
+        tags={['Visual Identity']}
+      />
+      <PremiumCard 
+        title="Multimedia Design"
+        description="Creation of audiovisual pieces for the promotion of services in digital media (After Effects & Premiere)."
+        image="/wp-content/uploads/2023/08/Social-media-fattache.png"
+        tags={['Video', 'Animation']}
+      />
+      <PremiumCard 
+        title="Product Photography"
+        description="Professional production and editing of in-studio product photography with agency quality."
+        image="/wp-content/uploads/2023/08/Regalos-para-mama-Andariega-73.jpg"
+        tags={['Photography', 'Lightroom']}
+      />
+    </PortfolioGrid>
+  </section>
+
+  <section class="relative w-full py-24 md:py-32 mt-12 bg-white/[0.02] border-t border-white/5 overflow-hidden">
+    <!-- Glow -->
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-[#e6b319]/5 blur-[120px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
+    
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6">Work Model</h2>
+        <p class="font-sans text-white/80 leading-relaxed max-w-3xl mx-auto text-lg font-light">My goal is to adapt to your needs, offering you high-quality Virtual Assistance support with the flexibility your business requires.</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-10 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-md transition-transform duration-300 hover:-translate-y-2 hover:border-white/20">
+          <h3 class="font-serif text-2xl font-bold text-white mb-2">Initial</h3>
+          <p class="text-[#e6b319] font-bold text-xl mb-6 font-sans">10 hours/month</p>
+          <p class="text-base text-white/70 font-light leading-relaxed">Ideal for specific support, email organization, and targeted administrative tasks.</p>
+        </div>
+        <div class="p-10 border border-[#e6b319]/30 rounded-3xl bg-gradient-to-b from-[#e6b319]/10 to-transparent backdrop-blur-md transform md:-translate-y-6 shadow-[0_20px_40px_rgba(230,179,25,0.1)] transition-transform duration-300 hover:-translate-y-8">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#e6b319] text-[#12110e] text-xs font-bold uppercase tracking-widest py-1 px-4 rounded-full">Popular</div>
+          <h3 class="font-serif text-2xl font-bold text-white mb-2">Pro</h3>
+          <p class="text-[#e6b319] font-bold text-xl mb-6 font-sans">20 hours/month</p>
+          <p class="text-base text-white/70 font-light leading-relaxed">Perfect for continuous assistance, ongoing projects, and social media management.</p>
+        </div>
+        <div class="p-10 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-md transition-transform duration-300 hover:-translate-y-2 hover:border-white/20">
+          <h3 class="font-serif text-2xl font-bold text-white mb-2">Premium</h3>
+          <p class="text-[#e6b319] font-bold text-xl mb-6 font-sans">40 hours/month</p>
+          <p class="text-base text-white/70 font-light leading-relaxed">Your integral solution to delegate significantly and accelerate your company's growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

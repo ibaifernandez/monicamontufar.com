@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InternalHero from '../../components/sections/InternalHero.astro';
+---
+
+<BaseLayout 
+  title="Sobre Mí • Mónica Montúfar" 
+  description="Creativa por convicción, diseñadora por vocación, nómada digital por decisión."
+  lang="es"
+>
+  <InternalHero 
+    title="Sobre Mí" 
+    subtitle="Creativa por convicción, diseñadora por vocación, nómada digital por decisión." 
+    lang="es" 
+  />
+
+  <section class="max-w-5xl mx-auto px-6 py-12 md:py-24 space-y-16">
+    <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
+      <div class="w-full md:w-5/12 relative group">
+        <div class="aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 relative z-10 transition-transform duration-500 group-hover:-translate-y-2 group-hover:-translate-x-2">
+          <img src="/wp-content/uploads/2025/06/Monica-Montufar.jpeg" alt="Mónica Montúfar" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#12110e] via-transparent to-transparent opacity-60"></div>
+        </div>
+        <div class="absolute inset-0 border border-[#e6b319]/40 rounded-2xl z-0 transition-transform duration-500 group-hover:translate-x-4 group-hover:translate-y-4"></div>
+      </div>
+      
+      <div class="w-full md:w-7/12 space-y-8">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-white">Mi Historia</h2>
+          <div class="w-12 h-1 bg-[#e6b319] mt-4 rounded-full"></div>
+        </div>
+        
+        <div class="space-y-6 font-sans text-white/80 leading-relaxed text-lg font-light">
+          <p>
+            <strong class="text-white font-medium">Asistente virtual</strong> proactiva y experimentada, con más de 10 años en el ecosistema digital. Mi Máster en Marketing Digital e eCommerce me ha dotado de un amplio set de habilidades técnicas y estratégicas.
+          </p>
+          <p>
+            Dominio avanzado de <strong class="text-[#e6b319] font-medium">WordPress, Mailchimp, Brevo, Email Studio de Salesforce, Illustrator y After Effects</strong>. Especialista en <strong class="text-white font-medium">diseño web, email marketing, gestión de proyectos y comunicación visual</strong>.
+          </p>
+          <p>
+            He creado más de 100 sitios web y gestionado exitosamente campañas de email marketing. Mis fortalezas incluyen resolución de problemas, organización, adaptabilidad y comunicación efectiva. Acostumbrada al trabajo remoto y autónomo, estoy lista para ofrecer un soporte virtual de alto nivel, optimizando tus operaciones y contribuyendo al crecimiento de tu negocio.
+          </p>
+        </div>
+        
+        <div class="pt-4">
+          <a href="/portafolio" class="inline-block px-8 py-4 bg-[#e6b319] text-[#12110e] font-sans font-semibold rounded-full hover:bg-white transition-colors duration-300 shadow-[0_4px_14px_0_rgba(230,179,25,0.39)] hover:shadow-[0_6px_20px_rgba(255,255,255,0.23)]">
+            Ver mi trabajo
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
