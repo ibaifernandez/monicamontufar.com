@@ -11,7 +11,7 @@
     "preview": "astro preview",
     "test": "vitest",
     "test:e2e": "playwright test",
-    "test:visual:docker": "docker run --rm --ipc=host -v \"$(pwd)\":/work/ -w /work/ mcr.microsoft.com/playwright:v1.58.2-jammy bash -c 'npm install @rollup/rollup-linux-arm64-gnu @rollup/rollup-linux-x64-gnu @rollup/rollup-linux-x64-musl --no-save --force && npx playwright test tests/quality-gate.spec.ts --update-snapshots'",
+    "test:visual:docker": "docker run --rm --ipc=host -e CI=true -v \"$(pwd)\":/work/ -w /work/ mcr.microsoft.com/playwright:v1.58.2-noble bash -c 'npm install @rollup/rollup-linux-arm64-gnu @rollup/rollup-linux-x64-gnu @rollup/rollup-linux-x64-musl --no-save --force && npm run build && npx playwright test tests/quality-gate.spec.ts --update-snapshots'",
     "astro": "astro"
   },
   "dependencies": {
