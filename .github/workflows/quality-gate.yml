@@ -25,6 +25,8 @@ jobs:
 
       - name: Build Project
         run: npm run build
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
