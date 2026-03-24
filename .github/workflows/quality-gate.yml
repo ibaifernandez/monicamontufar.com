@@ -38,5 +38,5 @@ jobs:
 
       - name: Run Lighthouse CI
         run: |
-          export CHROME_PATH=$(find /ms-playwright/chromium*/chrome-linux/chrome -type f | head -n 1)
+          export CHROME_PATH=$(find /ms-playwright -type f -name chrome | grep chromium | head -n 1)
           npx lhci autorun
