@@ -21,4 +21,5 @@ Todos los cambios notables del proyecto se documentarán en este archivo según 
 - None
 
 ### Fixed
-- None
+- **Accesibilidad y Tests E2E**: Correcciones de contraste de color (`text-slate-400` -> `text-slate-300`/`200`), *landmark regions* (`<aside>` en `CookieBanner`), y *aria-labels* faltantes.
+- **Visual Regression (CI)**: Se actualizó `playwright.config.ts` (`snapshotPathTemplate` sin prefijo de OS) para garantizar la paridad visual multiplataforma en GitHub Actions y se generaron los snapshots base.

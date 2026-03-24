@@ -25,7 +25,7 @@ const { title, subtitle, lang = 'es' } = Astro.props;
     )}
     
     <div class="mt-8 animate-fade-in-up" style="animation-delay: 400ms;">
-      <a href={lang === 'en' ? '/en/' : '/'} class="inline-flex items-center gap-2 text-sm font-sans text-white/50 hover:text-[#e6b319] transition-colors duration-300 group uppercase tracking-widest font-semibold">
+      <a href={lang === 'en' ? '/en/' : '/'} class="inline-flex items-center gap-2 text-sm font-sans text-slate-200 hover:text-[#e6b319] transition-colors duration-300 group uppercase tracking-widest font-semibold">
         <span class="material-symbols-outlined text-lg group-hover:-translate-x-2 transition-transform">arrow_left_alt</span>
         {lang === 'en' ? 'Back to Home' : 'Volver al Inicio'}
       </a>
