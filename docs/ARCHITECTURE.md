@@ -6,7 +6,7 @@
 - **Hosting**: Netlify estático con Backend Serverless (`netlify/functions`).
 - **Source**: Migración manual de Mónica Montúfar (WordPress local -> Astro estático).
 - **QA & Observabilidad**: Pipeline GitHub Actions bloqueante, Playwright (Axe A11y + Regresión Visual), Lighthouse CI. Monitoreo pasivo con Sentry y UptimeRobot (`RUNBOOK.md`).
-  - *Nota sobre Regresión Visual*: Dado que GitHub Actions corre en `ubuntu-latest` y el ecosistema local suele ser macOS/Windows, existe una discrepancia nativa en el renderizado de fuentes (antialiasing). Para lograr paridad 1:1 y que la CI no falle por falsos positivos de píxeles, los *snapshots base* se generan **aisladamente dentro de un contenedor Docker de Ubuntu** usando el comando `npm run test:visual:docker`.
+  - *Nota sobre Regresión Visual*: Dado que GitHub Actions corre en `ubuntu-latest` nativamente con fuentes variables, se inyecta la directiva `container: mcr.microsoft.com/playwright` para que la CI entera procese la UI idéntica al entorno Linux de Microsoft. Localmente en macOS/Windows, los *snapshots base* se generan **aisladamente dentro del mismo contenedor Docker de Ubuntu** usando el comando de paquete `npm run test:visual:docker`, logrando la paridad multiplataforma absoluta.
 ## Component Structure y Modulidad
 ```
 src/
