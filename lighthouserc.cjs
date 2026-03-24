@@ -3,6 +3,9 @@ module.exports = {
     collect: {
       staticDistDir: './dist',
       numberOfRuns: 3,
+      settings: {
+        chromeFlags: '--no-sandbox --disable-gpu --disable-dev-shm-usage',
+      },
     },
     assert: {
       preset: 'lighthouse:recommended',
