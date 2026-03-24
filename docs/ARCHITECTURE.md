@@ -3,9 +3,9 @@
 ## Core Stack
 - **Framework**: Astro 5 (Modo SSG: Static Site Generation).
 - **Styling**: TailwindCSS 3/4.
-- **Hosting**: Netlify.
+- **Hosting**: Netlify estático con Backend Serverless (`netlify/functions`).
 - **Source**: Migración manual de Mónica Montúfar (WordPress local -> Astro estático).
-- **QA**: Vitest para unitarios / Playwright para E2E (Cross browser visual testing / Flows).
+- **QA & Observabilidad**: Pipeline GitHub Actions bloqueante, Playwright (Axe A11y + Regresión Visual), Lighthouse CI. Monitoreo pasivo con Sentry y UptimeRobot (`RUNBOOK.md`).
 
 ## Component Structure y Modulidad
 ```
@@ -29,10 +29,13 @@ src/
 - Enlaces con `hreflang` cruzados (`<link rel="alternate" hreflang="en" href="https://monicamontufar.com/en/" />`).
 
 ## SEO (Search Engine Optimization)
-- `SEO.astro` Componente.
-- Props genericos: `title`, `description`, `image`, `canon`.
-- Generación Estática (SSG) de 100/100 Lighthouse Performance.
+- `SEO.astro` Componente genérico para tags y Graph (`title`, `description`, `image`).
+- Sitemap generado automáticamente en ciclo de compilación de Astro (`@astrojs/sitemap`).
+- Indexación dirigida mediante `public/robots.txt`.
+- Generación Estática (SSG) de 100/100 Lighthouse Performance garantizado por `.github/workflows/quality-gate.yml`.
 
-## Controles de Hosting
-- Repositorio vinculado: GitHub.
-- Protección a coste de despliegue mediante netlify Ignore Script.
+## Controles de Hosting y Seguridad
+- Repositorio vinculado: GitHub con CI gate automatizado.
+- Netlify Functions para capa backend.
+- Bloqueo de URLs Legacy y CSP mediante `public/_headers` y `_redirects`.
+- Limitador inteligente de builds inútiles en `netlify.toml`.

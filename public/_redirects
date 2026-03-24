@@ -1,0 +1,10 @@
+# _redirects configuration
+# Block sensible paths
+/.env  404
+/.git* 404
+/wp-admin* 404
+/wp-login* 404
+/xmlrpc.php 404
+
+# Fallback explicit
+/* /index.html 200

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /_redirects
+Disallow: /_headers
+Disallow: /netlify.toml
+
+Sitemap: https://monicamontufar.com/sitemap-index.xml

@@ -49,16 +49,20 @@ Toda la documentación vive en `/docs`. Lee estos archivos **antes** de hacer ca
 
 ```
 monicamontufar.com-astro/
+├── .github/                   ← CI/CD Pipelines (Quality Gate)
 ├── AGENTS.md                  ← Estás aquí
 ├── README.md                  ← Overview del proyecto
-├── docs/                      ← Documentación completa
+├── docs/                      ← Documentación completa (incluye RUNBOOK.md)
+├── netlify/                   ← Funciones Serverless (Turnstile, Forms)
 ├── src/
 │   ├── components/            ← Componentes reutilizables (.astro)
 │   ├── layouts/               ← Layouts (Base, etc)
 │   ├── pages/                 ← Rutas del sitio (ES e /en/)
 │   └── styles/                ← Design system global
-├── public/                    ← Assets estáticos (imágenes originales)
-├── astro.config.mjs           ← Configuración de Astro
+├── tests/                     ← E2E Tests de Regresión Visual y A11y
+├── public/                    ← Assets, _headers de seguridad, _redirects y robots.txt
+├── astro.config.mjs           ← Configuración de Astro, Sitemap y Sentry
+├── lighthouserc.cjs           ← Presupuestos de Performance/SEO
 └── package.json
 ```
 

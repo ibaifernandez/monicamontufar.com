@@ -4,7 +4,7 @@ Este archivo centraliza el estado actual, separándose de `ROADMAP.md` y alinead
 
 ## To-Do
 - [ ] Ejecutar `git init` en el repositorio, con la estructura generada.
-- [ ] Configurar `/netlify.toml`.
+- [x] Configurar `/netlify.toml`.
 - [ ] Extraer media a `/public/images/`.
 - [x] Mapear estructura de `src/pages/` inicial.
 - [x] Construir layout central `BaseLayout.astro`.
@@ -21,3 +21,4 @@ Este archivo centraliza el estado actual, separándose de `ROADMAP.md` y alinead
 ## Done
 - [x] Identificar la estructura local en OrbStack y directorios raíz requeridos (`monicamontufar.com-astro/`).
 - [x] `task.md` e `implementation_plan.md` listos y aprobados.
+- [x] Alcanzar la paridad técnica con el dossier de `elmst.ibaifernandez.com` (CI/CD Automático, Serverless Functions en Netlify, Security Hardening, Rastros Visuales E2E, Accesibilidad y Observabilidad).

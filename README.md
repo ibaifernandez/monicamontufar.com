@@ -26,15 +26,18 @@ npm run build
 | Tecnología                     | Uso                                   |
 | ------------------------------ | ------------------------------------- |
 | [Astro 5](https://astro.build) | Framework SSG                         |
-| [Netlify](https://netlify.com) | Hosting estático (build automáticos desactivados) |
+| [Netlify](https://netlify.com) | Edge Hosting & Serverless Functions   |
 | TailwindCSS                    | Design system con UI Premium          |
-| Playwright & Vitest            | QA Automatizada y E2E                 |
+| Playwright, Vitest, Lighthouse | QA Automatizada, A11y & Visual Testing|
+| Sentry                         | Observabilidad y Monitoreo Frontend   |
 
 ## 📄 Características Principales
 
 - **i18n Nativo:** Soporte Inglés (`/en/`) y Español (`/`).
-- **SEO Blindado:** Autogeneración de Meta Tags y Open Graph por componente `<SEO.astro>`.
-- **Rigor Técnico:** Bloqueo de Deploys innecesarios (`netlify.toml`) y test locales estrictos antes del release.
+- **SEO Blindado:** Autogeneración de Meta Tags vía `<SEO.astro>`, Sitemap XML Automático y `robots.txt` alineado.
+- **Rigor Técnico:** Bloqueo de Deploys innecesarios (`netlify.toml`), pipeline estricto en GitHub Actions (Quality Gate) evaluando E2E, Lighthouse y Accesibilidad (Axe).
+- **Seguridad y Backend API:** Funciones Serverless con validación de CAPTCHA, Hardening de cabeceras (`_headers` con CSP/HSTS) y enmascaramiento de rutas.
+- **UI de Alta Gama:** Uso de recursos originales desde WordPress (`wp-content/uploads/`) con soporte baseline de Playwright Visual Regression.
 - **UI de Alta Gama:** Uso de recursos originales desde WordPress (`wp-content/uploads/`).
 
 ## 📚 Documentación
