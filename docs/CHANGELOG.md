@@ -21,5 +21,5 @@ Todos los cambios notables del proyecto se documentarán en este archivo según 
 - None
 
 ### Fixed
-- **Accesibilidad y Tests E2E**: Correcciones de contraste de color (`text-slate-400` -> `text-slate-300`/`200`), *landmark regions* (`<aside>` en `CookieBanner`), y *aria-labels* faltantes.
-- **Visual Regression (CI)**: Se actualizó `playwright.config.ts` (`snapshotPathTemplate` sin prefijo de OS) para garantizar la paridad visual multiplataforma en GitHub Actions y se generaron los snapshots base.
+- **Accesibilidad y Tests E2E**: Correcciones de contraste de color (`text-slate-400` -> `text-slate-300`/`200`), *landmark regions* (`<aside>` en `CookieBanner`), y *aria-labels* faltantes. Se corrigieron falsos positivos de contraste en Axe-core deshabilitando animaciones CSS en tiempo de ejecución de prueba.
+- **Visual Regression (CI)**: Se actualizó `playwright.config.ts` (`snapshotPathTemplate` sin prefijo de OS) para garantizar la paridad visual multiplataforma en GitHub Actions y se regeneraron los snapshots base utilizando contenedores Docker de Ubuntu (`npm run test:visual:docker`).
