@@ -17,6 +17,12 @@ npm run dev          # → http://localhost:4321
 npm run test         # Vitest (Unit)
 npx playwright test  # Pruebas End-to-End
 
+# ⚠️ Actualización de Referencias Visuales (Aislamiento de OS)
+# Usa este script ÚNICAMENTE si has hecho un cambio intencional de diseño y
+# requieres actualizar las fotografías base de Playwright para que aprueben 
+# en GitHub Actions (Ubuntu).
+npm run test:visual:docker
+
 # Build de producción
 npm run build
 ```
