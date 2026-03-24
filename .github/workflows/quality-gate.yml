@@ -37,4 +37,6 @@ jobs:
         run: npm run test:e2e
 
       - name: Run Lighthouse CI
-        run: npx lhci autorun
+        run: |
+          export CHROME_PATH=$(find /ms-playwright/chromium*/chrome-linux/chrome -type f | head -n 1)
+          npx lhci autorun
