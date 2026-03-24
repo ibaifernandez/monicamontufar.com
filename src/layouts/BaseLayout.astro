@@ -2,6 +2,8 @@
 import SEO from '../components/global/SEO.astro';
 import CookieBanner from '../components/global/CookieBanner.astro';
 import '../styles/global.css';
+import imgIcono from '~/assets/wp-content/uploads/2023/08/Icono-Mon.png';
+import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
 
 interface Props {
   title: string;
@@ -18,13 +20,13 @@ const { title, description, lang = 'es' } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/wp-content/uploads/2023/08/Icono-Mon.png" />
+    <link rel="icon" type="image/png" href={imgIcono.src} />
     <meta name="generator" content={Astro.generator} />
     
     <!-- SEO & Social Meta Tags -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/wp-content/uploads/2024/04/MonMont.jpeg" />
+    <meta property="og:image" content={new URL(imgHero.src, Astro.site || Astro.url).href} />
     <meta property="og:url" content={Astro.url.href} />
     <meta name="twitter:card" content="summary_large_image" />
     

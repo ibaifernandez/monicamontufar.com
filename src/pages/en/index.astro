@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import imgIcono from '~/assets/wp-content/uploads/2023/08/Icono-Mon.png';
+import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
 ---
 
 <BaseLayout 
@@ -11,7 +14,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     <!-- Top Navigation -->
     <header class="fixed top-0 w-full z-50 px-6 py-6 lg:px-12 flex items-center justify-between border-b border-white/5 bg-[#12110E]/80 backdrop-blur-md">
       <div class="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
-        <img src="/wp-content/uploads/2023/08/Icono-Mon.png" alt="Icono Mónica Montúfar" class="size-8 object-contain" />
+        <Image src={imgIcono} alt="Icono Mónica Montúfar" class="size-8 object-contain" />
         <h2 class="text-xl font-bold tracking-tighter text-slate-100">Mónica Montúfar</h2>
       </div>
       <div class="flex items-center gap-6">
@@ -107,7 +110,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#12110E] via-[#12110E]/60 to-transparent z-10"></div>
         <div class="absolute inset-0 bg-gradient-to-t from-[#12110E] to-transparent z-10 lg:hidden"></div>
         
-        <div class="absolute inset-0 bg-center bg-cover transition-transform duration-1000 group-hover:scale-105" style="background-image: url('/wp-content/uploads/2024/04/MonMont.jpeg');"></div>
+        <Image 
+          src={imgHero} 
+          alt="Mónica Montúfar Portrait" 
+          class="absolute inset-0 w-full h-full object-center object-cover transition-transform duration-1000 group-hover:scale-105"
+          loading="eager"
+        />
         
       </div>
 

@@ -1,8 +1,11 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
 interface Props {
   title: string;
   description?: string;
-  image?: string;
+  image?: ImageMetadata;
   href?: string;
   tags?: string[];
 }
@@ -15,10 +18,9 @@ const { title, description, image, href, tags = [] } = Astro.props;
   {image && (
     <div class="relative w-full aspect-[4/3] overflow-hidden">
       <div class="absolute inset-0 bg-[#12110e]/30 z-10 group-hover:bg-transparent transition-colors duration-700"></div>
-      <img 
+      <Image 
         src={image} 
         alt={title} 
-        loading="lazy"
         class="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-1000 ease-out"
       />
     </div>
