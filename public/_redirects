@@ -1,10 +1,10 @@
 # _redirects configuration
-# Block sensible paths
-/.env  404
-/.git* 404
-/wp-admin* 404
-/wp-login* 404
-/xmlrpc.php 404
+# Block sensitive paths — syntax: /source  /destination  status
+/.env        /404.html  404
+/.git*       /404.html  404
+/wp-admin*   /404.html  404
+/wp-login*   /404.html  404
+/xmlrpc.php  /404.html  404
 
 # Netlify sirve /404.html automáticamente para rutas no encontradas (generado por src/pages/404.astro).
 # No se necesita catch-all: el SSG genera la página correcta con HTTP 404.
