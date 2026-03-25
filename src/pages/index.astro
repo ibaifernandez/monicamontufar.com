@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import imgIcono from '~/assets/wp-content/uploads/2023/08/Icono-Mon.png';
 import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
+const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
 ---
 
 <BaseLayout 
@@ -62,6 +63,8 @@ import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
               <form id="waitlist-form" class="flex flex-col sm:flex-row gap-2" novalidate>
                 <!-- Honeypot: oculto para humanos, bots lo rellenan -->
                 <input type="text" name="bot_field" class="hidden" tabindex="-1" autocomplete="off" />
+                <!-- Turnstile invisible widget container -->
+                <div id="cf-turnstile-container" data-sitekey={turnstileSiteKey} class="hidden"></div>
                 <div class="relative flex-1 shrink-0">
                   <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-300">mail</span>
                   <input
@@ -164,7 +167,7 @@ import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
     function initCountdown() {
       // May 1st, 2026, 09:00 AM Colombia Time (UTC-5)
       const targetDate = new Date('2026-05-01T09:00:00-05:00').getTime();
-      
+
       const elements = {
         days: document.getElementById('days'),
         hours: document.getElementById('hours'),
@@ -197,57 +200,102 @@ import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
         });
       }, 1000);
     }
-  
+
     document.addEventListener('astro:page-load', initCountdown);
     initCountdown();
 
     // ── Formulario de lista de espera ─────────────────────────────────────────
     function initWaitlistForm() {
-      const form     = document.getElementById('waitlist-form')   as HTMLFormElement | null;
-      const emailEl  = document.getElementById('waitlist-email')  as HTMLInputElement | null;
-      const submitEl = document.getElementById('waitlist-submit') as HTMLButtonElement | null;
+      const form      = document.getElementById('waitlist-form')    as HTMLFormElement | null;
+      const emailEl   = document.getElementById('waitlist-email')   as HTMLInputElement | null;
+      const submitEl  = document.getElementById('waitlist-submit')  as HTMLButtonElement | null;
       const successEl = document.getElementById('waitlist-success');
       const errorEl   = document.getElementById('waitlist-error');
-      const privacyEl = document.getElementById('privacy-es') as HTMLInputElement | null;
+      const privacyEl = document.getElementById('privacy-es')       as HTMLInputElement | null;
+      const tsContainer = document.getElementById('cf-turnstile-container') as HTMLElement | null;
 
       if (!form || !emailEl || !submitEl) return;
+
+      const siteKey = tsContainer?.dataset.sitekey ?? '';
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const ts = () => (window as any).turnstile;
+      let widgetId: string | undefined;
+
+      function initTurnstileWidget() {
+        if (!ts() || !tsContainer || !siteKey || widgetId !== undefined) return;
+        widgetId = ts().render(tsContainer, {
+          sitekey: siteKey,
+          size: 'invisible',
+          callback: (token: string) => { doSubmit(token); },
+          'error-callback': () => {
+            showError('Error de verificación anti-bot. Inténtalo de nuevo.');
+            setLoading(false);
+          },
+          'expired-callback': () => { if (widgetId !== undefined) ts()?.reset(widgetId); },
+        });
+      }
+
+      // Turnstile ready via onload callback or already present
+      document.addEventListener('turnstile:ready', initTurnstileWidget, { once: true });
+      if (ts()) initTurnstileWidget();
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Validación privacidad
         if (privacyEl && !privacyEl.checked) {
           showError('Debes aceptar la política de privacidad para continuar.');
           return;
         }
-
-        const email = emailEl.value.trim();
-        if (!email) return;
+        if (!emailEl.value.trim()) return;
 
         setLoading(true);
         hideMessages();
 
+        if (ts() && widgetId !== undefined) {
+          ts().execute(widgetId);
+        } else {
+          await doSubmit(null);
+        }
+      });
+
+      async function doSubmit(turnstileToken: string | null) {
         try {
+          if (turnstileToken) {
+            const verifyRes = await fetch('/api/verify-turnstile', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ token: turnstileToken }),
+            });
+            const verifyData = await verifyRes.json();
+            if (!verifyData.success) {
+              showError('Verificación anti-bot fallida. Inténtalo de nuevo.');
+              if (widgetId !== undefined) ts()?.reset(widgetId);
+              setLoading(false);
+              return;
+            }
+          }
+
           const res = await fetch('/api/submit-contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email }),
+            body: JSON.stringify({ email: emailEl?.value.trim() }),
           });
-
           const data = await res.json();
 
           if (res.ok && data.success) {
             showSuccess();
-            form.reset();
+            form?.reset();
           } else {
             showError(data.error || 'Algo salió mal. Inténtalo de nuevo.');
+            if (widgetId !== undefined) ts()?.reset(widgetId);
           }
         } catch {
           showError('Error de conexión. Comprueba tu internet e inténtalo de nuevo.');
+          if (widgetId !== undefined) ts()?.reset(widgetId);
         } finally {
           setLoading(false);
         }
-      });
+      }
 
       function setLoading(loading: boolean) {
         if (!submitEl) return;
@@ -263,7 +311,6 @@ import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
       function showSuccess() {
         successEl?.classList.remove('hidden');
         errorEl?.classList.add('hidden');
-        // Ocultar el form tras éxito
         form?.classList.add('hidden');
       }
 
@@ -279,4 +326,12 @@ import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
     document.addEventListener('astro:page-load', initWaitlistForm);
     initWaitlistForm();
   </script>
+
+  <!-- Turnstile: global onload dispatcher (must precede api.js) -->
+  <script>
+    (window as any).onTurnstileLoad = function () {
+      document.dispatchEvent(new Event('turnstile:ready'));
+    };
+  </script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad" async></script>
 </BaseLayout>
