@@ -55,13 +55,13 @@ Formulario,FORM-07,Reset tras éxito,Ambos,form.reset() limpia el campo email tr
 Formulario,FORM-08,Turnstile reset tras error,Ambos,Widget Turnstile se reinicia tras error para permitir reintento,Revisión de código,PASSED,ts().reset(widgetId) en error paths
 Formulario,FORM-09,Honeypot invisible para usuarios,Mobile,Campo bot_field no visible ni alcanzable en móvil,Manual,PASSED,class="hidden" + tabindex=-1
 Formulario,FORM-10,Autocomplete de email,Ambos,Campo email con autocomplete="email",Revisión de código,PASSED,
-CI/CD,CICD-01,Quality Gate verde en staging,Ambos,GitHub Actions quality-gate.yml pasa sin errores en rama staging,Automático – GitHub Actions,PASSED,Último run: Quality Gate #17 ✅
+CI/CD,CICD-01,Quality Gate verde en staging,Ambos,GitHub Actions quality-gate.yml pasa sin errores en rama staging,Automático – GitHub Actions,PASSED,Último run: Quality Gate #28 ✅
 CI/CD,CICD-02,Playwright 10/10 tests,Ambos,10 tests de Playwright + Axe pasan en contenedor Docker ubuntu-noble,Automático – CI,PASSED,
 CI/CD,CICD-03,LHCI assertions sin errores,Ambos,Todas las assertions de Lighthouse CI en estado pass o warn,Automático – LHCI,PASSED,Ver lighthouserc.cjs para justificación de cada warn
 CI/CD,CICD-04,Auto-deploy Netlify en merge a main,Ambos,Push a main dispara deploy automático en Netlify,Revisión de netlify.toml,PASSED,ignore = "exit 0" eliminado
 CI/CD,CICD-05,Visual regression baselines,Ambos,Snapshots generados en Docker ubuntu-noble; 0 diff en CI,Automático – Playwright VRT,PASSED,Baselines en /tests/visual/screenshots/
 Monitoreo,MON-01,UptimeRobot – monicamontufar.com,Ambos,Monitor HTTP activo con intervalo de 5 minutos,Dashboard UptimeRobot,PASSED,Uptime 100% desde configuración
-Monitoreo,MON-02,UptimeRobot – monicamontufar.com/en,Ambos,Monitor HTTP activo con intervalo de 5 minutos,Dashboard UptimeRobot,PENDING,En estado "Preparing" (normal en primeras comprobaciones)
+Monitoreo,MON-02,UptimeRobot – monicamontufar.com/en,Ambos,Monitor HTTP activo con intervalo de 5 minutos,Dashboard UptimeRobot,PASSED,Uptime 100% — Up 12h+ confirmado en dashboard
 Monitoreo,MON-03,UptimeRobot – portafolio.monicamontufar.com,Ambos,Monitor HTTP activo con intervalo de 5 minutos,Dashboard UptimeRobot,PASSED,Uptime 100%
 Monitoreo,MON-04,Sentry – captura de errores frontend,Ambos,SDK inicializado con DSN correcto; errores JS aparecen en Sentry dashboard,Revisión de sentry.client.config.ts,PASSED,tracesSampleRate=0.1 en producción
 UX/GUI,UX-01,Diseño split-screen,Desktop,Layout flex-row con texto a la izquierda y retrato a la derecha en >= 1024px,VRT – Playwright,PASSED,
