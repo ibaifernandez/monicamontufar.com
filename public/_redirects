@@ -6,5 +6,5 @@
 /wp-login* 404
 /xmlrpc.php 404
 
-# Fallback explicit
-/* /index.html 200
+# Netlify sirve /404.html automáticamente para rutas no encontradas (generado por src/pages/404.astro).
+# No se necesita catch-all: el SSG genera la página correcta con HTTP 404.

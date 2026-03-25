@@ -1,0 +1,12 @@
+Categoría,Criterio,Descripción,Responsabilidad,Estado
+Accesibilidad (A11y),Contraste de Color,Relación de contraste >= 4.5:1 en textos sobre fondos oscuros,Automático (Axe-core),PASSED
+Accesibilidad (A11y),Regiones Semánticas,Uso correcto de <aside> o <nav> para el Banner de Cookies y otras áreas clave,Automático (Axe-core),PASSED
+Accesibilidad (A11y),Etiquetas ARIA,Atributos aria-label descriptivos en iconos de redes sociales y botones sin texto,Automático (Axe-core),PASSED
+UX & GUI,Responsive Mobile,Formulario de suscripción ocupa el 100% de ancho en `< 768px` con paddings táctiles de 44px,Manual & VRT,PASSED
+UX & GUI,Estructura Desktop,Diseño split-screen armónico garantizando proporción en resoluciones `> 1024px`,Manual & VRT,PASSED
+UX & GUI,Regresión Visual (VRT),Las fotografías base generadas en Ubuntu (`ubuntu-noble`) empatan al milímetro en la CI,Automático (Playwright),PASSED
+Rendimiento,Tiempos de Carga (Lighthouse),Core Web Vitals FCP < 0.8s y CLS de 0 con un Performance general de >= 90%,Automático (LHCI),PASSED
+Rendimiento,Carga Ligerísima,Carga del bundle minimizado sin frameworks reactivos pesados (Astro SSG pasivo),Arquitectónico,PASSED
+Seguridad & SecOps,Prevención Spam,Turnstile Widget operando transparentemente sobre endpoints Netlify Edge,Automático & Manual,PASSED
+Seguridad & SecOps,Honeypot Activo,Campos trampa sintéticos evaluados del lado del servidor antes de procesar Contacto,Desarrollo,PASSED
+Seguridad & SecOps,XSS / clickjacking,Cabeceras CSP estrictas y HTTP Security via _headers `X-Frame-Options: DENY`,CI & Security Scanners,PASSED

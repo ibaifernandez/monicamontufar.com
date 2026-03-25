@@ -2,7 +2,7 @@ name: Quality Gate
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "staging" ]
   pull_request:
     branches: [ "main" ]
 
@@ -10,6 +10,8 @@ jobs:
   build-and-test:
     name: Build & Test
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -25,6 +27,8 @@ jobs:
 
       - name: Build Project
         run: npm run build
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
@@ -33,4 +37,6 @@ jobs:
         run: npm run test:e2e
 
       - name: Run Lighthouse CI
-        run: npx lhci autorun
+        run: |
+          export CHROME_PATH=$(find /ms-playwright -type f -name chrome | grep chromium | head -n 1)
+          npx lhci autorun

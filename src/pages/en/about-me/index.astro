@@ -1,12 +1,15 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import InternalHero from '../../../components/sections/InternalHero.astro';
+import { Image } from 'astro:assets';
+import imgProfile from '~/assets/wp-content/uploads/2025/06/Monica-Montufar.jpeg';
 ---
 
-<BaseLayout 
-  title="About Me • Mónica Montúfar" 
+<BaseLayout
+  title="About Me • Mónica Montúfar"
   description="Creative by conviction, designer by vocation, digital nomad by decision."
   lang="en"
+  alternateHref="https://monicamontufar.com/sobre-mi/"
 >
   <InternalHero 
     title="About Me" 
@@ -18,7 +21,16 @@ import InternalHero from '../../../components/sections/InternalHero.astro';
     <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
       <div class="w-full md:w-5/12 relative group">
         <div class="aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 relative z-10 transition-transform duration-500 group-hover:-translate-y-2 group-hover:-translate-x-2">
-          <img src="/wp-content/uploads/2025/06/Monica-Montufar.jpeg" alt="Mónica Montúfar" class="w-full h-full object-cover">
+          <Image
+            src={imgProfile}
+            alt="Mónica Montúfar"
+            widths={[320, 480, 640, 960]}
+            sizes="(max-width: 768px) 100vw, 42vw"
+            quality={80}
+            class="w-full h-full object-cover"
+            loading="eager"
+            fetchpriority="high"
+          />
           <div class="absolute inset-0 bg-gradient-to-t from-[#12110e] via-transparent to-transparent opacity-60"></div>
         </div>
         <div class="absolute inset-0 border border-[#e6b319]/40 rounded-2xl z-0 transition-transform duration-500 group-hover:translate-x-4 group-hover:translate-y-4"></div>

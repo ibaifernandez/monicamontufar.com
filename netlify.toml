@@ -1,7 +1,8 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  ignore = "exit 0" # Bloquea explícitamente despliegues automáticos para ahorrar build minutes
+  # Sin `ignore`: auto-deploy al pushear a main. El quality gate de GitHub Actions actúa
+  # como guardia antes del merge — solo llega a main código que pasa CI.
 
 [functions]
   directory = "netlify/functions"

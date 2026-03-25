@@ -11,6 +11,9 @@ test.describe('Quality Gate: A11y and Visual Regression', () => {
   for (const { name, url } of pages) {
     test(`[${name}] should pass accessibility checks`, async ({ page }) => {
       await page.goto(url);
+      await page.waitForLoadState('networkidle');
+      await page.addStyleTag({ content: '*, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; }' });
+      await page.waitForTimeout(500);
       const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
       expect(accessibilityScanResults.violations).toEqual([]);
     });
