@@ -12,10 +12,11 @@ import imgSocialFattache from '~/assets/wp-content/uploads/2023/08/Social-media-
 import imgRegalosMama from '~/assets/wp-content/uploads/2023/08/Regalos-para-mama-Andariega-73.jpg';
 ---
 
-<BaseLayout 
-  title="Portafolio • Mónica Montúfar" 
+<BaseLayout
+  title="Portafolio • Mónica Montúfar"
   description="Descubre mis servicios de Asistencia Virtual y Diseño."
   lang="es"
+  alternateHref="https://monicamontufar.com/en/portfolio/"
 >
   <InternalHero 
     title="Portafolio" 
@@ -30,7 +31,8 @@ import imgRegalosMama from '~/assets/wp-content/uploads/2023/08/Regalos-para-mam
     </div>
 
     <PortfolioGrid>
-      <PremiumCard 
+      <PremiumCard
+        isLCP={true}
         title="Gestión y Organización"
         description="Gestión eficiente de agendas, correos electrónicos y documentación confidencial."
         image={imgPapeleria}

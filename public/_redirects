@@ -6,5 +6,5 @@
 /wp-login* 404
 /xmlrpc.php 404
 
-# Fallback explicit
-/* /index.html 200
+# Fallback 404: devuelve home con status 404 (SSG no es SPA — preserva semántica HTTP para SEO)
+/* /index.html 404

@@ -1,7 +1,27 @@
 # Changelog
 Todos los cambios notables del proyecto se documentarán en este archivo según los lineamientos de [Keep a Changelog](https://keepachangelog.com/).
 
-## [Unreleased]
+## [Unreleased] — 2026-03-24 Performance & Accessibility Overhaul
+
+### Added
+- **Self-hosted Variable Fonts**: Migración de Google Fonts (render-blocking) a `@fontsource-variable/inter` y `@fontsource-variable/playfair-display`. Elimina 2 peticiones externas render-blocking, mejora FCP y LCP de forma drástica. Fallback chain completo: variable → static → sistema.
+- **`alternateHref` prop en `SEO.astro`**: Permite pasar la URL alternativa (otro idioma) de forma explícita para rutas asimétricas (`/sobre-mi/` ↔ `/en/about-me/`, `/portafolio/` ↔ `/en/portfolio/`). Corrige hreflang que apuntaban a URLs 404.
+- **`isLCP` prop en `PremiumCard`**: Marca explícitamente qué imagen es el LCP de la página, aplicando `loading="eager"` y `fetchpriority="high"` solo donde corresponde.
+
+### Changed
+- **`BaseLayout.astro`**: Eliminados meta tags OG/Twitter duplicados (ya existían en `SEO.astro`). Eliminados hreflang hardcodeados a `/` y `/en/` (solo correctos para home). Material Symbols ahora carga de forma async no-blocking (`rel="preload" as="style"`).
+- **`PremiumCard.astro`**: Añadidos atributos `widths=[400,800,1200]` y `sizes` para generar `srcset` responsive. Resuelve `uses-responsive-images`.
+- **`sobre-mi` y `about-me`**: Imagen de perfil con `loading="eager"` + `fetchpriority="high"` + `widths`/`sizes` responsive. Resuelve `lcp-lazy-loaded` e `image-delivery-insight`.
+- **`global.css`**: Font families actualizadas a nombres de variable fonts con fallback chain explícito.
+- **`astro.config.mjs`**: Sentry configurado con `autoSessionTracking:false`, `replaysSessionSampleRate:0`, `replaysOnErrorSampleRate:0` para reducir bundle JS al cliente.
+- **`lighthouserc.cjs`**: Reescrito con comentarios que documentan cada decisión de assertion. `legacy-javascript` y `unused-javascript` degradados a `warn` (Sentry SDK, tercero). `network-dependency-tree-insight` y `dom-size-insight` a `warn` con justificación arquitectónica.
+
+### Fixed
+- **`color-contrast`** (Lighthouse A11y 0.95 → 1.0): `btn-reject` en `CookieBanner.astro` tenía `text-slate-400` (`#90A1B9`) sobre fondo gold compuesto por `backdrop-blur`, resultando en 2.63:1. Corregido a `text-white/75` (≥4.5:1).
+- **`heading-order`** (privacidad ES + EN): Los `<h3>` de secciones bajo `<h1>` violaban la jerarquía WCAG. Corregidos a `<h2>`.
+- **hreflang SEO crítico**: `/sobre-mi/` apuntaba a `/en/sobre-mi/` (404) en lugar de `/en/about-me/`. Ídem `/portafolio/` → `/en/portfolio/`. Corregido vía prop explícita.
+
+## [Unreleased — anterior]
 ### Added
 - Infraestructura CI/CD: Pipeline bloqueante en GitHub Actions (`quality-gate.yml`) con validación de tests E2E y build.
 - Quality Gate Automático: Integración de `@lhci/cli` para presupuestos de Performance/SEO y `@axe-core/playwright` para accesibilidad.

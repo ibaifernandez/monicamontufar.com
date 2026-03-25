@@ -5,8 +5,10 @@
   --color-background-light: #f8f7f6;
   --color-background-dark: #12110e;
   --color-surface-dark: #1c1a14;
-  --font-display: "Inter", sans-serif;
-  --font-serif: "Playfair Display", serif;
+  /* Variable fonts self-hosted via @fontsource-variable.
+     Fallback chain: variable → static → system. */
+  --font-display: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display Variable", "Playfair Display", ui-serif, Georgia, serif;
 }
 
 @layer utilities {

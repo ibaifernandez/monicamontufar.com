@@ -5,21 +5,30 @@ export interface Props {
   image?: string;
   canonicalUrl?: string;
   lang?: string;
+  /** URL explícita de la versión alternativa (el otro idioma).
+   *  Necesario cuando la ruta no es simétrica, ej. /sobre-mi ↔ /en/about-me */
+  alternateHref?: string;
 }
 
 const {
   title,
   description,
-  image = '/images/og-default.jpg',
+  image = '/images/monica-portrait.jpg',
   canonicalUrl = Astro.url.href,
   lang = 'es',
+  alternateHref,
 } = Astro.props;
 
+const site = String(Astro.site || 'https://monicamontufar.com').replace(/\/$/, '');
 const alternateLang = lang === 'es' ? 'en' : 'es';
-const alternateUrl =
+
+// Si se pasa alternateHref explícito se usa directamente (rutas asimétricas).
+// Si no, se infiere simétricamente — solo es correcto para home y rutas espejo.
+const alternateUrl = alternateHref ?? (
   lang === 'es'
-    ? `${Astro.site || 'https://monicamontufar.com'}/en${Astro.url.pathname}`
-    : `${Astro.site || 'https://monicamontufar.com'}${Astro.url.pathname.replace(/^\/en/, '')}`;
+    ? `${site}/en${Astro.url.pathname}`
+    : `${site}${Astro.url.pathname.replace(/^\/en/, '')}`
+);
 ---
 
 <title>{title}</title>

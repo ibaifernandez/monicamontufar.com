@@ -23,6 +23,11 @@ export default defineConfig({
       sourceMapsUploadOptions: {
         telemetry: false,
       },
+      // Reduce client-side bundle: desactiva integraciones pesadas no necesarias
+      // para este sitio estático con tráfico predecible.
+      autoSessionTracking: false,
+      replaysSessionSampleRate: 0,
+      replaysOnErrorSampleRate: 0,
     }),
   ],
   vite: {
