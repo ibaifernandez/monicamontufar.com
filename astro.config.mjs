@@ -19,15 +19,13 @@ export default defineConfig({
       },
     }),
     sentry({
-      dsn: process.env.SENTRY_DSN || '',
+      // Solo configuración de la integración Astro/Vite (source maps, SDK injection).
+      // El init del SDK (dsn, opciones) va en sentry.client.config.ts.
       sourceMapsUploadOptions: {
+        project: 'monicamontufar-com',
+        authToken: process.env.SENTRY_AUTH_TOKEN,
         telemetry: false,
       },
-      // Reduce client-side bundle: desactiva integraciones pesadas no necesarias
-      // para este sitio estático con tráfico predecible.
-      autoSessionTracking: false,
-      replaysSessionSampleRate: 0,
-      replaysOnErrorSampleRate: 0,
     }),
   ],
   vite: {
