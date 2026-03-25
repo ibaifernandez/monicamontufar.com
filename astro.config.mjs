@@ -25,6 +25,9 @@ export default defineConfig({
         project: 'monicamontufar-com',
         authToken: process.env.SENTRY_AUTH_TOKEN,
         telemetry: false,
+        // Solo activo cuando el token está disponible (producción / CD con secret).
+        // En CI sin el secret, el plugin se desactiva y no lanza errores de proyecto.
+        enabled: !!process.env.SENTRY_AUTH_TOKEN,
       },
     }),
   ],
