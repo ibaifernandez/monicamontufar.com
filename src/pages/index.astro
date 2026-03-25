@@ -14,7 +14,7 @@ import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
     <!-- Top Navigation -->
     <header class="fixed top-0 w-full z-50 px-6 py-6 lg:px-12 flex items-center justify-between border-b border-white/5 bg-[#12110E]/80 backdrop-blur-md">
       <div class="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
-        <Image src={imgIcono} alt="Icono Mónica Montúfar" class="size-8 object-contain" />
+        <Image src={imgIcono} alt="Icono Mónica Montúfar" width={32} height={32} class="size-8 object-contain" />
         <span class="text-xl font-bold tracking-tighter text-slate-100">Mónica Montúfar</span>
       </div>
       <div class="flex items-center gap-6">
@@ -179,7 +179,7 @@ import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
 
         if (difference <= 0) {
           clearInterval(interval);
-          Object.values(elements).forEach(el => { if (el) el.innerText = "00"; });
+          Object.values(elements).forEach(el => { if (el) el.textContent = "00"; });
           return;
         }
 
@@ -192,7 +192,7 @@ import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
 
         (Object.keys(stats) as Array<keyof typeof stats>).forEach(key => {
           const el = elements[key];
-          if (el) el.innerText = stats[key].toString().padStart(2, '0');
+          if (el) el.textContent = stats[key].toString().padStart(2, '0');
         });
       }, 1000);
     }
