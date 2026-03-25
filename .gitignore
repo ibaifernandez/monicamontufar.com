@@ -26,3 +26,7 @@ pnpm-debug.log*
 # CI/test artifacts
 playwright-report/
 .lighthouseci/
+
+# Informes de cliente (no deben versionarse)
+docs/*.docx
+docs/*.pdf
