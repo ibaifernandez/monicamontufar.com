@@ -133,8 +133,9 @@ import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
         <Image
           src={imgHero}
           alt="Mónica Montúfar Portrait"
-          widths={[640, 960, 1280, 1920]}
+          widths={[480, 640, 960, 1280, 1920]}
           sizes="(max-width: 1024px) 100vw, 50vw"
+          quality={75}
           class="absolute inset-0 w-full h-full object-center object-cover transition-transform duration-1000 group-hover:scale-105"
           loading="eager"
           fetchpriority="high"
