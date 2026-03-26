@@ -28,5 +28,4 @@ playwright-report/
 .lighthouseci/
 
 # Informes de cliente (no deben versionarse)
-docs/*.docx
-docs/*.pdf
+docs/informe-cliente*
