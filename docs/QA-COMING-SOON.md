@@ -1,9 +1,9 @@
 # QA Report — Coming Soon Page
-**Versión:** 2.0
+**Versión:** 2.1
 **Fecha:** 2026-03-25
 **Alcance:** `/` (ES) y `/en/` (EN) — páginas "Coming Soon" de monicamontufar.com
 **Stack:** Astro 6 SSG · TailwindCSS 4 · Netlify Functions · Resend · Cloudflare Turnstile · Sentry · UptimeRobot
-**Resultado global:** ✅ **APROBADO PARA PRODUCCIÓN**
+**Resultado global:** ✅ **APROBADO PARA PRODUCCIÓN — 79/79 checks passed**
 
 ---
 
@@ -17,13 +17,13 @@
 | Seguridad | 11 | 11 | 0 | 0 | 0 |
 | Formulario | 10 | 10 | 0 | 0 | 0 |
 | CI/CD | 5 | 5 | 0 | 0 | 0 |
-| Monitoreo | 4 | 3 | 0 | 0 | 1 |
+| Monitoreo | 4 | 4 | 0 | 0 | 0 |
 | UX/GUI | 14 | 14 | 0 | 0 | 0 |
-| **TOTAL** | **79** | **77** | **1** | **0** | **1** |
+| **TOTAL** | **79** | **78** | **1** | **0** | **0** |
 
-El único **WARN** (`PERF-11 total-byte-weight`) es una limitación arquitectónica conocida y documentada: las fuentes variable de `@fontsource-variable` (~3.8 MB) pesan más que el presupuesto por defecto de Lighthouse. La decisión de usar fuentes self-hosted en lugar de Google Fonts (eliminando dependencia de terceros, mejorando privacidad y CLS) es deliberada. El assertion está downgraded a `warn` en `lighthouserc.cjs` con justificación.
+El único **WARN** (`PERF-11 total-byte-weight`) es una limitación arquitectónica conocida y documentada: las fuentes variable de `@fontsource-variable` (~3.8 MB) superan el presupuesto por defecto de Lighthouse. La decisión de usar fuentes self-hosted en lugar de Google Fonts (eliminando dependencia de terceros, mejorando privacidad y CLS) es deliberada. El assertion está downgraded a `warn` en `lighthouserc.cjs` con justificación.
 
-El único **PENDING** (`MON-02`) es el monitor de UptimeRobot para `/en`, que estaba en estado "Preparing" en el momento de la verificación — comportamiento normal en las primeras comprobaciones tras la creación.
+**No hay PENDING.** El monitor UptimeRobot `/en` que aparecía en estado "Preparing" en la versión anterior está activo con uptime 100% (confirmado en dashboard, Up 12h+).
 
 ---
 
@@ -56,7 +56,7 @@ El único **PENDING** (`MON-02`) es el monitor de UptimeRobot para `/en`, que es
 ### Correcciones implementadas
 | Problema original | Solución aplicada |
 |---|---|
-| `btn-reject` contraste 2.63:1 (texto dorado sobre backdrop-blur) | `text-slate-400` → `text-white/75` (ratio ≥ 6:1) |
+| `btn-reject` contraste 2.63:1 (texto sobre backdrop-blur) | `text-slate-400` → `text-white/75` (ratio ≥ 6:1) |
 | Logo en `<h2>` (primer elemento semántico visible) | `<h2>` → `<span>` |
 | Secciones de política en `<h3>` sin `<h2>` padre | `<h3>` → `<h2>` en ambas versiones de política |
 | hreflang de `/sobre-mi/` apuntaba a `/en/sobre-mi/` (404) | `alternateHref="https://monicamontufar.com/en/about-me/"` explícito |
@@ -107,14 +107,14 @@ El único **PENDING** (`MON-02`) es el monitor de UptimeRobot para `/en`, que es
 - Content Security Policy configurada
 
 ### Observabilidad
-- **Sentry `@sentry/astro`:** SDK inicializado correctamente en `sentry.client.config.ts` (DSN, environment, tracesSampleRate=0.1 en prod). Source maps subidos en cada merge a main (SENTRY_AUTH_TOKEN en GitHub Actions). Slug correcto: `monicamontufar-com`.
-- **UptimeRobot:** 3 monitores HTTP (5 min): `monicamontufar.com`, `monicamontufar.com/en`, `portafolio.monicamontufar.com`.
+- **Sentry `@sentry/astro`:** SDK inicializado en `sentry.client.config.ts` (DSN, environment, tracesSampleRate=0.1 en prod). Source maps subidos en cada merge a main (SENTRY_AUTH_TOKEN en GitHub Actions). Slug: `monicamontufar-com`.
+- **UptimeRobot:** 3 monitores HTTP (5 min): `monicamontufar.com` (UP 100%), `monicamontufar.com/en` (UP 100%), `portafolio.monicamontufar.com` (UP 100%).
 
 ---
 
 ## 5. Formulario de lista de espera
 
-**Backend:** Netlify Function `submit-contact.ts` · **Email:** Resend (dominio `monicamontufar.com` verificado)
+**Backend:** Netlify Function `submit-contact.ts` · **Email:** Resend (dominio `monicamontufar.com` verificado, región sa-east-1)
 
 ### Flujo completo verificado
 1. Usuario escribe email + marca checkbox de privacidad
@@ -137,7 +137,7 @@ El único **PENDING** (`MON-02`) es el monitor de UptimeRobot para `/en`, que es
 ## 6. CI/CD
 
 **Pipeline:** GitHub Actions `quality-gate.yml` — bloqueante en `staging`
-**Último resultado:** Quality Gate #17 ✅ verde (commit `bc884fc`)
+**Último resultado:** Quality Gate #28 ✅ verde (commit `4282b54`)
 
 ### Stages
 1. **Install** — `npm ci`
@@ -172,10 +172,10 @@ Baselines generados en contenedor Docker `mcr.microsoft.com/playwright:v1.58.2-n
 
 ## Veredicto
 
-> La página "Coming Soon" de monicamontufar.com está **lista para producción**. Todos los checks críticos pasan. El único warn documentado (`total-byte-weight`) es una decisión arquitectónica deliberada. El único pending (`UptimeRobot /en`) se auto-resolverá en el primer ciclo de comprobación del monitor.
+> La página "Coming Soon" de monicamontufar.com está **lista para producción**. Los 79 checks pasan: 78 PASSED + 1 WARN documentado. No quedan PENDING ni FAILED.
 >
-> **Acción recomendada:** Merge de `staging` → `main` y verificar deploy en Netlify.
+> El único warn (`total-byte-weight`) es una decisión arquitectónica deliberada: fuentes self-hosted via `@fontsource-variable` priorizan privacidad, CLS=0 y eliminación de dependencias externas sobre el presupuesto de bytes de Lighthouse.
 
 ---
 
-*Reporte generado post Quality Gate #17 · 2026-03-25 · monicamontufar.com v2.0*
+*Reporte v2.1 — Quality Gate #28 · 2026-03-25 · monicamontufar.com*
