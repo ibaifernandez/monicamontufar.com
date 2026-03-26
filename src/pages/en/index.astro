@@ -239,11 +239,12 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
+        if (!emailEl.value.trim()) return;
+
         if (privacyEl && !privacyEl.checked) {
           showError('You must accept the privacy policy to continue.');
           return;
         }
-        if (!emailEl.value.trim()) return;
 
         setLoading(true);
         hideMessages();
@@ -258,13 +259,13 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
       async function doSubmit(turnstileToken: string | null) {
         // Guard: Turnstile callback can fire automatically, bypassing the form submit handler.
         // Re-check privacy and email here to prevent submission without user consent.
-        if (privacyEl && !privacyEl.checked) {
-          showError('You must accept the privacy policy to continue.');
-          if (widgetId !== undefined) ts()?.reset(widgetId);
+        if (!emailEl?.value.trim()) {
           setLoading(false);
           return;
         }
-        if (!emailEl?.value.trim()) {
+        if (privacyEl && !privacyEl.checked) {
+          showError('You must accept the privacy policy to continue.');
+          if (widgetId !== undefined) ts()?.reset(widgetId);
           setLoading(false);
           return;
         }
