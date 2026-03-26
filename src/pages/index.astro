@@ -259,6 +259,18 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
       });
 
       async function doSubmit(turnstileToken: string | null) {
+        // Guard: Turnstile callback can fire automatically, bypassing the form submit handler.
+        // Re-check privacy and email here to prevent submission without user consent.
+        if (privacyEl && !privacyEl.checked) {
+          showError('Debes aceptar la política de privacidad para continuar.');
+          if (widgetId !== undefined) ts()?.reset(widgetId);
+          setLoading(false);
+          return;
+        }
+        if (!emailEl?.value.trim()) {
+          setLoading(false);
+          return;
+        }
         try {
           if (turnstileToken) {
             const verifyRes = await fetch('/api/verify-turnstile', {
