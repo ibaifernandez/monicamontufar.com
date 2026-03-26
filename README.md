@@ -4,7 +4,7 @@
 Production-ready Coming Soon with multi-layer anti-spam waitlist, i18n ES/EN, full CI/CD, and zero critical tech debt.
 
 [![Quality Gate](https://github.com/ibaifernandez/monicamontufar.com/actions/workflows/quality-gate.yml/badge.svg)](https://github.com/ibaifernandez/monicamontufar.com/actions/workflows/quality-gate.yml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/monicamontufar-com/deploy-status)](https://monicamontufar.com)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9aecd914-7663-48c8-a302-117a9e4762b1/deploy-status)](https://monicamontufar.com)
 [![Playwright Tests](https://img.shields.io/badge/playwright-10%2F10-brightgreen?logo=playwright&logoColor=white)](https://github.com/ibaifernandez/monicamontufar.com/actions)
 [![Lighthouse Performance](https://img.shields.io/badge/lighthouse-100%2F100-brightgreen?logo=googlechrome&logoColor=white)](https://github.com/ibaifernandez/monicamontufar.com/actions)
 [![Accessibility](https://img.shields.io/badge/accessibility-100%2F100-brightgreen?logo=googlechrome&logoColor=white)](./docs/QA-COMING-SOON.md)
