@@ -5,9 +5,14 @@ Production-ready Coming Soon with multi-layer anti-spam waitlist, i18n ES/EN, fu
 
 [![Quality Gate](https://github.com/ibaifernandez/monicamontufar.com/actions/workflows/quality-gate.yml/badge.svg)](https://github.com/ibaifernandez/monicamontufar.com/actions/workflows/quality-gate.yml)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/monicamontufar-com/deploy-status)](https://monicamontufar.com)
-[![Playwright Tests](https://img.shields.io/badge/playwright-10%2F10-green)](https://github.com/ibaifernandez/monicamontufar.com/actions)
-[![Lighthouse Performance](https://img.shields.io/badge/lighthouse-100%2F100-green)](https://github.com/ibaifernandez/monicamontufar.com/actions)
-[![QA Checks](https://img.shields.io/badge/QA%20checks-79%2F79-brightgreen)](./docs/QA-COMING-SOON.md)
+[![Playwright Tests](https://img.shields.io/badge/playwright-10%2F10-brightgreen?logo=playwright&logoColor=white)](https://github.com/ibaifernandez/monicamontufar.com/actions)
+[![Lighthouse Performance](https://img.shields.io/badge/lighthouse-100%2F100-brightgreen?logo=googlechrome&logoColor=white)](https://github.com/ibaifernandez/monicamontufar.com/actions)
+[![Accessibility](https://img.shields.io/badge/accessibility-100%2F100-brightgreen?logo=googlechrome&logoColor=white)](./docs/QA-COMING-SOON.md)
+[![QA Checks](https://img.shields.io/badge/QA%20checks-85%2F85-brightgreen)](./docs/QA-COMING-SOON.md)
+[![Uptime](https://img.shields.io/badge/uptime-100%25-brightgreen?logo=uptimerobot&logoColor=white)](https://monicamontufar.com)
+[![Security Headers](https://img.shields.io/badge/security%20headers-hardened-brightgreen?logo=cloudflare&logoColor=white)](./public/_headers)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Astro](https://img.shields.io/badge/Astro-6-orange?logo=astro&logoColor=white)](https://astro.build)
 
 ---
 
@@ -42,7 +47,7 @@ Production-ready Coming Soon with multi-layer anti-spam waitlist, i18n ES/EN, fu
 - **Multi-layer anti-spam** — Cloudflare Turnstile (invisible) + honeypot field + server-side validation
 - **CI/CD Quality Gate** — Playwright visual regression + Axe-core a11y + Lighthouse CI, blocking merges to `main`
 - **Lighthouse 100/100** — Performance, Accessibility, SEO, Best Practices
-- **79/79 QA checks** — documented in [`docs/QA-COMING-SOON.md`](./docs/QA-COMING-SOON.md)
+- **85/85 QA checks** — documented in [`docs/QA-COMING-SOON.md`](./docs/QA-COMING-SOON.md)
 - **Real 404 page** — on-brand, returns HTTP 404 (not a soft 404)
 - **Security headers** — X-Frame-Options, CSP, and more via `public/_headers`
 - **Self-hosted fonts** — no render-blocking Google Fonts requests

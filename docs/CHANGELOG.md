@@ -1,6 +1,17 @@
 # Changelog
 Todos los cambios notables del proyecto se documentarán en este archivo según los lineamientos de [Keep a Changelog](https://keepachangelog.com/).
 
+## [Unreleased] — 2026-03-26 Bugfixes & Legal Completion
+
+### Fixed
+- **`doSubmit()` guard (ES + EN):** Turnstile invisible puede disparar su callback automáticamente sin que el usuario pulse el botón ni marque el checkbox de privacidad. Se ha añadido un guard al inicio de `doSubmit()` en `index.astro` (ES) y `en/index.astro` (EN) que verifica el estado del checkbox y el email antes de continuar, independientemente del origen de la llamada.
+- **Botón "Ver Portafolio" en 404:** El enlace apuntaba a `/portafolio` (ruta inexistente en el proyecto actual). Corregido para apuntar a `https://portafolio.monicamontufar.com/` con `target="_blank"` y `rel="noopener noreferrer"`.
+
+### Changed
+- **Política de privacidad (`/politica-de-privacidad-y-cookies`):** Completamente reescrita. Añadidos datos del responsable del tratamiento (Mónica Montúfar Quiñónez, hola@monicamontufar.com), base legitimadora (consentimiento expreso), conservación de datos, derechos RGPD completos (acceso, rectificación, supresión, oposición, portabilidad), e inventario honesto de cookies (Cloudflare Turnstile + Sentry; sin analíticas ni publicitarias).
+
+---
+
 ## [Unreleased] — 2026-03-24 Performance & Accessibility Overhaul
 
 ### Added

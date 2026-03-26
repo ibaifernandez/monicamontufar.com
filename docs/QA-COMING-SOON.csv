@@ -49,12 +49,13 @@ Formulario,FORM-01,Submit exitoso – email a Mónica,Ambos,Monica recibe email 
 Formulario,FORM-02,Submit exitoso – confirmación al usuario,Ambos,Usuario recibe email de confirmación desde FROM_EMAIL,Test manual / Resend logs,PASSED,
 Formulario,FORM-03,Mensaje de éxito en UI,Ambos,Form se oculta; mensaje de confirmación dorado visible tras submit OK,Revisión de código,PASSED,form.classList.add('hidden') + showSuccess()
 Formulario,FORM-04,Mensaje de error en UI,Ambos,Error visible y descriptivo ante fallo de red o respuesta 4xx/5xx,Revisión de código,PASSED,showError() con texto contextual
-Formulario,FORM-05,Validación de privacidad,Ambos,Submit bloqueado si checkbox de privacidad no está marcado,Revisión de código,PASSED,Error mostrado sin llamar a la API
+Formulario,FORM-05,Validación de privacidad,Ambos,Submit bloqueado si checkbox de privacidad no está marcado,Revisión de código,PASSED,"Bug encontrado 2026-03-26: Turnstile callback disparaba doSubmit() sin pasar por el submit handler → checkbox bypasseado. Corregido añadiendo guard en doSubmit() en ES + EN."
 Formulario,FORM-06,Loading state,Ambos,Botón deshabilitado y texto cambia a "Enviando…" / "Sending…" durante fetch,Revisión de código,PASSED,setLoading(true) antes del execute()
 Formulario,FORM-07,Reset tras éxito,Ambos,form.reset() limpia el campo email tras submit exitoso,Revisión de código,PASSED,
 Formulario,FORM-08,Turnstile reset tras error,Ambos,Widget Turnstile se reinicia tras error para permitir reintento,Revisión de código,PASSED,ts().reset(widgetId) en error paths
 Formulario,FORM-09,Honeypot invisible para usuarios,Mobile,Campo bot_field no visible ni alcanzable en móvil,Manual,PASSED,class="hidden" + tabindex=-1
 Formulario,FORM-10,Autocomplete de email,Ambos,Campo email con autocomplete="email",Revisión de código,PASSED,
+Formulario,FORM-11,Guard doSubmit contra Turnstile auto-callback,Ambos,"doSubmit() verifica privacyEl.checked y emailEl.value antes de proceder, independientemente de si la llamada viene del form submit o del callback de Turnstile",Revisión de código,PASSED,Añadido 2026-03-26 tras encontrar que Turnstile invisible puede disparar el callback sin acción del usuario
 CI/CD,CICD-01,Quality Gate verde en staging,Ambos,GitHub Actions quality-gate.yml pasa sin errores en rama staging,Automático – GitHub Actions,PASSED,Último run: Quality Gate #28 ✅
 CI/CD,CICD-02,Playwright 10/10 tests,Ambos,10 tests de Playwright + Axe pasan en contenedor Docker ubuntu-noble,Automático – CI,PASSED,
 CI/CD,CICD-03,LHCI assertions sin errores,Ambos,Todas las assertions de Lighthouse CI en estado pass o warn,Automático – LHCI,PASSED,Ver lighthouserc.cjs para justificación de cada warn
@@ -74,7 +75,12 @@ UX/GUI,UX-07,Language switcher ES↔EN,Ambos,Bandera clickable en header alterna
 UX/GUI,UX-08,Glassmorphism form card,Ambos,Tarjeta de formulario con glass-effect visible sobre fondo oscuro,VRT – Playwright,PASSED,
 UX/GUI,UX-09,CTA button hover state,Desktop,Botón "¡Avísame!" cambia de #e6b319 a #ffc926 en hover,Manual,PASSED,
 UX/GUI,UX-10,Retrato editorial – hover zoom,Desktop,Imagen del retrato hace scale-105 suave en hover del contenedor,Manual,PASSED,
-UX/GUI,UX-11,Página 404 on-brand,Ambos,404.astro con "404" en dorado serif + h1 + CTAs a home y portafolio,Manual + LHCI,PASSED,
+UX/GUI,UX-11,Página 404 on-brand,Ambos,404.astro con "404" en dorado serif + h1 + CTAs a home y portafolio,Manual + LHCI,PASSED,"Bug encontrado 2026-03-26: botón 'Ver Portafolio' apuntaba a /portafolio (404 interno). Corregido a portafolio.monicamontufar.com con target=_blank."
 UX/GUI,UX-12,Cookie banner visible,Ambos,Banner de cookies aparece en primera visita con botones Aceptar / Rechazar,Manual,PASSED,
 UX/GUI,UX-13,Social icons – hover gold,Desktop,Iconos FB/IG/LI cambian a color primary en hover,Manual,PASSED,
 UX/GUI,UX-14,Header sticky con blur,Ambos,Header permanece fijo en scroll con backdrop-blur-md y bg semi-transparente,Manual,PASSED,
+Legal,LEGAL-01,Responsable del tratamiento identificado,Ambos,Política de privacidad incluye nombre del titular (Mónica Montúfar Quiñónez) y email de contacto,Revisión de contenido,PASSED,Añadido 2026-03-26
+Legal,LEGAL-02,Base legitimadora declarada,Ambos,Política indica que el tratamiento se basa en el consentimiento expreso del usuario,Revisión de contenido,PASSED,
+Legal,LEGAL-03,Derechos del usuario completos,Ambos,Política enumera acceso / rectificación / supresión / oposición / portabilidad,Revisión de contenido,PASSED,
+Legal,LEGAL-04,Inventario de cookies honesto,Ambos,"Política lista correctamente: Cloudflare Turnstile (seguridad) + Sentry (errores); declara explícitamente que NO hay cookies analíticas ni publicitarias",Revisión de contenido,PASSED,
+Legal,LEGAL-05,Link a política desde formulario,Ambos,Label del checkbox de privacidad en ES + EN enlaza a /politica-de-privacidad-y-cookies,Revisión de código,PASSED,

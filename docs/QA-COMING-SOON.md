@@ -1,9 +1,9 @@
 # QA Report — Coming Soon Page
-**Versión:** 2.1
-**Fecha:** 2026-03-25
-**Alcance:** `/` (ES) y `/en/` (EN) — páginas "Coming Soon" de monicamontufar.com
+**Versión:** 2.2
+**Fecha:** 2026-03-26
+**Alcance:** `/` (ES) y `/en/` (EN) — páginas "Coming Soon" de monicamontufar.com · `/politica-de-privacidad-y-cookies` · `404`
 **Stack:** Astro 6 SSG · TailwindCSS 4 · Netlify Functions · Resend · Cloudflare Turnstile · Sentry · UptimeRobot
-**Resultado global:** ✅ **APROBADO PARA PRODUCCIÓN — 79/79 checks passed**
+**Resultado global:** ✅ **APROBADO PARA PRODUCCIÓN — 85/85 checks passed**
 
 ---
 
@@ -15,15 +15,24 @@
 | Accesibilidad | 12 | 12 | 0 | 0 | 0 |
 | SEO | 9 | 9 | 0 | 0 | 0 |
 | Seguridad | 11 | 11 | 0 | 0 | 0 |
-| Formulario | 10 | 10 | 0 | 0 | 0 |
+| Formulario | 11 | 11 | 0 | 0 | 0 |
 | CI/CD | 5 | 5 | 0 | 0 | 0 |
 | Monitoreo | 4 | 4 | 0 | 0 | 0 |
 | UX/GUI | 14 | 14 | 0 | 0 | 0 |
-| **TOTAL** | **79** | **78** | **1** | **0** | **0** |
+| **Legal** | **5** | **5** | **0** | **0** | **0** |
+| **TOTAL** | **85** | **84** | **1** | **0** | **0** |
 
 El único **WARN** (`PERF-11 total-byte-weight`) es una limitación arquitectónica conocida y documentada: las fuentes variable de `@fontsource-variable` (~3.8 MB) superan el presupuesto por defecto de Lighthouse. La decisión de usar fuentes self-hosted en lugar de Google Fonts (eliminando dependencia de terceros, mejorando privacidad y CLS) es deliberada. El assertion está downgraded a `warn` en `lighthouserc.cjs` con justificación.
 
-**No hay PENDING.** El monitor UptimeRobot `/en` que aparecía en estado "Preparing" en la versión anterior está activo con uptime 100% (confirmado en dashboard, Up 12h+).
+### Cambios respecto a v2.1 (2026-03-26)
+
+Dos bugs encontrados en revisión post-producción y corregidos:
+
+1. **FORM-05 / FORM-11 — Turnstile auto-callback bypass:** Cloudflare Turnstile invisible puede completar su challenge en background y disparar el `callback` automáticamente, invocando `doSubmit()` directamente sin pasar por el handler del `submit` del formulario — donde vivía la única validación del checkbox de privacidad. Se ha añadido un guard al inicio de `doSubmit()` tanto en ES como en EN que verifica el estado del checkbox y el contenido del email antes de cualquier operación.
+
+2. **UX-11 — Botón "Ver Portafolio" en 404 roto:** El enlace apuntaba a `/portafolio` (ruta interna inexistente en el proyecto actual). Corregido a `https://portafolio.monicamontufar.com/` con `target="_blank"` y `rel="noopener noreferrer"`.
+
+3. **Categoría LEGAL añadida (5 checks nuevos):** La política de privacidad ha sido completada con el nombre del titular, email de contacto, base legitimadora, derechos RGPD y un inventario honesto de cookies.
 
 ---
 
@@ -119,12 +128,16 @@ El único **WARN** (`PERF-11 total-byte-weight`) es una limitación arquitectón
 ### Flujo completo verificado
 1. Usuario escribe email + marca checkbox de privacidad
 2. Click en "¡Avísame!" → `setLoading(true)` → botón deshabilitado
-3. Turnstile ejecuta challenge invisible → callback con token
-4. `POST /api/verify-turnstile` con token → Cloudflare valida → `{success: true}`
-5. `POST /api/submit-contact` con email → Resend envía:
+3. `doSubmit()` verifica checkbox y email (guard introducido en v2.2)
+4. Turnstile ejecuta challenge invisible → callback con token
+5. `POST /api/verify-turnstile` con token → Cloudflare valida → `{success: true}`
+6. `POST /api/submit-contact` con email → Resend envía:
    - Email de notificación a `CONTACT_EMAIL` (Mónica)
    - Email de confirmación al usuario
-6. Form se oculta → mensaje de éxito dorado visible
+7. Form se oculta → mensaje de éxito dorado visible
+
+### Bug documentado y corregido (v2.2)
+Turnstile invisible puede completar su challenge automáticamente y disparar el callback sin que el usuario haya pulsado el botón. Esto invocaba `doSubmit()` directamente, saltándose el único punto de validación del checkbox de privacidad. La corrección añade el mismo guard al inicio de `doSubmit()`, haciendo la función robusta independientemente de su origen de llamada.
 
 ### Emails configurados
 | Variable | Valor configurado |
@@ -137,7 +150,7 @@ El único **WARN** (`PERF-11 total-byte-weight`) es una limitación arquitectón
 ## 6. CI/CD
 
 **Pipeline:** GitHub Actions `quality-gate.yml` — bloqueante en `staging`
-**Último resultado:** Quality Gate #28 ✅ verde (commit `4282b54`)
+**Último resultado:** Quality Gate #28 ✅ verde
 
 ### Stages
 1. **Install** — `npm ci`
@@ -170,12 +183,33 @@ Baselines generados en contenedor Docker `mcr.microsoft.com/playwright:v1.58.2-n
 
 ---
 
-## Veredicto
+## 8. Legal
 
-> La página "Coming Soon" de monicamontufar.com está **lista para producción**. Los 79 checks pasan: 78 PASSED + 1 WARN documentado. No quedan PENDING ni FAILED.
->
-> El único warn (`total-byte-weight`) es una decisión arquitectónica deliberada: fuentes self-hosted via `@fontsource-variable` priorizan privacidad, CLS=0 y eliminación de dependencias externas sobre el presupuesto de bytes de Lighthouse.
+### Política de privacidad (`/politica-de-privacidad-y-cookies`)
+
+Reescrita en v2.2. Contenido verificado:
+
+| Sección | Estado |
+|---|---|
+| 1. Responsable del tratamiento (nombre + email) | ✅ Presente |
+| 2. Datos recopilados y finalidad | ✅ Presente |
+| 3. Base legitimadora (consentimiento expreso) | ✅ Presente |
+| 4. Conservación de datos | ✅ Presente |
+| 5. Derechos del usuario (acceso, rectificación, supresión, oposición, portabilidad) | ✅ Presente |
+| 6. Definición de cookies | ✅ Presente |
+| 7. Inventario de cookies (Turnstile + Sentry; sin analíticas) | ✅ Presente |
+| 8. Contacto | ✅ Presente |
 
 ---
 
-*Reporte v2.1 — Quality Gate #28 · 2026-03-25 · monicamontufar.com*
+## Veredicto
+
+> La página "Coming Soon" de monicamontufar.com está **lista para producción**. Los 85 checks pasan: 84 PASSED + 1 WARN documentado. No quedan PENDING ni FAILED.
+>
+> El único warn (`total-byte-weight`) es una decisión arquitectónica deliberada: fuentes self-hosted via `@fontsource-variable` priorizan privacidad, CLS=0 y eliminación de dependencias externas sobre el presupuesto de bytes de Lighthouse.
+>
+> Dos bugs encontrados en revisión post-producción (Turnstile bypass + enlace 404 roto) han sido identificados, corregidos y documentados en esta versión.
+
+---
+
+*Reporte v2.2 · 2026-03-26 · monicamontufar.com*

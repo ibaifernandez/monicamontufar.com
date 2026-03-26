@@ -2,23 +2,46 @@
 
 Este archivo centraliza el estado actual, separándose de `ROADMAP.md` y alineado con `task.md`.
 
-## To-Do
-- [ ] Ejecutar `git init` en el repositorio, con la estructura generada.
-- [x] Configurar `/netlify.toml`.
-- [ ] Extraer media a `/public/images/`.
-- [x] Mapear estructura de `src/pages/` inicial.
-- [x] Construir layout central `BaseLayout.astro`.
-- [x] Desarrollar `SEO.astro`.
-- [x] Diseñar el componente Cookie Banner.
-- [x] Implementar el Hero con Tailwind (UI Premium, Micro-animaciones).
-- [x] Configurar configuración básica de **Playwright** (`playwright.config.ts`) y un primer Test de accesibilidad a la homepage.
+## ✅ Completado — Coming Soon v1.0 (Production-Ready)
 
-## In Progress
-- [x] Ejecutar `npm create astro@latest`.
-- [x] Añadir **TailwindCSS**, **Vitest**, y **Playwright**.
-- [x] Documentación Principal Arquitectónica (8 Archivos completados).
+- [x] `git init` y vinculación a GitHub
+- [x] Configurar `/netlify.toml`
+- [x] Mapear estructura de `src/pages/` inicial
+- [x] Construir layout central `BaseLayout.astro`
+- [x] Desarrollar `SEO.astro`
+- [x] Diseñar el componente Cookie Banner
+- [x] Implementar el Hero con Tailwind (UI Premium, Micro-animaciones)
+- [x] Configurar Playwright (`playwright.config.ts`) + tests de accesibilidad y regresión visual
+- [x] Ejecutar `npm create astro@latest`
+- [x] Añadir TailwindCSS, Vitest, Playwright
+- [x] Documentación Principal Arquitectónica (8 archivos)
+- [x] Identificar estructura local y directorios raíz requeridos
+- [x] Alcanzar paridad técnica con el dossier de `elmst.ibaifernandez.com`
+- [x] Integración Cloudflare Turnstile invisible
+- [x] Self-hosted variable fonts (Inter + Playfair Display)
+- [x] Lighthouse 100/100 en Performance, A11y, SEO, Best Practices
+- [x] Pipeline CI/CD bloqueante (quality-gate.yml)
+- [x] UptimeRobot: 3 monitores, 100% uptime
+- [x] Sentry error tracking
+- [x] Security headers + _redirects
+- [x] QA 85/85 documentado en `docs/QA-COMING-SOON.md`
 
-## Done
-- [x] Identificar la estructura local en OrbStack y directorios raíz requeridos (`monicamontufar.com-astro/`).
-- [x] `task.md` e `implementation_plan.md` listos y aprobados.
-- [x] Alcanzar la paridad técnica con el dossier de `elmst.ibaifernandez.com` (CI/CD Automático, Serverless Functions en Netlify, Security Hardening, Rastros Visuales E2E, Accesibilidad y Observabilidad).
+## ✅ Completado — Bugfixes & Legal (2026-03-26)
+
+- [x] Fix: guard `doSubmit()` contra Turnstile auto-callback (ES + EN)
+- [x] Fix: botón "Ver Portafolio" en 404 → `portafolio.monicamontufar.com`
+- [x] Política de privacidad: responsable, base legitimadora, derechos, inventario de cookies
+- [x] README.md actualizado con badges adicionales
+
+## 🔜 Siguiente Fase — Sitio Web Completo
+
+Objetivo: replicar y superar el contenido de `localhost:8083` (WordPress actual).
+
+- [ ] Página "Sobre Mí" con bio completa, fotografías y línea de tiempo
+- [ ] Portafolio con proyectos reales y casos de estudio
+- [ ] Blog / sección de contenidos (MDX o CMS headless)
+- [ ] Páginas de servicios con pricing
+- [ ] Formulario de contacto completo
+- [ ] Migración de contenido WordPress → Astro
+- [ ] Internacionalización de las nuevas páginas (ES/EN)
+- [ ] Actualizar baselines de Playwright tras nuevas páginas
