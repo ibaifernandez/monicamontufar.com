@@ -29,3 +29,6 @@ playwright-report/
 
 # Informes de cliente (no deben versionarse)
 docs/informe-cliente*
+
+# Session handoffs (contexto interno de desarrollo, no se versiona)
+.claude/handoffs/
