@@ -218,13 +218,14 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const ts = () => (window as any).turnstile;
       let widgetId: string | undefined;
+      let userSubmitted = false;
 
       function initTurnstileWidget() {
         if (!ts() || !tsContainer || !siteKey || widgetId !== undefined) return;
         widgetId = ts().render(tsContainer, {
           sitekey: siteKey,
           size: 'invisible',
-          callback: (token: string) => { doSubmit(token); },
+          callback: (token: string) => { if (userSubmitted) doSubmit(token); },
           'error-callback': () => {
             showError('Bot verification error. Please try again.');
             setLoading(false);
@@ -246,6 +247,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
           return;
         }
 
+        userSubmitted = true;
         setLoading(true);
         hideMessages();
 
@@ -303,6 +305,7 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
           showError('Connection error. Check your internet and try again.');
           if (widgetId !== undefined) ts()?.reset(widgetId);
         } finally {
+          userSubmitted = false;
           setLoading(false);
         }
       }
