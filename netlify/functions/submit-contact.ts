@@ -5,14 +5,16 @@
  * Flujo:
  *   1. Validación de honeypot (anti-bot)
  *   2. Validación de campos requeridos
- *   3. Envío de email de notificación a Mónica vía Resend
- *   4. Envío de email de confirmación al suscriptor
+ *   3. Añadir/actualizar contacto en Resend Audience (idempotente — sin duplicados)
+ *   4. Envío de email de notificación a Mónica vía Resend
+ *   5. Envío de email de confirmación al suscriptor
  *
  * Variables de entorno requeridas (Netlify → Site configuration → Environment variables):
- *   RESEND_API_KEY    — API Key de Resend (ej. re_xxxxxxxxxxxx)
- *   CONTACT_EMAIL     — Email de destino donde recibes las notificaciones (ej. hola@monicamontufar.com)
- *   FROM_EMAIL        — Email remitente verificado en Resend (ej. noreply@monicamontufar.com)
- *                       ⚠️ El dominio debe estar verificado en el panel de Resend.
+ *   RESEND_API_KEY       — API Key de Resend (ej. re_xxxxxxxxxxxx)
+ *   RESEND_AUDIENCE_ID   — ID de la Audience en Resend (ej. 78261eea-...)
+ *   CONTACT_EMAIL        — Email de destino donde recibes las notificaciones (ej. hola@monicamontufar.com)
+ *   FROM_EMAIL           — Email remitente verificado en Resend (ej. noreply@monicamontufar.com)
+ *                          ⚠️ El dominio debe estar verificado en el panel de Resend.
  */
 import type { Config } from '@netlify/functions';
 import { Resend } from 'resend';
@@ -43,9 +45,10 @@ export default async (req: Request) => {
     }
 
     // ── Variables de entorno ──────────────────────────────────────────────────
-    const RESEND_API_KEY = process.env.RESEND_API_KEY;
-    const CONTACT_EMAIL  = process.env.CONTACT_EMAIL  || 'hola@monicamontufar.com';
-    const FROM_EMAIL     = process.env.FROM_EMAIL     || 'noreply@monicamontufar.com';
+    const RESEND_API_KEY     = process.env.RESEND_API_KEY;
+    const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID;
+    const CONTACT_EMAIL      = process.env.CONTACT_EMAIL  || 'hola@monicamontufar.com';
+    const FROM_EMAIL         = process.env.FROM_EMAIL     || 'noreply@monicamontufar.com';
 
     if (!RESEND_API_KEY) {
       console.error('[submit-contact] RESEND_API_KEY no configurada');
@@ -56,6 +59,20 @@ export default async (req: Request) => {
     }
 
     const resend = new Resend(RESEND_API_KEY);
+
+    // ── Resend Audience: añadir/actualizar contacto (idempotente por email) ──
+    if (RESEND_AUDIENCE_ID) {
+      const { error: contactError } = await resend.contacts.create({
+        audienceId: RESEND_AUDIENCE_ID,
+        email,
+        unsubscribed: false,
+      });
+      if (contactError) {
+        console.error('[submit-contact] Error al guardar contacto en Audience:', contactError);
+      }
+    } else {
+      console.warn('[submit-contact] RESEND_AUDIENCE_ID no configurada — contacto no guardado en Audience');
+    }
 
     // ── Email de notificación a Mónica ────────────────────────────────────────
     await resend.emails.send({
