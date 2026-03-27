@@ -63,8 +63,6 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
               <form id="waitlist-form" class="flex flex-col sm:flex-row gap-2" novalidate>
                 <!-- Honeypot: oculto para humanos, bots lo rellenan -->
                 <input type="text" name="bot_field" class="hidden" tabindex="-1" autocomplete="off" />
-                <!-- Turnstile invisible widget container -->
-                <div id="cf-turnstile-container" data-sitekey={turnstileSiteKey} class="hidden"></div>
                 <div class="relative flex-1 shrink-0">
                   <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-300">mail</span>
                   <input
@@ -92,6 +90,11 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
               ✓ ¡Apuntado! Te escribo en cuanto abra las puertas.
             </div>
             <div id="waitlist-error" class="hidden mt-4 pl-2 text-sm font-medium text-red-400"></div>
+
+            <!-- Turnstile managed widget -->
+            <div class="mt-4 pl-2">
+              <div id="cf-turnstile-container" data-sitekey={turnstileSiteKey}></div>
+            </div>
 
             <!-- Legal Checkbox -->
             <div class="mt-4 pl-2 flex items-start gap-3 max-w-md">
@@ -220,22 +223,22 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const ts = () => (window as any).turnstile;
       let widgetId: string | undefined;
+      let tsToken: string | null = null;
 
       function initTurnstileWidget() {
         if (!ts() || !tsContainer || !siteKey || widgetId !== undefined) return;
         widgetId = ts().render(tsContainer, {
           sitekey: siteKey,
-          size: 'invisible',
-          callback: (token: string) => { doSubmit(token); },
+          theme: 'dark',
+          callback: (token: string) => { tsToken = token; },
           'error-callback': () => {
+            tsToken = null;
             showError('Error de verificación anti-bot. Inténtalo de nuevo.');
-            setLoading(false);
           },
-          'expired-callback': () => { if (widgetId !== undefined) ts()?.reset(widgetId); },
+          'expired-callback': () => { tsToken = null; },
         });
       }
 
-      // Turnstile ready via onload callback or already present
       document.addEventListener('turnstile:ready', initTurnstileWidget, { once: true });
       if (ts()) initTurnstileWidget();
 
@@ -249,43 +252,30 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
           return;
         }
 
+        if (!tsToken) {
+          showError('Completa la verificación anti-bot antes de continuar.');
+          return;
+        }
+
         setLoading(true);
         hideMessages();
-
-        if (ts() && widgetId !== undefined) {
-          ts().execute(widgetId);
-        } else {
-          await doSubmit(null);
-        }
+        await doSubmit(tsToken);
       });
 
-      async function doSubmit(turnstileToken: string | null) {
-        // Guard: Turnstile callback can fire automatically, bypassing the form submit handler.
-        // Re-check privacy and email here to prevent submission without user consent.
-        if (!emailEl?.value.trim()) {
-          setLoading(false);
-          return;
-        }
-        if (privacyEl && !privacyEl.checked) {
-          showError('Debes aceptar la política de privacidad para continuar.');
-          if (widgetId !== undefined) ts()?.reset(widgetId);
-          setLoading(false);
-          return;
-        }
+      async function doSubmit(turnstileToken: string) {
         try {
-          if (turnstileToken) {
-            const verifyRes = await fetch('/api/verify-turnstile', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ token: turnstileToken }),
-            });
-            const verifyData = await verifyRes.json();
-            if (!verifyData.success) {
-              showError('Verificación anti-bot fallida. Inténtalo de nuevo.');
-              if (widgetId !== undefined) ts()?.reset(widgetId);
-              setLoading(false);
-              return;
-            }
+          const verifyRes = await fetch('/api/verify-turnstile', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: turnstileToken }),
+          });
+          const verifyData = await verifyRes.json();
+          if (!verifyData.success) {
+            showError('Verificación anti-bot fallida. Inténtalo de nuevo.');
+            tsToken = null;
+            if (widgetId !== undefined) ts()?.reset(widgetId);
+            setLoading(false);
+            return;
           }
 
           const res = await fetch('/api/submit-contact', {
@@ -300,10 +290,12 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
             form?.reset();
           } else {
             showError(data.error || 'Algo salió mal. Inténtalo de nuevo.');
+            tsToken = null;
             if (widgetId !== undefined) ts()?.reset(widgetId);
           }
         } catch {
           showError('Error de conexión. Comprueba tu internet e inténtalo de nuevo.');
+          tsToken = null;
           if (widgetId !== undefined) ts()?.reset(widgetId);
         } finally {
           setLoading(false);
