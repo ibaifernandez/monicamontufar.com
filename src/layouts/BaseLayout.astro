@@ -11,6 +11,8 @@ interface Props {
   lang?: 'es' | 'en';
   ogImage?: string;
   alternateHref?: string;
+  /** Pass true for pages with no translated counterpart (skips hreflang alternate) */
+  omitAlternate?: boolean;
   /** Omit the shared Navbar (for pages that render their own) */
   showNavbar?: boolean;
   /** Omit the shared Footer (rarely needed) */
@@ -23,6 +25,7 @@ const {
   lang = 'es',
   ogImage,
   alternateHref,
+  omitAlternate = false,
   showNavbar = true,
   showFooter = true,
 } = Astro.props;
@@ -36,7 +39,7 @@ const {
     <link rel="icon" type="image/png" href="/images/logo-favicon.png" />
     <meta name="generator" content={Astro.generator} />
 
-    <SEO title={title} description={description} lang={lang} image={ogImage} alternateHref={alternateHref} />
+    <SEO title={title} description={description} lang={lang} image={ogImage} alternateHref={alternateHref} omitAlternate={omitAlternate} />
 
     <!-- Fuentes críticas: preload para evitar FOUT visible en el LCP -->
     <link rel="preload" href="/fonts/GildaDisplay-Regular.ttf" as="font" type="font/ttf" crossorigin>

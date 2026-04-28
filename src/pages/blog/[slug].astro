@@ -70,6 +70,7 @@ const dateStr = new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric
   title={`${title.replace(/<[^>]+>/g,'')} • Blog de Mónica Montúfar`}
   description={excerpt.slice(0, 160)}
   lang="es"
+  omitAlternate={true}
 >
   <!-- Cover image -->
   <div class="relative w-full aspect-[16/6] md:aspect-[16/5] overflow-hidden">

@@ -8,6 +8,8 @@ export interface Props {
   /** URL explícita de la versión alternativa (el otro idioma).
    *  Necesario cuando la ruta no es simétrica, ej. /sobre-mi ↔ /en/about-me */
   alternateHref?: string;
+  /** Pasar true para omitir las etiquetas hreflang alternate (páginas sin versión EN). */
+  omitAlternate?: boolean;
 }
 
 const {
@@ -17,6 +19,7 @@ const {
   canonicalUrl = Astro.url.href,
   lang = 'es',
   alternateHref,
+  omitAlternate = false,
 } = Astro.props;
 
 const site = String(Astro.site || 'https://monicamontufar.com').replace(/\/$/, '');
@@ -36,9 +39,13 @@ const alternateUrl = alternateHref ?? (
 <link rel="canonical" href={canonicalUrl} />
 
 <!-- i18n Hreflang Tags (Crucial against SEO cannibalization) -->
-<link rel="alternate" hreflang={lang} href={canonicalUrl} />
-<link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
-<link rel="alternate" hreflang="x-default" href={`${Astro.site || 'https://monicamontufar.com'}/`} />
+{!omitAlternate && (
+  <>
+    <link rel="alternate" hreflang={lang} href={canonicalUrl} />
+    <link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
+    <link rel="alternate" hreflang="x-default" href={`${Astro.site || 'https://monicamontufar.com'}/`} />
+  </>
+)}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
