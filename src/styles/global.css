@@ -1,16 +1,122 @@
 @import "tailwindcss";
 
+/* ── Gilda Display — display/headings (font-serif) ───────────────────────── */
+@font-face {
+  font-family: "Gilda Display";
+  src: url("/fonts/GildaDisplay-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  /* swap: font is preloaded from same origin so it typically arrives before
+     first paint; fallback renders immediately if it misses the block window.
+     Using 'optional' caused Chrome to delay first render until the preloaded
+     font arrived (~500ms under throttling → 5s LCP regression on text). */
+  font-display: swap;
+}
+
+/* ── Poppins — body/UI (font-sans + font-display) ────────────────────────── */
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── Design tokens ───────────────────────────────────────────────────────── */
 @theme {
   --color-primary: #e6b319;
   --color-background-light: #f8f7f6;
   --color-background-dark: #12110e;
   --color-surface-dark: #1c1a14;
-  /* Variable fonts self-hosted via @fontsource-variable.
-     Fallback chain: variable → static → system. */
-  --font-display: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display Variable", "Playfair Display", ui-serif, Georgia, serif;
+
+  /* Gilda Display → headings editoriales y display (font-serif) */
+  --font-serif: "Gilda Display", ui-serif, Georgia, serif;
+
+  /* Poppins → UI, body, párrafos (font-display + font-sans) */
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:    "Poppins", ui-sans-serif, system-ui, sans-serif;
 }
 
+/* ── Material Symbols — CLS prevention ───────────────────────────────────── */
+/* The icon font is loaded async from Google CDN. Without size-reservation the
+   fallback text ("arrow_right_alt", "close", …) takes much more space than the
+   glyph icon, causing a large layout shift when the font swaps in.
+   Fixing it here (overflow: hidden + fixed 1em square) reserves icon space
+   up front so the swap is paint-only — no geometry change → no CLS. */
+.material-symbols-outlined {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: middle;
+  /* Keep the font-size-derived square regardless of the fallback text size */
+  font-size: inherit;
+}
+
+/* ── Utilities ───────────────────────────────────────────────────────────── */
 @layer utilities {
   .glass-effect {
     background: rgba(28, 26, 20, 0.6);

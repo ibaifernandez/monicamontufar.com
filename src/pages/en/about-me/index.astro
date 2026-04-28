@@ -17,7 +17,8 @@ import imgProfile from '~/assets/wp-content/uploads/2025/06/Monica-Montufar.jpeg
     lang="en" 
   />
 
-  <section class="max-w-5xl mx-auto px-6 py-12 md:py-24 space-y-16">
+  <!-- Bio + Photo -->
+  <section class="max-w-5xl mx-auto px-6 py-12 md:py-24">
     <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
       <div class="w-full md:w-5/12 relative group">
         <div class="aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 relative z-10 transition-transform duration-500 group-hover:-translate-y-2 group-hover:-translate-x-2">
@@ -35,31 +36,123 @@ import imgProfile from '~/assets/wp-content/uploads/2025/06/Monica-Montufar.jpeg
         </div>
         <div class="absolute inset-0 border border-[#e6b319]/40 rounded-2xl z-0 transition-transform duration-500 group-hover:translate-x-4 group-hover:translate-y-4"></div>
       </div>
-      
+
       <div class="w-full md:w-7/12 space-y-8">
         <div>
-          <h2 class="text-3xl md:text-4xl font-serif font-bold text-white">My Story</h2>
+          <p class="text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] mb-3">My Story</p>
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-white">Creativity, strategy<br/>and life in motion</h2>
           <div class="w-12 h-1 bg-[#e6b319] mt-4 rounded-full"></div>
         </div>
-        
+
         <div class="space-y-6 font-sans text-white/80 leading-relaxed text-lg font-light">
           <p>
-            Proactive and experienced <strong class="text-white font-medium">Virtual Assistant</strong> with over 10 years in the digital ecosystem. My Master's in Digital Marketing and eCommerce has equipped me with a broad technical and strategic skillset.
+            I'm <strong class="text-white font-medium">Mónica Montúfar</strong> — Colombian graphic designer, virtual assistant, and digital nomad. With over 10 years in the digital ecosystem and a Master's in Digital Marketing and eCommerce, I blend creative vision with technical execution to help brands and entrepreneurs grow without the chaos.
           </p>
           <p>
             Advanced proficiency in <strong class="text-[#e6b319] font-medium">WordPress, Mailchimp, Brevo, Salesforce Email Studio, Illustrator, and After Effects</strong>. Specialist in <strong class="text-white font-medium">web design, email marketing, project management, and visual communication</strong>.
           </p>
           <p>
-            I have created over 100 websites and successfully managed email marketing campaigns. My strengths include problem-solving, organization, adaptability, and effective communication. Accustomed to remote and autonomous work, I am ready to offer high-level virtual support, optimizing your operations and contributing to your business growth.
+            In 2023 I made the decision that changed my life: pack the essentials and work from anywhere in the world. Since then, I've managed remote projects for clients across Latin America and Europe — without sacrificing an ounce of quality, only gaining perspective, culture, and freedom.
           </p>
         </div>
-        
-        <div class="pt-4">
-          <a href="/en/portfolio" class="inline-block px-8 py-4 bg-[#e6b319] text-[#12110e] font-sans font-semibold rounded-full hover:bg-white transition-colors duration-300 shadow-[0_4px_14px_0_rgba(230,179,25,0.39)] hover:shadow-[0_6px_20px_rgba(255,255,255,0.23)]">
+
+        <div class="pt-4 flex flex-wrap gap-4">
+          <a href="/en/portfolio/" class="inline-block px-8 py-4 bg-[#e6b319] text-[#12110e] font-sans font-semibold rounded-full hover:bg-white transition-colors duration-300 shadow-[0_4px_14px_0_rgba(230,179,25,0.39)] hover:shadow-[0_6px_20px_rgba(255,255,255,0.23)]">
             View My Work
+          </a>
+          <a href="/contacto/" class="inline-block px-8 py-4 border border-white/20 text-white font-sans font-semibold rounded-full hover:border-[#e6b319]/50 hover:text-[#e6b319] transition-colors duration-300">
+            Let's Talk
           </a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section class="bg-[#0f0e0b] border-t border-white/5 py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] mb-3">Stack</p>
+        <h2 class="text-3xl md:text-4xl font-serif font-bold text-white">My tools</h2>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        {[
+          { name: 'WordPress', cat: 'Web' },
+          { name: 'Elementor', cat: 'Web' },
+          { name: 'Illustrator', cat: 'Design' },
+          { name: 'Photoshop', cat: 'Design' },
+          { name: 'After Effects', cat: 'Video' },
+          { name: 'Premiere Pro', cat: 'Video' },
+          { name: 'Canva', cat: 'Design' },
+          { name: 'Mailchimp', cat: 'Email' },
+          { name: 'Brevo', cat: 'Email' },
+          { name: 'Salesforce', cat: 'Email' },
+          { name: 'Notion', cat: 'Management' },
+          { name: 'Trello', cat: 'Management' },
+        ].map(tool => (
+          <div class="flex flex-col gap-1 p-4 rounded-xl border border-white/8 bg-white/3 hover:border-[#e6b319]/30 hover:bg-white/5 transition-all duration-300 group">
+            <span class="text-[10px] font-sans font-semibold uppercase tracking-widest text-[#e6b319]/70 group-hover:text-[#e6b319] transition-colors">{tool.cat}</span>
+            <span class="font-sans text-white/90 font-medium text-sm">{tool.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why me -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] mb-3">Values</p>
+        <h2 class="text-3xl md:text-4xl font-serif font-bold text-white">Why work with me?</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {[
+          {
+            icon: 'verified',
+            title: 'Quality without compromise',
+            body: "Every deliverable passes through a personal excellence filter. I never send anything I wouldn't be proud to sign.",
+          },
+          {
+            icon: 'schedule',
+            title: 'Punctuality and transparency',
+            body: "I communicate progress, blockers, and deadlines clearly. Trusting me shouldn't require effort.",
+          },
+          {
+            icon: 'public',
+            title: 'Global perspective',
+            body: "Working from different countries and cultures gives me a fresh, adaptable view — free from bubble bias.",
+          },
+          {
+            icon: 'hub',
+            title: 'Integrated vision',
+            body: "Design and digital strategy aren't separate worlds in my mind. I unite them to give you coherent, holistic solutions.",
+          },
+        ].map(item => (
+          <div class="flex gap-5 p-6 rounded-2xl border border-white/8 bg-white/3 hover:border-[#e6b319]/20 transition-all duration-300">
+            <div class="flex-shrink-0 w-10 h-10 rounded-xl bg-[#e6b319]/10 flex items-center justify-center">
+              <span class="material-symbols-outlined text-[#e6b319] text-xl">{item.icon}</span>
+            </div>
+            <div>
+              <h3 class="font-sans font-semibold text-white mb-2">{item.title}</h3>
+              <p class="font-sans text-white/60 text-sm font-light leading-relaxed">{item.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-[#0f0e0b] border-t border-white/5 py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-6 text-center space-y-6">
+      <h2 class="text-3xl md:text-4xl font-serif font-bold text-white">Ready to get started?</h2>
+      <p class="font-sans text-white/60 font-light text-lg">Tell me what you're working on and let's see how I can help.</p>
+      <a href="/contacto/" class="inline-block px-10 py-4 bg-[#e6b319] text-[#12110e] font-sans font-semibold rounded-full hover:bg-white transition-colors duration-300 shadow-[0_4px_14px_0_rgba(230,179,25,0.39)]">
+        Contact Me
+      </a>
     </div>
   </section>
 </BaseLayout>

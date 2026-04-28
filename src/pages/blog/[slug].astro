@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+
+// Thumbnails — same map as blog/index.astro
+import imgTatacoa10   from '~/assets/wp-content/uploads/2025/04/Desierto_de_la_Tatacoa_Colombia_10.jpg';
+import imgCasaTomasa  from '~/assets/wp-content/uploads/2025/05/Casa-Tomasa-Bogota.jpeg';
+import imgTatacoa1    from '~/assets/wp-content/uploads/2025/05/Desierto-de-la-Tatacoa-1.jpg';
+import imgTatacoa5    from '~/assets/wp-content/uploads/2025/04/Desierto_de_la_Tatacoa_Colombia_5.jpg';
+import imgNomada      from '~/assets/wp-content/uploads/2024/07/Nomada-digitales.jpg';
+import imgAlojamiento from '~/assets/wp-content/uploads/2024/04/Nomada-digital-alojamiento.jpeg';
+import imgUnAno       from '~/assets/wp-content/uploads/2024/06/Un-ano-como-nomada-digital-1.jpg';
+import imgLaPersev    from '~/assets/wp-content/uploads/2024/05/La-perseverancia.jpeg';
+import imgVisa        from '~/assets/wp-content/uploads/2024/04/Visa-para-nomadas-digitales.jpeg';
+import imgAjiaco      from '~/assets/wp-content/uploads/2024/04/Ajiaco.jpg';
+
+import postsData from '../../data/wp-archive/posts.json';
+
+const thumbnails: Record<string, ImageMetadata> = {
+  'postales-de-otro-planeta-tatacoa-como-nunca-la-habias-visto':              imgTatacoa10,
+  'mi-peor-experiencia-en-airbnb-una-advertencia-para-nomadas-digitales-y-viajeros': imgCasaTomasa,
+  '7-cosas-que-debes-saber-antes-de-visitar-el-desierto-de-la-tatacoa':       imgTatacoa1,
+  'donde-el-silencio-habla-cronica-de-un-viaje-al-desierto-de-la-tatacoa':   imgTatacoa5,
+  '9-pasos-a-seguir-para-iniciarte-como-nomada-digital':                       imgNomada,
+  'nomadas-digitales-viaja-trabaja-y-vive-en-tus-propios-terminos':           imgAlojamiento,
+  'suenos-de-infancia-la-historia-de-una-nomada-digital':                     imgUnAno,
+  'street-food-en-bogota-un-festin-en-los-mercados-tradicionales':            imgLaPersev,
+  'descubre-los-destinos-visa-para-nomadas-digitales-alrededor-del-mundo':    imgVisa,
+  'delicias-de-colombia-un-viaje-por-la-gastronomia-colombiana-a-traves-de-mis-platillos-favoritos': imgAjiaco,
+};
+
+export async function getStaticPaths() {
+  const posts = await import('../../data/wp-archive/posts.json');
+  return posts.default.map((post: any) => ({
+    params: { slug: post.slug },
+    props:  { post },
+  }));
+}
+
+const { post } = Astro.props;
+const thumb = thumbnails[post.slug] ?? imgNomada;
+
+// Clean the Elementor HTML: strip wrapper divs with elementor classes, keep semantic tags
+function cleanContent(html: string): string {
+  return html
+    // Rewrite ALL localhost URLs to production-relative paths
+    // (covers both /wp-content/ image src AND href links to other posts)
+    .replace(/https?:\/\/localhost:\d+\//gi, '/')
+    // Remove elementor wrapper opens — keep content inside
+    .replace(/<(div|section|article)[^>]*class="[^"]*elementor[^"]*"[^>]*>/gi, '')
+    // Remove generic closing divs/sections that were elementor wrappers
+    .replace(/<\/(div|section|article)>/gi, '')
+    // Strip elementor- classes from remaining elements but keep the tags
+    .replace(/\s*class="[^"]*elementor[^"]*"/gi, '')
+    // Clean up empty class attrs
+    .replace(/\s*class=""\s*/gi, ' ')
+    // Remove empty spans that were just containers
+    .replace(/<span\s*>([\s\n]*)<\/span>/gi, '$1')
+    // ── A11y fixes ─────────────────────────────────────────────────────────
+    // Strip inline color declarations (Elementor uses near-black #262626 designed
+    // for white WP backgrounds — invisible on our dark theme, fails contrast)
+    .replace(/\bcolor\s*:\s*[^;"}]+;?/gi, '')
+    // Promote data-elementor-lightbox-title → aria-label on gallery links
+    // (gallery <a> elements contain only a <div> with no text, so they need an
+    // accessible name to satisfy the link-name audit)
+    .replace(/data-elementor-lightbox-title="([^"]*)"/gi,
+      'data-elementor-lightbox-title="$1" aria-label="$1"')
+    // Fix label-content-name-mismatch: Elementor "read more" links get an English
+    // aria-label but have Spanish visible text → strip the mismatched aria-label
+    .replace(/<a([^>]*)aria-label="Read more about [^"]*"([^>]*)>/gi, '<a$1$2>')
+    // Fix link-name: Elementor related-post image links use tabindex="-1" (already
+    // removed from keyboard navigation) but still appear in the a11y tree.
+    // They wrap <img alt=""> with no accessible text, failing the link-name audit.
+    // Adding aria-hidden="true" removes them from the a11y tree consistently.
+    .replace(/<a([^>]*)tabindex="-1"([^>]*)>/gi, '<a$1tabindex="-1"$2 aria-hidden="true">')
+    // Fix heading-order: page <h1> is the post title; Elementor uses h3/h4 for
+    // content sections — promote h3→h2 and h4→h3 to avoid skipping levels
+    .replace(/<h3(\s|>)/gi, '<h2$1')
+    .replace(/<\/h3>/gi, '</h2>')
+    .replace(/<h4(\s|>)/gi, '<h3$1')
+    .replace(/<\/h4>/gi, '</h3>')
+    // Normalize whitespace
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
+const title   = post.title?.rendered ?? '';
+const excerpt = post.excerpt?.rendered?.replace(/<[^>]+>/g, '').trim() ?? '';
+const content = cleanContent(post.content?.rendered ?? '');
+const dateStr = new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout
+  title={`${title.replace(/<[^>]+>/g,'')} • Blog de Mónica Montúfar`}
+  description={excerpt.slice(0, 160)}
+  lang="es"
+  omitAlternate={true}
+>
+  <!-- Cover image -->
+  <div class="relative w-full aspect-[16/6] md:aspect-[16/5] overflow-hidden">
+    <Image
+      src={thumb}
+      alt={title.replace(/<[^>]+>/g,'')}
+      widths={[768, 1280, 1600]}
+      sizes="100vw"
+      quality={80}
+      class="w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#12110e]/30 to-[#12110e]"></div>
+  </div>
+
+  <!-- Post header -->
+  <header class="max-w-3xl mx-auto px-6 pt-10 pb-6">
+    <a href="/blog/" class="inline-flex items-center gap-2 text-sm font-sans text-slate-400 hover:text-[#e6b319] transition-colors duration-200 mb-8 group uppercase tracking-widest font-semibold">
+      <span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_left_alt</span>
+      Blog
+    </a>
+    <p class="text-xs font-sans text-slate-400 mb-4">{dateStr}</p>
+    <h1 class="font-serif text-3xl md:text-5xl font-bold text-white leading-tight mb-6" set:html={title} />
+    {excerpt && (
+      <p class="font-sans text-white/70 text-lg font-light leading-relaxed border-l-2 border-[#e6b319]/40 pl-4">
+        {excerpt.slice(0, 200)}{excerpt.length > 200 ? '…' : ''}
+      </p>
+    )}
+  </header>
+
+  <!-- Post content -->
+  <article class="max-w-3xl mx-auto px-6 pb-20 prose-blog" set:html={content} />
+
+  <!-- Back + related -->
+  <div class="max-w-3xl mx-auto px-6 pb-16 pt-4 border-t border-white/5">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <a href="/blog/" class="inline-flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-widest text-slate-400 hover:text-white transition-colors duration-200 group">
+        <span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_left_alt</span>
+        Volver al blog
+      </a>
+      <a href="/contacto/" class="inline-block px-8 py-3 bg-[#e6b319] text-[#12110e] font-sans font-semibold rounded-full hover:bg-white transition-colors duration-300 text-sm shadow-[0_4px_14px_0_rgba(230,179,25,0.3)]">
+        Hablemos
+      </a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  /* Prose styles for blog post content */
+  .prose-blog {
+    color: rgba(248, 250, 252, 0.8);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+    font-weight: 300;
+  }
+  .prose-blog h1,
+  .prose-blog h2,
+  .prose-blog h3,
+  .prose-blog h4 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: #fff;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+  .prose-blog h2 { font-size: 1.375rem; }  /* Elementor section headings (was h3) */
+  .prose-blog h3 { font-size: 1.125rem; }  /* Elementor sub-headings (was h4) */
+  .prose-blog h4 { font-size: 1rem; }
+  .prose-blog p  { margin-bottom: 1.25rem; }
+  .prose-blog strong { color: #fff; font-weight: 600; }
+  .prose-blog em { color: rgba(248,250,252,0.9); }
+  .prose-blog a  { color: #e6b319; text-decoration: underline; text-underline-offset: 3px; transition: opacity 0.2s; }
+  .prose-blog a:hover { opacity: 0.8; }
+  .prose-blog ul,
+  .prose-blog ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+  .prose-blog li { margin-bottom: 0.4rem; }
+  .prose-blog ul { list-style-type: disc; }
+  .prose-blog ol { list-style-type: decimal; }
+  .prose-blog blockquote {
+    border-left: 3px solid #e6b319;
+    padding-left: 1.25rem;
+    color: rgba(248,250,252,0.65);
+    font-style: italic;
+    margin: 1.5rem 0;
+  }
+  .prose-blog img {
+    width: 100%;
+    border-radius: 0.75rem;
+    margin: 1.5rem 0;
+  }
+  .prose-blog hr {
+    border-color: rgba(255,255,255,0.08);
+    margin: 2rem 0;
+  }
+  /* Hide Elementor remnants */
+  .prose-blog .e-con-inner,
+  .prose-blog .elementor-widget-container { display: contents; }
+</style>

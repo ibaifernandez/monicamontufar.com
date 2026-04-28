@@ -32,3 +32,6 @@ docs/informe-cliente*
 
 # Session handoffs (contexto interno de desarrollo, no se versiona)
 .claude/handoffs/
+
+# WP uploads copied at build time from src/assets/ — no versionar duplicados
+public/wp-content/

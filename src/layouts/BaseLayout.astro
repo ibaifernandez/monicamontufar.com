@@ -1,10 +1,9 @@
 ---
 import SEO from '../components/global/SEO.astro';
 import CookieBanner from '../components/global/CookieBanner.astro';
+import Navbar from '../components/global/Navbar.astro';
+import Footer from '../components/global/Footer.astro';
 import '../styles/global.css';
-import '@fontsource-variable/inter';
-import '@fontsource-variable/playfair-display';
-import imgIcono from '~/assets/wp-content/uploads/2023/08/Icono-Mon.png';
 
 interface Props {
   title: string;
@@ -12,9 +11,33 @@ interface Props {
   lang?: 'es' | 'en';
   ogImage?: string;
   alternateHref?: string;
+  /** Pass true for pages with no translated counterpart (skips hreflang alternate) */
+  omitAlternate?: boolean;
+  /** URL of the LCP hero image — emits <link rel="preload"> for early discovery */
+  heroPreload?: string;
+  /** Full srcset string for the preload (enables browser to match to <img srcset>) */
+  heroPreloadSrcset?: string;
+  /** sizes string matching the <Image> component's sizes prop */
+  heroPreloadSizes?: string;
+  /** Omit the shared Navbar (for pages that render their own) */
+  showNavbar?: boolean;
+  /** Omit the shared Footer (rarely needed) */
+  showFooter?: boolean;
 }
 
-const { title, description, lang = 'es', ogImage, alternateHref } = Astro.props;
+const {
+  title,
+  description,
+  lang = 'es',
+  ogImage,
+  alternateHref,
+  omitAlternate = false,
+  heroPreload,
+  heroPreloadSrcset,
+  heroPreloadSizes,
+  showNavbar = true,
+  showFooter = true,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -22,10 +45,32 @@ const { title, description, lang = 'es', ogImage, alternateHref } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href={imgIcono.src} />
+    <link rel="icon" type="image/png" href="/images/logo-favicon.png" />
     <meta name="generator" content={Astro.generator} />
 
-    <SEO title={title} description={description} lang={lang} image={ogImage} alternateHref={alternateHref} />
+    <SEO title={title} description={description} lang={lang} image={ogImage} alternateHref={alternateHref} omitAlternate={omitAlternate} />
+
+    <!-- LCP image preload — improves lcp-discovery-insight score.
+         imagesrcset/imagesizes let the preload scanner match this hint to the
+         <img srcset> element (without them the browser can't correlate the two) -->
+    {heroPreload && (
+      <link
+        rel="preload"
+        as="image"
+        href={heroPreload}
+        imagesrcset={heroPreloadSrcset}
+        imagesizes={heroPreloadSizes}
+        fetchpriority="high"
+      />
+    )}
+
+    <!-- Fuentes críticas: preload para reducir FOUT visible en el LCP.
+         Con TTF el render delay bajo mobile throttling sigue siendo ~4–5s
+         (Poppins-Light.ttf = 155 KB; Poppins-Regular.ttf = 155 KB).
+         BACKLOG: convertir TTF → WOFF2 + subset → −40% tamaño → mejor LCP. -->
+    <link rel="preload" href="/fonts/GildaDisplay-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/fonts/Poppins-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/fonts/Poppins-Light.ttf" as="font" type="font/ttf" crossorigin>
 
     <!-- Material Symbols: carga async (non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,10 +78,16 @@ const { title, description, lang = 'es', ogImage, alternateHref } = Astro.props;
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"></noscript>
   </head>
-  <body class="bg-[#12110E] text-slate-100 font-display antialiased overflow-x-hidden min-h-screen flex flex-col selection:bg-primary/30">
-    <main class="flex-grow flex flex-col">
+  <body class="bg-[#12110E] text-slate-100 font-sans antialiased overflow-x-hidden min-h-screen flex flex-col selection:bg-primary/30">
+
+    {showNavbar && <Navbar lang={lang} />}
+
+    <main class={`flex-grow flex flex-col ${showNavbar ? 'pt-16' : ''}`}>
       <slot />
     </main>
+
+    {showFooter && <Footer lang={lang} />}
+
     <CookieBanner lang={lang} />
   </body>
 </html>
