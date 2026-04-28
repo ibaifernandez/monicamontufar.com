@@ -31,6 +31,7 @@
     "@playwright/test": "^1.58.2",
     "@sentry/astro": "^10.45.0",
     "@types/node": "^25.5.0",
+    "ttf2woff2": "^8.0.1",
     "vitest": "^4.1.0"
   }
 }

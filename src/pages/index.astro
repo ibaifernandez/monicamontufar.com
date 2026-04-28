@@ -73,6 +73,22 @@ const categoryColor: Record<string, string> = {
   lang="es"
   alternateHref="https://monicamontufar.com/en/"
 >
+  <!-- JSON-LD: Person -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Mónica Montúfar",
+    "alternateName": "Món Mont",
+    "url": "https://monicamontufar.com",
+    "jobTitle": "Diseñadora Gráfica y Nómada Digital",
+    "sameAs": [
+      "https://www.instagram.com/los_pensamientos_de_mon",
+      "https://www.linkedin.com/in/mónica-montúfar-quiñónez-751123146/",
+      "https://www.facebook.com/lospensamientosdeMon",
+      "https://www.tiktok.com/@los_pensamientos_de_mon"
+    ]
+  })} />
+
   <!-- ═══════════════════════════════════════════════════════════════════════
        HERO — Full-screen editorial split
   ═══════════════════════════════════════════════════════════════════════ -->
