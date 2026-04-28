@@ -91,14 +91,25 @@ const dateStr = new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric
 
 const optimizedThumb = await getImage({ src: thumb, width: 1280 });
 const thumbUrl = `https://monicamontufar.com${optimizedThumb.src}`;
+// Astro getImage returns actual output dimensions in attributes
+const thumbWidth  = (optimizedThumb.attributes as any).width  ?? 1280;
+const thumbHeight = (optimizedThumb.attributes as any).height ?? 720;
 
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": title.replace(/<[^>]+>/g, ''),
   "description": excerpt.slice(0, 160),
-  "image": thumbUrl,
+  // ImageObject with explicit dimensions → eliminates "non-critical" Google warning
+  "image": {
+    "@type": "ImageObject",
+    "url": thumbUrl,
+    "width": thumbWidth,
+    "height": thumbHeight
+  },
+  "url": `https://monicamontufar.com/blog/${post.slug}/`,
   "datePublished": post.date,
+  "dateModified": post.modified ?? post.date,
   "author": {
     "@type": "Person",
     "name": "Mónica Montúfar",
@@ -107,7 +118,12 @@ const articleSchema = {
   "publisher": {
     "@type": "Organization",
     "name": "Mónica Montúfar",
-    "url": "https://monicamontufar.com"
+    "url": "https://monicamontufar.com",
+    // logo required by Google for NewsArticle/BlogPosting rich result eligibility
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://monicamontufar.com/images/logo-full.png"
+    }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -119,6 +135,7 @@ const articleSchema = {
 <BaseLayout
   title={`${title.replace(/<[^>]+>/g,'')} • Blog de Mónica Montúfar`}
   description={excerpt.slice(0, 160)}
+  ogImage={thumbUrl}
   lang="es"
   omitAlternate={true}
 >
