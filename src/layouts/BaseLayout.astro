@@ -1,6 +1,8 @@
 ---
 import SEO from '../components/global/SEO.astro';
 import CookieBanner from '../components/global/CookieBanner.astro';
+import Navbar from '../components/global/Navbar.astro';
+import Footer from '../components/global/Footer.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -9,9 +11,21 @@ interface Props {
   lang?: 'es' | 'en';
   ogImage?: string;
   alternateHref?: string;
+  /** Omit the shared Navbar (for pages that render their own) */
+  showNavbar?: boolean;
+  /** Omit the shared Footer (rarely needed) */
+  showFooter?: boolean;
 }
 
-const { title, description, lang = 'es', ogImage, alternateHref } = Astro.props;
+const {
+  title,
+  description,
+  lang = 'es',
+  ogImage,
+  alternateHref,
+  showNavbar = true,
+  showFooter = true,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -36,9 +50,15 @@ const { title, description, lang = 'es', ogImage, alternateHref } = Astro.props;
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"></noscript>
   </head>
   <body class="bg-[#12110E] text-slate-100 font-sans antialiased overflow-x-hidden min-h-screen flex flex-col selection:bg-primary/30">
-    <main class="flex-grow flex flex-col">
+
+    {showNavbar && <Navbar lang={lang} />}
+
+    <main class={`flex-grow flex flex-col ${showNavbar ? 'pt-16' : ''}`}>
       <slot />
     </main>
+
+    {showFooter && <Footer lang={lang} />}
+
     <CookieBanner lang={lang} />
   </body>
 </html>

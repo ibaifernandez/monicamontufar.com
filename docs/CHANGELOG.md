@@ -1,6 +1,16 @@
 # Changelog
 Todos los cambios notables del proyecto se documentarán en este archivo según los lineamientos de [Keep a Changelog](https://keepachangelog.com/).
 
+## [Unreleased] — 2026-03-30 Documentation Audit & Realignment
+
+### Changed
+- **`AGENTS.md`**: Corregidas versiones del stack (Astro 5 → 6, sin mención de TailwindCSS → añadida v4 con `@tailwindcss/vite`). Añadida sección completa de Activos de Identidad Visual (`docs/visual-id/`) con tabla de rutas y nota crítica sobre la migración tipográfica pendiente (Gilda Display + Poppins).
+- **`docs/PRD.md`**: Corregida versión de Astro (5 → 6) y Tailwind (genérico → v4). Añadido requerimiento de Identidad Visual Oficial con referencia al kit `docs/visual-id/kIt-diseno-mon-pont-2026.pdf`.
+- **`docs/BACKLOG.md`**: Reestructurado con sistema de prioridades (🟥/🟠/🟡/🟢). Añadidos ítems completados que faltaban (hreflang fix, font migration, Turnstile managed, Resend Audience, scaffold de páginas internas). Añadida nueva sección de Alta Prioridad para migración tipográfica al kit oficial. Añadido bloqueante de feedback de cliente.
+- **`docs/ROADMAP.md`**: Añadidas Fases 7 y 8 (completadas) que faltaban. Restructurado el bloque "Siguiente Fase" con sub-fases 9A/9B/9C y prerequisito bloqueante explícito.
+
+---
+
 ## [Unreleased] — 2026-03-26 Bugfixes & Legal Completion
 
 ### Fixed
