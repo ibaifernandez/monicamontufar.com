@@ -43,6 +43,8 @@ const thumb = thumbnails[post.slug] ?? imgNomada;
 // Clean the Elementor HTML: strip wrapper divs with elementor classes, keep semantic tags
 function cleanContent(html: string): string {
   return html
+    // Rewrite localhost image URLs to production-relative paths
+    .replace(/https?:\/\/localhost:\d+\/wp-content\//gi, '/wp-content/')
     // Remove elementor wrapper opens — keep content inside
     .replace(/<(div|section|article)[^>]*class="[^"]*elementor[^"]*"[^>]*>/gi, '')
     // Remove generic closing divs/sections that were elementor wrappers
