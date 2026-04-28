@@ -1,0 +1,124 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+
+// Thumbnails — manually mapped to each post slug
+import imgTatacoa10   from '~/assets/wp-content/uploads/2025/04/Desierto_de_la_Tatacoa_Colombia_10.jpg';
+import imgCasaTomasa  from '~/assets/wp-content/uploads/2025/05/Casa-Tomasa-Bogota.jpeg';
+import imgTatacoa1    from '~/assets/wp-content/uploads/2025/05/Desierto-de-la-Tatacoa-1.jpg';
+import imgTatacoa5    from '~/assets/wp-content/uploads/2025/04/Desierto_de_la_Tatacoa_Colombia_5.jpg';
+import imgNomada      from '~/assets/wp-content/uploads/2024/07/Nomada-digitales.jpg';
+import imgAlojamiento from '~/assets/wp-content/uploads/2024/04/Nomada-digital-alojamiento.jpeg';
+import imgUnAno       from '~/assets/wp-content/uploads/2024/06/Un-ano-como-nomada-digital-1.jpg';
+import imgLaPersev    from '~/assets/wp-content/uploads/2024/05/La-perseverancia.jpeg';
+import imgVisa        from '~/assets/wp-content/uploads/2024/04/Visa-para-nomadas-digitales.jpeg';
+import imgAjiaco      from '~/assets/wp-content/uploads/2024/04/Ajiaco.jpg';
+
+import postsData from '../../data/wp-archive/posts.json';
+
+// Enrich posts with their thumbnail images
+const thumbnails: Record<string, ImageMetadata> = {
+  'postales-de-otro-planeta-tatacoa-como-nunca-la-habias-visto':              imgTatacoa10,
+  'mi-peor-experiencia-en-airbnb-una-advertencia-para-nomadas-digitales-y-viajeros': imgCasaTomasa,
+  '7-cosas-que-debes-saber-antes-de-visitar-el-desierto-de-la-tatacoa':       imgTatacoa1,
+  'donde-el-silencio-habla-cronica-de-un-viaje-al-desierto-de-la-tatacoa':   imgTatacoa5,
+  '9-pasos-a-seguir-para-iniciarte-como-nomada-digital':                       imgNomada,
+  'nomadas-digitales-viaja-trabaja-y-vive-en-tus-propios-terminos':           imgAlojamiento,
+  'suenos-de-infancia-la-historia-de-una-nomada-digital':                     imgUnAno,
+  'street-food-en-bogota-un-festin-en-los-mercados-tradicionales':            imgLaPersev,
+  'descubre-los-destinos-visa-para-nomadas-digitales-alrededor-del-mundo':    imgVisa,
+  'delicias-de-colombia-un-viaje-por-la-gastronomia-colombiana-a-traves-de-mis-platillos-favoritos': imgAjiaco,
+};
+
+const posts = postsData.map(p => ({
+  slug:    p.slug,
+  title:   p.title?.rendered ?? '',
+  date:    p.date?.slice(0, 10) ?? '',
+  excerpt: p.excerpt?.rendered?.replace(/<[^>]+>/g, '').trim() ?? '',
+  thumb:   thumbnails[p.slug] ?? imgNomada,
+}));
+
+const [featured, ...rest] = posts;
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+---
+
+<BaseLayout
+  title="Blog • Mónica Montúfar"
+  description="Nómada digital, diseñadora y viajera. Historias sobre la vida remota, el diseño y los rincones del mundo."
+  lang="es"
+>
+  <!-- Hero del blog -->
+  <section class="max-w-6xl mx-auto px-6 pt-12 pb-8 md:pt-20 md:pb-12">
+    <div class="text-center mb-12">
+      <p class="text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] mb-3">El Blog</p>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">Las aventuras de Món Mont</h1>
+      <p class="font-sans text-white/60 font-light text-lg max-w-2xl mx-auto">
+        Historias desde la carretera: nomadismo digital, diseño, gastronomía y los rincones del mundo que me roban el corazón.
+      </p>
+    </div>
+
+    <!-- Entrada destacada -->
+    <a href={`/blog/${featured.slug}/`} class="group block relative rounded-3xl overflow-hidden border border-white/8 hover:border-[#e6b319]/30 transition-all duration-500">
+      <div class="aspect-[16/7] md:aspect-[16/6]">
+        <Image
+          src={featured.thumb}
+          alt={featured.title}
+          widths={[768, 1280, 1600]}
+          sizes="(max-width: 768px) 100vw, 90vw"
+          quality={80}
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#12110e] via-[#12110e]/40 to-transparent"></div>
+      </div>
+      <div class="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+        <span class="inline-block text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] mb-3">Entrada destacada</span>
+        <h2 class="font-serif text-2xl md:text-4xl font-bold text-white mb-3 group-hover:text-[#e6b319] transition-colors duration-300" set:html={featured.title} />
+        <p class="font-sans text-white/70 font-light text-sm md:text-base line-clamp-2 max-w-2xl">{featured.excerpt}</p>
+        <p class="mt-4 text-xs font-sans text-white/40">{formatDate(featured.date)}</p>
+      </div>
+    </a>
+  </section>
+
+  <!-- Grid de entradas -->
+  <section class="max-w-6xl mx-auto px-6 pb-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {rest.map((post, i) => (
+        <a
+          href={`/blog/${post.slug}/`}
+          class="group flex flex-col rounded-2xl overflow-hidden border border-white/8 hover:border-[#e6b319]/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300"
+        >
+          <div class="aspect-video overflow-hidden">
+            <Image
+              src={post.thumb}
+              alt={post.title}
+              widths={[400, 640, 800]}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              quality={75}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading={i < 3 ? 'eager' : 'lazy'}
+            />
+          </div>
+          <div class="flex flex-col flex-grow p-6 gap-3">
+            <p class="text-xs font-sans text-white/40">{formatDate(post.date)}</p>
+            <h3
+              class="font-serif text-lg font-bold text-white group-hover:text-[#e6b319] transition-colors duration-300 line-clamp-2"
+              set:html={post.title}
+            />
+            <p class="font-sans text-white/60 text-sm font-light leading-relaxed line-clamp-3 flex-grow">
+              {post.excerpt}
+            </p>
+            <span class="inline-flex items-center gap-1 text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] group-hover:gap-2 transition-all duration-200 mt-2">
+              Leer más
+              <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
