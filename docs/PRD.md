@@ -1,7 +1,7 @@
 # Product Requirements Document (PRD)
 
 ## 1. Visión del Producto
-Migración del sitio personal de Mónica Montúfar a una arquitectura JAMStack moderna (Astro 5 + Netlify) garantizando un nivel de desarrollo técnico premium, con especial atención en el performance (100/100 Lighthouse), Accesibilidad, Internacionalización y Testing rígido. El portafolio previo sirvió de modelo de exigencia.
+Migración del sitio personal de Mónica Montúfar a una arquitectura JAMStack moderna (Astro 6 + Netlify) garantizando un nivel de desarrollo técnico premium, con especial atención en el performance (100/100 Lighthouse), Accesibilidad, Internacionalización y Testing rígido. El portafolio previo sirvió de modelo de exigencia.
 
 ## 2. Requerimientos Funcionales
 ### 2.1 Multilenguaje (i18n)
@@ -9,8 +9,9 @@ Migración del sitio personal de Mónica Montúfar a una arquitectura JAMStack m
 - Las imágenes y textos deben ser exactas a las originales pero renderizadas con `<Picture>` tag de Astro.
 
 ### 2.2 Framework y UI
-- Componentes generados con Astro 5. Opcional el uso de islas interactivas (Preact o Svelte) si la animación o estado lo justifica.
-- El diseño debe replicar el anterior pero verse **Premium** vía Tailwind (Glassmorphism, sombras pulidas, tipografías armónicas y animaciones no intrusivas).
+- Componentes generados con Astro 6. Opcional el uso de islas interactivas (Preact o Svelte) si la animación o estado lo justifica.
+- El diseño debe replicar el anterior pero verse **Premium** vía TailwindCSS 4 (Glassmorphism, sombras pulidas, tipografías armónicas y animaciones no intrusivas).
+- **Identidad Visual Oficial**: Seguir el kit de diseño en `docs/visual-id/kIt-diseno-mon-mont-2026.pdf`. Tipografías de marca: **Gilda Display** (headings/display) y **Poppins** (body text). Los archivos de fuente están en `docs/visual-id/gilda-display/` y `docs/visual-id/poppins/`.
 
 ### 2.3 SEO y Crawlability
 - `robots.txt` y `sitemap.xml` autogenerados.

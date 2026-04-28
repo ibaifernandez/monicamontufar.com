@@ -10,7 +10,8 @@
 | **Proyecto**             | monicamontufar.com                          |
 | **Tipo**                 | Marca personal / Portafolio                 |
 | **Owner**                | Mónica Montúfar                             |
-| **Framework**            | Astro 5                                     |
+| **Framework**            | Astro 6 (^6.0.6)                            |
+| **Styling**              | TailwindCSS 4 (^4.2.2) + `@tailwindcss/vite` — sin `tailwind.config.js` |
 | **Deploy**               | Netlify                                     |
 | **Idioma del contenido** | Español (es-ES) / Inglés (en-US)            |
 | **Idioma del código**    | Inglés (variables, clases CSS, componentes) |
@@ -29,14 +30,29 @@ Toda la documentación vive en `/docs`. Lee estos archivos **antes** de hacer ca
 | [`CHANGELOG.md`](docs/CHANGELOG.md)       | Historial de cambios                                     |
 | [`README.md`](README.md)                  | Guía general del proyecto                                |
 
+## Activos de Identidad Visual
+
+Los activos del kit de marca de Mónica Montúfar viven en `docs/visual-id/`:
+
+| Ruta | Contenido |
+| ---- | --------- |
+| `docs/visual-id/kIt-diseno-mon-mont-2026.pdf` | Kit de diseño oficial 2026 con paleta, tipografías y logotipo |
+| `docs/visual-id/png-logo/` | 8 variantes del logotipo en PNG (isotipo, logotipo completo, versiones con subtítulo de blog, negro/blanco) |
+| `docs/visual-id/gilda-display/` | Fuente `GildaDisplay-Regular.ttf` — tipografía de display del kit |
+| `docs/visual-id/poppins/` | Familia completa Poppins (18 pesos) — tipografía de cuerpo del kit |
+| `docs/visual-id/testimonials/` | Fotos de testimoniales: `ibai.png`, `rose.png`, `bani.jpeg` |
+
+> **IMPORTANTE para agentes**: El kit de marca usa **Gilda Display** (display/headings) y **Poppins** (body). El sitio actual usa Inter Variable + Playfair Display. La migración tipográfica al kit oficial de la cliente es una tarea pendiente (ver `BACKLOG.md`).
+
 ## Flujo de trabajo con agentes
 
 ### Antes de empezar cualquier tarea
 
 1. **Lee** `AGENTS.md` (este archivo)
 2. **Lee** `docs/AI-RULES.md` (reglas obligatorias)
-3. **Consulta** `docs/BACKLOG.md` (tareas pendientes)
-4. **Verifica** `docs/ARCHITECTURE.md` (estructura del proyecto)
+3. **Lee** `docs/NEXT-AGENT-BRIEFING.md` (plan de acción operativo actualizado — fuente de verdad de estado actual y próximos pasos)
+4. **Consulta** `docs/BACKLOG.md` (tareas pendientes)
+5. **Verifica** `docs/ARCHITECTURE.md` (estructura del proyecto)
 
 ### Al completar una tarea
 

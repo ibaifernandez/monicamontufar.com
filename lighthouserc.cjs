@@ -11,13 +11,14 @@ module.exports = {
       preset: 'lighthouse:recommended',
       assertions: {
         // ── Puertas de calidad estrictas (CI bloqueante) ──────────────────────
-        // Performance: 0.70 es el mínimo realista para LHCI local con TTF + mobile
-        // throttling (1638 kbps). El LCP dominante es ~5s bajo throttling porque
-        // los preloads TTF (Gilda Display 65KB + Poppins 155KB × 2) saturan el
-        // ancho de banda simulado y Chrome extiende el bloqueo de render.
-        // En producción (Cloudflare CDN + HTTP/2 + caché) el LCP mejora a ~1–2s.
-        // BACKLOG: subir a 0.85 tras conversión TTF → WOFF2 + subset de fuentes.
-        'categories:performance':   ['error', { minScore: 0.70 }],
+        // Performance: 0.78 umbral estable tras conversión TTF → WOFF2 (−62% payload).
+        // Local LHCI: homepage 0.81, blog/index 0.80. CI remoto (headless Docker,
+        // throttling más agresivo): blog/index consistentemente 0.79 → umbral en 0.78
+        // para margen estable sin falsos positivos de entorno.
+        // En producción (Cloudflare CDN + HTTP/2 + caché) el LCP es ~1–2s.
+        // BACKLOG: subir a 0.90 con subset de caracteres (glyphhanger) que
+        // reduciría aún más los WOFF2 (actualmente incluyen todos los glifos).
+        'categories:performance':   ['error', { minScore: 0.78 }],
         'categories:accessibility': ['error', { minScore: 1.0 }],
         'categories:seo':           ['error', { minScore: 0.9 }],
         'categories:best-practices':['error', { minScore: 0.9 }],

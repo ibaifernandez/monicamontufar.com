@@ -1,6 +1,8 @@
 # Backlog de Tareas (Task Tracker)
 
-Este archivo centraliza el estado actual, separándose de `ROADMAP.md` y alineado con `task.md`.
+Este archivo centraliza el estado actual del proyecto. Última actualización: 2026-04-28.
+
+---
 
 ## ✅ Completado — Coming Soon v1.0 (Production-Ready)
 
@@ -10,102 +12,131 @@ Este archivo centraliza el estado actual, separándose de `ROADMAP.md` y alinead
 - [x] Construir layout central `BaseLayout.astro`
 - [x] Desarrollar `SEO.astro`
 - [x] Diseñar el componente Cookie Banner
-- [x] Implementar el Hero con Tailwind (UI Premium, Micro-animaciones)
+- [x] Implementar el Hero con Tailwind (UI Premium, micro-animaciones)
 - [x] Configurar Playwright (`playwright.config.ts`) + tests de accesibilidad y regresión visual
-- [x] Ejecutar `npm create astro@latest`
-- [x] Añadir TailwindCSS, Vitest, Playwright
+- [x] TailwindCSS, Vitest, Playwright
 - [x] Documentación Principal Arquitectónica (8 archivos)
-- [x] Identificar estructura local y directorios raíz requeridos
-- [x] Alcanzar paridad técnica con el dossier de `elmst.ibaifernandez.com`
 - [x] Integración Cloudflare Turnstile invisible
 - [x] Self-hosted variable fonts (Inter + Playfair Display)
 - [x] Lighthouse 100/100 en Performance, A11y, SEO, Best Practices
 - [x] Pipeline CI/CD bloqueante (quality-gate.yml)
-- [x] UptimeRobot: 3 monitores, 100% uptime
-- [x] Sentry error tracking
-- [x] Security headers + _redirects
-- [x] QA 85/85 documentado en `docs/QA-COMING-SOON.md`
+- [x] Security headers + `_redirects`
+
+---
 
 ## ✅ Completado — Bugfixes & Legal (2026-03-26)
 
 - [x] Fix: guard `doSubmit()` contra Turnstile auto-callback (ES + EN)
-- [x] Fix: botón "Ver Portafolio" en 404 → `portafolio.monicamontufar.com`
-- [x] Política de privacidad: responsable, base legitimadora, derechos, inventario de cookies
-- [x] README.md actualizado con badges adicionales
-- [x] Fix hreflang crítico: `/sobre-mi/` ↔ `/en/about-me/`, `/portafolio/` ↔ `/en/portfolio/` (prop `alternateHref` explícita)
-- [x] Self-hosted variable fonts migradas a `@fontsource-variable/*` (zero render-blocking)
-- [x] Turnstile cambiado a modo managed (elimina auto-submit)
-- [x] Integración Resend Audience para persistencia de contactos waitlist
-- [x] Páginas internas scaffold: `sobre-mi/`, `portafolio/`, `en/about-me/`, `en/portfolio/` (con contenido de placeholder estructurado)
+- [x] Fix: botón "Ver Portafolio" en 404 → ruta interna correcta
+- [x] Política de privacidad: responsable, base legitimadora, derechos, inventario de cookies (ES + EN)
+- [x] Fix hreflang crítico: rutas asimétricas ES ↔ EN con `alternateHref` explícita
+- [x] Self-hosted variable fonts migradas a `@fontsource-variable/*`
+- [x] Turnstile cambiado a modo managed
 
-## 🔜 Siguiente Fase — Sitio Web Completo
+---
 
-Objetivo: lanzar el sitio completo eliminando la landing "Próximamente" antes del 1 de mayo de 2026.
+## ✅ Completado — Sitio Completo v1.0 (2026-04-28)
 
-### 🟥 BLOQUEANTE — Feedback pendiente de cliente
-- [ ] Recibir respuestas del informe `docs/informe-cliente-monicamontufar.md` (enviado el 26-03-2026)
-  - ¿El diseño actual le representa? ¿Cambiaría algo?
-  - ¿Qué página es prioritaria? (Portafolio / Servicios / Sobre Mí)
-  - ¿Textos preparados o necesitan redacción?
-  - ¿Blog con autonoma de publicación?
-  - ¿Servicios con precios visibles o sólo contacto?
+**Migraciones y nuevas páginas:**
+- [x] Tipografía migrada a Gilda Display + Poppins (desde `docs/visual-id/`)
+- [x] Logo oficial en navbar (ES + EN)
+- [x] Homepage completa (hero editorial, stats, servicios, blog feed, testimonios, CTA)
+- [x] Homepage EN (equivalente bilingüe)
+- [x] Navbar.astro componente global (responsive, hamburger, bilingual)
+- [x] Footer.astro componente global (bilingual, social links)
+- [x] Blog index (`/blog/`) con featured post + grid de 9 entradas
+- [x] Blog slug (`/blog/[slug]/`) con 10 posts del export WordPress
+  - Elementor HTML sanitizado (strip wrappers, rewrite localhost URLs, a11y fixes)
+- [x] 404 enlace arreglado a ruta interna `/portafolio/`
+- [x] Política de privacidad ES reescrita (eliminado texto "próximamente")
+- [x] Política de privacidad EN completa (GDPR/LOPDGDD)
+- [x] Ruta dev `/preview/[slug]` eliminada de producción
+- [x] Prebuild script: copia automática de `src/assets/wp-content/` a `public/wp-content/` antes del build
+- [x] SEO: hreflang suprimido para páginas sin equivalente EN (`omitAlternate`)
+- [x] CSP + Cache headers actualizados en `public/_headers`
 
-### 🟠 Alta Prioridad — Identidad Visual (kit oficial)
-*Independiente del feedback de la cliente. Se puede ejecutar ahora.*
+**CI/CD — Quality Gate verde:**
+- [x] Playwright visual + a11y: 6/6 pass (baselines regenerados con Docker Linux)
+- [x] Lighthouse CI: accessibility 1.0, SEO 1.0, best-practices 1.0, performance ≥ 0.70
+- [x] PR #9 mergeado, CI en `main` verde
 
-- [ ] **Migración tipográfica** (pasos en orden):
-  1. Copiar `docs/visual-id/gilda-display/GildaDisplay-Regular.ttf` + pesos necesarios de `docs/visual-id/poppins/` a `public/fonts/`
-  2. Declarar `@font-face` en `src/styles/global.css` (sin CDN externo — política del proyecto)
-  3. Actualizar variables tipográficas en `global.css` con `@theme {}` (TailwindCSS v4): `font-display` → Gilda Display, `font-body` → Poppins
-  4. ⚠️ Regenerar baselines Playwright con Docker (`npm run test:visual:docker:update`) — hacerlo en macOS nativo rompe CI
-  5. Verificar Lighthouse: `npm run lhci`
-- [ ] **Logo en navbar**: sustituir el bloque `src/pages/index.astro` líneas 18-19 (y equivalente EN)
-  - Candidato principal: `png-logo-7.png` (logotipo completo "MÓN + Mónica Montúfar")
-  - Alternativa: `png-logo-1.png` (isotipo "M" solo)
-  - El logo debe actuar como enlace a `/` (ES) y `/en/` (EN)
-- [ ] **Revisión de paleta**: contrastar dorado `#e6b319` actual con paleta del kit (`#E8503A` coral, `#F5924A` naranja, `#F5C842` amarillo, `#E84C8B` magenta, `#4DC5B8` teal) — **esperar confirmación de la cliente antes de cambiar**
-- [ ] Revisar `docs/visual-id/kIt-diseno-mon-mont-2026.pdf` para extraer guía completa de estilos
+---
 
-### 🟡 Media Prioridad — Páginas de contenido
-*Bloqueadas hasta recibir feedback de la cliente.*
+## 🔶 En Progreso — Mejoras Post-Lanzamiento (2026-04-28)
 
-**Sobre Mí** (`/sobre-mi/` + `/en/about-me/`)
-- [ ] Bio completa (reemplazar placeholder actual)
-- [ ] Fotografía oficial de alta resolución
-- [ ] Línea de tiempo profesional
-- [ ] Habilidades/skills con iconografía
+- [ ] **TTF → WOFF2 conversion** *(en ejecución)*
+  - Objetivo: reducir ~40% el tamaño de fuentes (Poppins: 155 KB → ~90 KB)
+  - Impacto: LCP bajo mobile throttling mejora de ~5s a ~3s; subir umbral CI a 0.85
+  - Herramienta: `ttf2woff2` npm package + fallback TTF en `@font-face`
 
-**Portafolio** (`/portafolio/` + `/en/portfolio/`)
-- [ ] Proyectos reales con imágenes y casos de estudio
-- [ ] Confirmar con cliente si mantener sección pricing en portafolio o separar en `/servicios/`
+- [ ] **JSON-LD Structured Data** *(en ejecución)*
+  - `BlogPosting` schema en cada post del blog
+  - `Person` schema en homepage
+  - `WebSite` schema global en `SEO.astro`
+  - Impacto: rich snippets en Google (autor, fecha, tipo de contenido)
 
-**Nuevas páginas**
-- [ ] Blog (`/blog/`) — pendiente decisión: MDX o CMS headless
-- [ ] Servicios con pricing (`/servicios/` + `/en/services/`)
-- [ ] Contacto completo (`/contacto/` + `/en/contact/`)
-- [ ] Sección de Testimoniales — fotos disponibles en `docs/visual-id/testimonials/` (`ibai.png`, `rose.png`, `bani.jpeg`)
+---
 
-**Checklist para cada página nueva**
-- `hreflang` con `alternateHref` cruzado explícito (asimétrico — no es automático)
-- `<SEO.astro>` con `title`, `description`, `og:image`
-- Test añadido en `tests/internal-pages.spec.ts`
-- Sitemap se actualiza automáticamente
+## 🟡 Pendiente — Contenido (requiere aportación de Mónica)
 
-### 🟢 Infraestructura — Deploy
-*Solo cuando 9A + 9B estén completos y testeados.*
+Estas tareas están **bloqueadas** hasta recibir materiales o confirmación de la clienta.
 
-- [ ] `npm run build` — 0 errores
-- [ ] `npx playwright test` — 10/10 passing
-- [ ] `npm run lhci` — Performance ≥90, A11y 100, SEO ≥90, Best Practices ≥90
-- [ ] `npm run test:visual:docker` — 0 regresiones visuales
-- [ ] PR `staging` → `main` (Quality Gate CI bloqueante)
-- [ ] Verificar deploy en Netlify + UptimeRobot
-- [ ] Eliminar landing "Próximamente" como página de inicio una vez el sitio completo esté en main
-- [ ] Migración de contenido WordPress → Astro (copys, imágenes, proyectos) — auditar `localhost:8083` antes de planificar
+- [ ] **Portafolio con casos de estudio reales** (`/portafolio/` + `/en/portfolio/`)
+  - Necesario: 3–6 proyectos con título, descripción, rol, imágenes y (si aplica) resultados
+  - Actualmente la página tiene contenido placeholder
+  - Es la pieza que más convierte visitas en clientes potenciales
 
-### 🔵 Backlog de Infraestructura (sin fecha)
-- [ ] Resend Audiences: crear Audience en resend.com → copiar ID → añadir `RESEND_AUDIENCE_ID` en Netlify env vars (instrucciones completas en memoria del proyecto)
-- [ ] Rate limiting en `submit-contact`: Netlify Edge Functions o Upstash Redis para prevenir spam masivo en caso de tráfico real
-- [ ] `portafolio.monicamontufar.com` como subdominio real (actualmente solo monitor UptimeRobot)
-- [ ] Analytics — ningún tracking configurado (pendiente decisión de la cliente)
-- [ ] Countdown `2026-05-01T09:00-05:00` — actualizar o reemplazar cuando se lance el sitio
+- [ ] **Actualización de bio en /sobre-mi/**
+  - Verificar si el texto actual es definitivo o placeholder
+  - Foto de perfil en alta resolución si la disponible no es la oficial
+
+- [ ] **Posts nuevos para el blog**
+  - El blog tiene 10 posts del export de WordPress (contenido existente)
+  - Para SEO real: publicar regularmente (mínimo 1/mes)
+  - Formatos posibles: Astro MDX o integración con CMS headless (TinaCMS, Sanity, Contentful)
+
+- [ ] **Decisión de newsletter**
+  - ¿Quiere capturar emails de lectores del blog?
+  - Si sí: elegir proveedor (Mailchimp, ConvertKit, Brevo, Resend)
+  - Implica añadir formulario en el blog y/o footer
+
+- [ ] **Analytics**
+  - Actualmente sin tracking (se eliminó Sentry del cliente)
+  - Opciones: Google Analytics 4, Plausible (privacy-first), Fathom
+  - Decisión de la clienta (afecta política de privacidad y CSP)
+
+- [ ] **Página de servicios con pricing** (`/servicios/`)
+  - ¿Precios visibles o solo "contacta para presupuesto"?
+  - ¿Qué servicios ofrece exactamente? (diseño gráfico, VA, social media...)
+
+---
+
+## 🔵 Backlog Técnico (sin fecha — no requiere cliente)
+
+- [ ] **Subir umbral CI performance a 0.85** tras conversión TTF→WOFF2
+  - Actualmente en 0.70 (documentado como limitación de TTF bajo throttling)
+  - Con WOFF2 el LCP bajo throttling debería bajar de ~5s a ~3s
+
+- [ ] **Paginación en el blog**
+  - Actualmente se muestran todos los posts en una sola página
+  - Con >20 posts el DOM se infla y el performance baja
+  - Implementar con Astro `paginate()` helper
+
+- [ ] **Deduplicar mapa de thumbnails del blog**
+  - Actualmente duplicado en `blog/index.astro` y `blog/[slug].astro`
+  - Extraer a `src/data/blog-thumbnails.ts` para importar desde ambos
+
+- [ ] **Búsqueda en el blog** (client-side con Fuse.js)
+  - Bajo impacto hasta que haya >20 posts
+
+- [ ] **Formulario de contacto — test en producción**
+  - Verificar que `netlify/functions/submit-contact.ts` está activo en Netlify
+  - Hacer un submit real y confirmar recepción del email
+  - Requiere acceso al panel de Netlify (revisión manual)
+
+- [ ] **`portafolio.monicamontufar.com`** como subdominio real
+  - Actualmente el botón en 404 apunta a la ruta interna `/portafolio/`
+  - El subdominio estaba en el plan original pero nunca se configuró
+
+- [ ] **Rate limiting en `/submit-contact`**
+  - Para cuando haya tráfico real: Netlify Edge Function o Upstash Redis

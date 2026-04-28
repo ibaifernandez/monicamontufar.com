@@ -60,3 +60,19 @@ const alternateUrl = alternateHref ?? (
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+<!-- JSON-LD: WebSite (sitewide) -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Mónica Montúfar",
+  "url": "https://monicamontufar.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://monicamontufar.com/blog/?s={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+})} />

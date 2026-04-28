@@ -65,12 +65,11 @@ const {
     )}
 
     <!-- Fuentes críticas: preload para reducir FOUT visible en el LCP.
-         Con TTF el render delay bajo mobile throttling sigue siendo ~4–5s
-         (Poppins-Light.ttf = 155 KB; Poppins-Regular.ttf = 155 KB).
-         BACKLOG: convertir TTF → WOFF2 + subset → −40% tamaño → mejor LCP. -->
-    <link rel="preload" href="/fonts/GildaDisplay-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="/fonts/Poppins-Regular.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="/fonts/Poppins-Light.ttf" as="font" type="font/ttf" crossorigin>
+         WOFF2 ~67% más pequeño que TTF → mejor LCP bajo mobile throttling.
+         (GildaDisplay: 65KB→28KB; Poppins-Regular: 155KB→51KB; Poppins-Light: 156KB→50KB) -->
+    <link rel="preload" href="/fonts/GildaDisplay-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Poppins-Light.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Material Symbols: carga async (non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
