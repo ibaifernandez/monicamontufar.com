@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
-import imgIcono from '~/assets/wp-content/uploads/2023/08/Icono-Mon.png';
 import imgHero from '~/assets/wp-content/uploads/2024/04/MonMont.jpeg';
 const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
 ---
@@ -14,10 +13,9 @@ const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY ?? '';
   <div class="relative min-h-screen flex flex-col w-full bg-[#12110E]">
     <!-- Top Navigation -->
     <header class="fixed top-0 w-full z-50 px-6 py-6 lg:px-12 flex items-center justify-between border-b border-white/5 bg-[#12110E]/80 backdrop-blur-md">
-      <div class="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
-        <Image src={imgIcono} alt="Icono Mónica Montúfar" width={32} height={32} class="size-8 object-contain" />
-        <span class="text-xl font-bold tracking-tighter text-slate-100">Mónica Montúfar</span>
-      </div>
+      <a href="/en/" aria-label="Mónica Montúfar — Home" class="hover:opacity-80 transition-opacity shrink-0">
+        <img src="/images/logo-full.png" alt="Mónica Montúfar" height="44" class="h-9 lg:h-11 w-auto object-contain" />
+      </a>
       <div class="flex items-center gap-6">
         <!-- Social Icons -->
         <div class="flex items-center gap-4 border-r border-white/10 pr-6 mr-2 hidden sm:flex">

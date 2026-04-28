@@ -1,16 +1,102 @@
 @import "tailwindcss";
 
+/* ── Gilda Display — display/headings (font-serif) ───────────────────────── */
+@font-face {
+  font-family: "Gilda Display";
+  src: url("/fonts/GildaDisplay-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Poppins — body/UI (font-sans + font-display) ────────────────────────── */
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── Design tokens ───────────────────────────────────────────────────────── */
 @theme {
   --color-primary: #e6b319;
   --color-background-light: #f8f7f6;
   --color-background-dark: #12110e;
   --color-surface-dark: #1c1a14;
-  /* Variable fonts self-hosted via @fontsource-variable.
-     Fallback chain: variable → static → system. */
-  --font-display: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display Variable", "Playfair Display", ui-serif, Georgia, serif;
+
+  /* Gilda Display → headings editoriales y display (font-serif) */
+  --font-serif: "Gilda Display", ui-serif, Georgia, serif;
+
+  /* Poppins → UI, body, párrafos (font-display + font-sans) */
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:    "Poppins", ui-sans-serif, system-ui, sans-serif;
 }
 
+/* ── Utilities ───────────────────────────────────────────────────────────── */
 @layer utilities {
   .glass-effect {
     background: rgba(28, 26, 20, 0.6);
