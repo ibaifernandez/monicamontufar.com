@@ -13,6 +13,12 @@ interface Props {
   alternateHref?: string;
   /** Pass true for pages with no translated counterpart (skips hreflang alternate) */
   omitAlternate?: boolean;
+  /** URL of the LCP hero image — emits <link rel="preload"> for early discovery */
+  heroPreload?: string;
+  /** Full srcset string for the preload (enables browser to match to <img srcset>) */
+  heroPreloadSrcset?: string;
+  /** sizes string matching the <Image> component's sizes prop */
+  heroPreloadSizes?: string;
   /** Omit the shared Navbar (for pages that render their own) */
   showNavbar?: boolean;
   /** Omit the shared Footer (rarely needed) */
@@ -26,6 +32,9 @@ const {
   ogImage,
   alternateHref,
   omitAlternate = false,
+  heroPreload,
+  heroPreloadSrcset,
+  heroPreloadSizes,
   showNavbar = true,
   showFooter = true,
 } = Astro.props;
@@ -41,7 +50,24 @@ const {
 
     <SEO title={title} description={description} lang={lang} image={ogImage} alternateHref={alternateHref} omitAlternate={omitAlternate} />
 
-    <!-- Fuentes críticas: preload para evitar FOUT visible en el LCP -->
+    <!-- LCP image preload — improves lcp-discovery-insight score.
+         imagesrcset/imagesizes let the preload scanner match this hint to the
+         <img srcset> element (without them the browser can't correlate the two) -->
+    {heroPreload && (
+      <link
+        rel="preload"
+        as="image"
+        href={heroPreload}
+        imagesrcset={heroPreloadSrcset}
+        imagesizes={heroPreloadSizes}
+        fetchpriority="high"
+      />
+    )}
+
+    <!-- Fuentes críticas: preload para reducir FOUT visible en el LCP.
+         Con TTF el render delay bajo mobile throttling sigue siendo ~4–5s
+         (Poppins-Light.ttf = 155 KB; Poppins-Regular.ttf = 155 KB).
+         BACKLOG: convertir TTF → WOFF2 + subset → −40% tamaño → mejor LCP. -->
     <link rel="preload" href="/fonts/GildaDisplay-Regular.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="/fonts/Poppins-Regular.ttf" as="font" type="font/ttf" crossorigin>
     <link rel="preload" href="/fonts/Poppins-Light.ttf" as="font" type="font/ttf" crossorigin>

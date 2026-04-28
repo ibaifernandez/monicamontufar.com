@@ -6,6 +6,10 @@
   src: url("/fonts/GildaDisplay-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  /* swap: font is preloaded from same origin so it typically arrives before
+     first paint; fallback renders immediately if it misses the block window.
+     Using 'optional' caused Chrome to delay first render until the preloaded
+     font arrived (~500ms under throttling → 5s LCP regression on text). */
   font-display: swap;
 }
 
@@ -94,6 +98,22 @@
   /* Poppins → UI, body, párrafos (font-display + font-sans) */
   --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-sans:    "Poppins", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── Material Symbols — CLS prevention ───────────────────────────────────── */
+/* The icon font is loaded async from Google CDN. Without size-reservation the
+   fallback text ("arrow_right_alt", "close", …) takes much more space than the
+   glyph icon, causing a large layout shift when the font swaps in.
+   Fixing it here (overflow: hidden + fixed 1em square) reserves icon space
+   up front so the swap is paint-only — no geometry change → no CLS. */
+.material-symbols-outlined {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  vertical-align: middle;
+  /* Keep the font-size-derived square regardless of the fallback text size */
+  font-size: inherit;
 }
 
 /* ── Utilities ───────────────────────────────────────────────────────────── */

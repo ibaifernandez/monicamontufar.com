@@ -43,8 +43,9 @@ const thumb = thumbnails[post.slug] ?? imgNomada;
 // Clean the Elementor HTML: strip wrapper divs with elementor classes, keep semantic tags
 function cleanContent(html: string): string {
   return html
-    // Rewrite localhost image URLs to production-relative paths
-    .replace(/https?:\/\/localhost:\d+\/wp-content\//gi, '/wp-content/')
+    // Rewrite ALL localhost URLs to production-relative paths
+    // (covers both /wp-content/ image src AND href links to other posts)
+    .replace(/https?:\/\/localhost:\d+\//gi, '/')
     // Remove elementor wrapper opens — keep content inside
     .replace(/<(div|section|article)[^>]*class="[^"]*elementor[^"]*"[^>]*>/gi, '')
     // Remove generic closing divs/sections that were elementor wrappers
@@ -55,6 +56,29 @@ function cleanContent(html: string): string {
     .replace(/\s*class=""\s*/gi, ' ')
     // Remove empty spans that were just containers
     .replace(/<span\s*>([\s\n]*)<\/span>/gi, '$1')
+    // ── A11y fixes ─────────────────────────────────────────────────────────
+    // Strip inline color declarations (Elementor uses near-black #262626 designed
+    // for white WP backgrounds — invisible on our dark theme, fails contrast)
+    .replace(/\bcolor\s*:\s*[^;"}]+;?/gi, '')
+    // Promote data-elementor-lightbox-title → aria-label on gallery links
+    // (gallery <a> elements contain only a <div> with no text, so they need an
+    // accessible name to satisfy the link-name audit)
+    .replace(/data-elementor-lightbox-title="([^"]*)"/gi,
+      'data-elementor-lightbox-title="$1" aria-label="$1"')
+    // Fix label-content-name-mismatch: Elementor "read more" links get an English
+    // aria-label but have Spanish visible text → strip the mismatched aria-label
+    .replace(/<a([^>]*)aria-label="Read more about [^"]*"([^>]*)>/gi, '<a$1$2>')
+    // Fix link-name: Elementor related-post image links use tabindex="-1" (already
+    // removed from keyboard navigation) but still appear in the a11y tree.
+    // They wrap <img alt=""> with no accessible text, failing the link-name audit.
+    // Adding aria-hidden="true" removes them from the a11y tree consistently.
+    .replace(/<a([^>]*)tabindex="-1"([^>]*)>/gi, '<a$1tabindex="-1"$2 aria-hidden="true">')
+    // Fix heading-order: page <h1> is the post title; Elementor uses h3/h4 for
+    // content sections — promote h3→h2 and h4→h3 to avoid skipping levels
+    .replace(/<h3(\s|>)/gi, '<h2$1')
+    .replace(/<\/h3>/gi, '</h2>')
+    .replace(/<h4(\s|>)/gi, '<h3$1')
+    .replace(/<\/h4>/gi, '</h3>')
     // Normalize whitespace
     .replace(/\n{3,}/g, '\n\n')
     .trim();
@@ -93,7 +117,7 @@ const dateStr = new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric
       <span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_left_alt</span>
       Blog
     </a>
-    <p class="text-xs font-sans text-white/40 mb-4">{dateStr}</p>
+    <p class="text-xs font-sans text-slate-400 mb-4">{dateStr}</p>
     <h1 class="font-serif text-3xl md:text-5xl font-bold text-white leading-tight mb-6" set:html={title} />
     {excerpt && (
       <p class="font-sans text-white/70 text-lg font-light leading-relaxed border-l-2 border-[#e6b319]/40 pl-4">
@@ -139,9 +163,9 @@ const dateStr = new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric
     margin-bottom: 0.75rem;
     line-height: 1.25;
   }
-  .prose-blog h2 { font-size: 1.75rem; }
-  .prose-blog h3 { font-size: 1.375rem; }
-  .prose-blog h4 { font-size: 1.125rem; }
+  .prose-blog h2 { font-size: 1.375rem; }  /* Elementor section headings (was h3) */
+  .prose-blog h3 { font-size: 1.125rem; }  /* Elementor sub-headings (was h4) */
+  .prose-blog h4 { font-size: 1rem; }
   .prose-blog p  { margin-bottom: 1.25rem; }
   .prose-blog strong { color: #fff; font-weight: 600; }
   .prose-blog em { color: rgba(248,250,252,0.9); }
