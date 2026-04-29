@@ -65,11 +65,11 @@ const {
     )}
 
     <!-- Fuentes críticas: preload para reducir FOUT visible en el LCP.
-         WOFF2 ~67% más pequeño que TTF → mejor LCP bajo mobile throttling.
-         (GildaDisplay: 65KB→28KB; Poppins-Regular: 155KB→51KB; Poppins-Light: 156KB→50KB) -->
-    <link rel="preload" href="/fonts/GildaDisplay-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/Poppins-Light.woff2" as="font" type="font/woff2" crossorigin>
+         Subsets Latin+Latin-Ext → ~83% más pequeño que el WOFF2 completo.
+         (GildaDisplay: 28KB→20KB; Poppins-Regular: 51KB→9KB; Poppins-Light: 51KB→9KB) -->
+    <link rel="preload" href="/fonts/GildaDisplay-Regular-subset.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Poppins-Regular-subset.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/Poppins-Light-subset.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Material Symbols: carga async (non-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
