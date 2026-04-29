@@ -25,13 +25,13 @@ const {
 const site = String(Astro.site || 'https://monicamontufar.com').replace(/\/$/, '');
 const alternateLang = lang === 'es' ? 'en' : 'es';
 
-// Si se pasa alternateHref explícito se usa directamente (rutas asimétricas).
+// Si se pasa alternateHref explícito se normaliza a URL absoluta.
 // Si no, se infiere simétricamente — solo es correcto para home y rutas espejo.
-const alternateUrl = alternateHref ?? (
-  lang === 'es'
-    ? `${site}/en${Astro.url.pathname}`
-    : `${site}${Astro.url.pathname.replace(/^\/en/, '')}`
-);
+const alternateUrl = alternateHref
+  ? (alternateHref.startsWith('http') ? alternateHref : `${site}${alternateHref}`)
+  : (lang === 'es'
+      ? `${site}/en${Astro.url.pathname}`
+      : `${site}${Astro.url.pathname.replace(/^\/en/, '')}`);
 ---
 
 <title>{title}</title>
