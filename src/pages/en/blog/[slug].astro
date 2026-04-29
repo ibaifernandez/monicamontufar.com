@@ -1,11 +1,11 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { Image, getImage } from 'astro:assets';
-import { thumbnails, thumbnailFallback } from '../../data/blog-thumbnails';
-import postsData from '../../data/wp-archive/posts.json';
+import { thumbnails, thumbnailFallback } from '../../../data/blog-thumbnails';
+import postsData from '../../../data/wp-archive/posts-en.json';
 
 export async function getStaticPaths() {
-  const posts = await import('../../data/wp-archive/posts.json');
+  const posts = await import('../../../data/wp-archive/posts-en.json');
   return posts.default.map((post: any) => ({
     params: { slug: post.slug },
     props:  { post },
@@ -15,46 +15,24 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const thumb = thumbnails[post.slug] ?? thumbnailFallback;
 
-// Clean the Elementor HTML: strip wrapper divs with elementor classes, keep semantic tags
+// Clean any residual HTML wrappers / rewrite URLs
 function cleanContent(html: string): string {
   return html
-    // Rewrite ALL localhost URLs to production-relative paths
-    // (covers both /wp-content/ image src AND href links to other posts)
     .replace(/https?:\/\/localhost:\d+\//gi, '/')
-    // Remove elementor wrapper opens — keep content inside
     .replace(/<(div|section|article)[^>]*class="[^"]*elementor[^"]*"[^>]*>/gi, '')
-    // Remove generic closing divs/sections that were elementor wrappers
     .replace(/<\/(div|section|article)>/gi, '')
-    // Strip elementor- classes from remaining elements but keep the tags
     .replace(/\s*class="[^"]*elementor[^"]*"/gi, '')
-    // Clean up empty class attrs
     .replace(/\s*class=""\s*/gi, ' ')
-    // Remove empty spans that were just containers
     .replace(/<span\s*>([\s\n]*)<\/span>/gi, '$1')
-    // ── A11y fixes ─────────────────────────────────────────────────────────
-    // Strip inline color declarations (Elementor uses near-black #262626 designed
-    // for white WP backgrounds — invisible on our dark theme, fails contrast)
     .replace(/\bcolor\s*:\s*[^;"}]+;?/gi, '')
-    // Promote data-elementor-lightbox-title → aria-label on gallery links
-    // (gallery <a> elements contain only a <div> with no text, so they need an
-    // accessible name to satisfy the link-name audit)
     .replace(/data-elementor-lightbox-title="([^"]*)"/gi,
       'data-elementor-lightbox-title="$1" aria-label="$1"')
-    // Fix label-content-name-mismatch: Elementor "read more" links get an English
-    // aria-label but have Spanish visible text → strip the mismatched aria-label
     .replace(/<a([^>]*)aria-label="Read more about [^"]*"([^>]*)>/gi, '<a$1$2>')
-    // Fix link-name: Elementor related-post image links use tabindex="-1" (already
-    // removed from keyboard navigation) but still appear in the a11y tree.
-    // They wrap <img alt=""> with no accessible text, failing the link-name audit.
-    // Adding aria-hidden="true" removes them from the a11y tree consistently.
     .replace(/<a([^>]*)tabindex="-1"([^>]*)>/gi, '<a$1tabindex="-1"$2 aria-hidden="true">')
-    // Fix heading-order: page <h1> is the post title; Elementor uses h3/h4 for
-    // content sections — promote h3→h2 and h4→h3 to avoid skipping levels
     .replace(/<h3(\s|>)/gi, '<h2$1')
     .replace(/<\/h3>/gi, '</h2>')
     .replace(/<h4(\s|>)/gi, '<h3$1')
     .replace(/<\/h4>/gi, '</h3>')
-    // Normalize whitespace
     .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
@@ -62,11 +40,10 @@ function cleanContent(html: string): string {
 const title   = post.title?.rendered ?? '';
 const excerpt = post.excerpt?.rendered?.replace(/<[^>]+>/g, '').trim() ?? '';
 const content = cleanContent(post.content?.rendered ?? '');
-const dateStr = new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+const dateStr = new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
 const optimizedThumb = await getImage({ src: thumb, width: 1280 });
 const thumbUrl = `https://monicamontufar.com${optimizedThumb.src}`;
-// Astro getImage returns actual output dimensions in attributes
 const thumbWidth  = (optimizedThumb.attributes as any).width  ?? 1280;
 const thumbHeight = (optimizedThumb.attributes as any).height ?? 720;
 
@@ -75,26 +52,24 @@ const articleSchema = {
   "@type": "BlogPosting",
   "headline": title.replace(/<[^>]+>/g, ''),
   "description": excerpt.slice(0, 160),
-  // ImageObject with explicit dimensions → eliminates "non-critical" Google warning
   "image": {
     "@type": "ImageObject",
     "url": thumbUrl,
     "width": thumbWidth,
     "height": thumbHeight
   },
-  "url": `https://monicamontufar.com/blog/${post.slug}/`,
+  "url": `https://monicamontufar.com/en/blog/${post.slug}/`,
   "datePublished": post.date,
   "dateModified": post.modified ?? post.date,
   "author": {
     "@type": "Person",
     "name": "Mónica Montúfar",
-    "url": "https://monicamontufar.com/sobre-mi/"
+    "url": "https://monicamontufar.com/en/about-me/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Mónica Montúfar",
     "url": "https://monicamontufar.com",
-    // logo required by Google for NewsArticle/BlogPosting rich result eligibility
     "logo": {
       "@type": "ImageObject",
       "url": "https://monicamontufar.com/images/logo-full.png"
@@ -102,17 +77,18 @@ const articleSchema = {
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": `https://monicamontufar.com/blog/${post.slug}/`
+    "@id": `https://monicamontufar.com/en/blog/${post.slug}/`
   }
 };
 ---
 
 <BaseLayout
-  title={`${title.replace(/<[^>]+>/g,'')} • Blog de Mónica Montúfar`}
+  title={`${title.replace(/<[^>]+>/g,'')} • Mónica Montúfar Blog`}
   description={excerpt.slice(0, 160)}
   ogImage={thumbUrl}
-  lang="es"
-  alternateHref={`/en/blog/${post.slug}/`}
+  lang="en"
+  omitAlternate={false}
+  alternateHref={`/blog/${post.slug}/`}
 >
   <!-- JSON-LD: BlogPosting -->
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
@@ -134,7 +110,7 @@ const articleSchema = {
 
   <!-- Post header -->
   <header class="max-w-3xl mx-auto px-6 pt-10 pb-6">
-    <a href="/blog/" class="inline-flex items-center gap-2 text-sm font-sans text-slate-400 hover:text-[#e6b319] transition-colors duration-200 mb-8 group uppercase tracking-widest font-semibold">
+    <a href="/en/blog/" class="inline-flex items-center gap-2 text-sm font-sans text-slate-400 hover:text-[#e6b319] transition-colors duration-200 mb-8 group uppercase tracking-widest font-semibold">
       <span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_left_alt</span>
       Blog
     </a>
@@ -150,22 +126,22 @@ const articleSchema = {
   <!-- Post content -->
   <article class="max-w-3xl mx-auto px-6 pb-20 prose-blog" set:html={content} />
 
-  <!-- Back + related -->
+  <!-- Back + CTA -->
   <div class="max-w-3xl mx-auto px-6 pb-16 pt-4 border-t border-white/5">
     <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-      <a href="/blog/" class="inline-flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-widest text-slate-400 hover:text-white transition-colors duration-200 group">
+      <a href="/en/blog/" class="inline-flex items-center gap-2 font-sans text-sm font-semibold uppercase tracking-widest text-slate-400 hover:text-white transition-colors duration-200 group">
         <span class="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">arrow_left_alt</span>
-        Volver al blog
+        Back to Blog
       </a>
       <a href="/contacto/" class="inline-block px-8 py-3 bg-[#e6b319] text-[#12110e] font-sans font-semibold rounded-full hover:bg-white transition-colors duration-300 text-sm shadow-[0_4px_14px_0_rgba(230,179,25,0.3)]">
-        Hablemos
+        Let's Talk
       </a>
     </div>
   </div>
 </BaseLayout>
 
 <style is:global>
-  /* Prose styles for blog post content */
+  /* Prose styles — shared with ES blog */
   .prose-blog {
     color: rgba(248, 250, 252, 0.8);
     font-family: var(--font-sans);
@@ -184,8 +160,8 @@ const articleSchema = {
     margin-bottom: 0.75rem;
     line-height: 1.25;
   }
-  .prose-blog h2 { font-size: 1.375rem; }  /* Elementor section headings (was h3) */
-  .prose-blog h3 { font-size: 1.125rem; }  /* Elementor sub-headings (was h4) */
+  .prose-blog h2 { font-size: 1.375rem; }
+  .prose-blog h3 { font-size: 1.125rem; }
   .prose-blog h4 { font-size: 1rem; }
   .prose-blog p  { margin-bottom: 1.25rem; }
   .prose-blog strong { color: #fff; font-weight: 600; }
@@ -213,7 +189,6 @@ const articleSchema = {
     border-color: rgba(255,255,255,0.08);
     margin: 2rem 0;
   }
-  /* Hide Elementor remnants */
   .prose-blog .e-con-inner,
   .prose-blog .elementor-widget-container { display: contents; }
 </style>

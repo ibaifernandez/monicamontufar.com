@@ -1,8 +1,8 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { Image, getImage } from 'astro:assets';
-import { thumbnails, thumbnailFallback } from '../../data/blog-thumbnails';
-import postsData from '../../data/wp-archive/posts.json';
+import { thumbnails, thumbnailFallback } from '../../../data/blog-thumbnails';
+import postsData from '../../../data/wp-archive/posts-en.json';
 
 export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const posts = postsData.map((p: any) => ({
@@ -39,7 +39,7 @@ if (isFirstPage && featured) {
 }
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+  return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 // Pagination helpers
@@ -63,32 +63,36 @@ function pageNumbers(): (number | '…')[] {
 }
 
 function pageUrl(n: number): string {
-  return n === 1 ? '/blog/' : `/blog/${n}/`;
+  return n === 1 ? '/en/blog/' : `/en/blog/${n}/`;
 }
+
+// Hreflang: mirror ES blog index page
+const esAlternate = current === 1 ? '/blog/' : `/blog/${current}/`;
 ---
 
 <BaseLayout
   title="Blog • Mónica Montúfar"
-  description="Nómada digital, diseñadora y viajera. Historias sobre la vida remota, el diseño y los rincones del mundo."
-  lang="es"
-  alternateHref={current === 1 ? '/en/blog/' : `/en/blog/${current}/`}
+  description="Digital nomad, designer and traveller. Stories about remote life, design and the corners of the world."
+  lang="en"
+  omitAlternate={false}
+  alternateHref={esAlternate}
   heroPreload={heroPreload}
   heroPreloadSrcset={heroPreloadSrcset}
   heroPreloadSizes={heroPreloadSizes}
 >
-  <!-- Hero del blog -->
+  <!-- Blog hero -->
   <section class="max-w-6xl mx-auto px-6 pt-12 pb-8 md:pt-20 md:pb-12">
     <div class="text-center mb-12">
-      <p class="text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] mb-3">El Blog</p>
-      <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">Las aventuras de Món Mont</h1>
+      <p class="text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] mb-3">The Blog</p>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">The Adventures of Món Mont</h1>
       <p class="font-sans text-white/60 font-light text-lg max-w-2xl mx-auto">
-        Historias desde la carretera: nomadismo digital, diseño, gastronomía y los rincones del mundo que me roban el corazón.
+        Stories from the road: digital nomadism, design, gastronomy and the corners of the world that steal my heart.
       </p>
     </div>
 
-    <!-- Entrada destacada — only on page 1 -->
+    <!-- Featured entry — only on page 1 -->
     {isFirstPage && featured && (
-      <a href={`/blog/${featured.slug}/`} class="group block relative rounded-3xl overflow-hidden border border-white/8 hover:border-[#e6b319]/30 transition-all duration-500">
+      <a href={`/en/blog/${featured.slug}/`} class="group block relative rounded-3xl overflow-hidden border border-white/8 hover:border-[#e6b319]/30 transition-all duration-500">
         <div class="aspect-[16/7] md:aspect-[16/6]">
           <Image
             src={featured.thumb}
@@ -103,7 +107,7 @@ function pageUrl(n: number): string {
           <div class="absolute inset-0 bg-gradient-to-t from-[#12110e] via-[#12110e]/40 to-transparent"></div>
         </div>
         <div class="absolute bottom-0 left-0 right-0 p-8 md:p-10">
-          <span class="inline-block text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] mb-3">Entrada destacada</span>
+          <span class="inline-block text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] mb-3">Featured Post</span>
           <h2 class="font-serif text-2xl md:text-4xl font-bold text-white mb-3 group-hover:text-[#e6b319] transition-colors duration-300" set:html={featured.title} />
           <p class="font-sans text-white/70 font-light text-sm md:text-base line-clamp-2 max-w-2xl">{featured.excerpt}</p>
           <p class="mt-4 text-xs font-sans text-slate-400">{formatDate(featured.date)}</p>
@@ -112,12 +116,12 @@ function pageUrl(n: number): string {
     )}
   </section>
 
-  <!-- Grid de entradas -->
+  <!-- Posts grid -->
   <section class="max-w-6xl mx-auto px-6 pb-12">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       {gridPosts.map((post, i) => (
         <a
-          href={`/blog/${post.slug}/`}
+          href={`/en/blog/${post.slug}/`}
           class="group flex flex-col rounded-2xl overflow-hidden border border-white/8 hover:border-[#e6b319]/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300"
         >
           <div class="aspect-video overflow-hidden">
@@ -142,7 +146,7 @@ function pageUrl(n: number): string {
               {post.excerpt}
             </p>
             <span class="inline-flex items-center gap-1 text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] group-hover:gap-2 transition-all duration-200 mt-2">
-              Leer más
+              Read more
               <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
             </span>
           </div>
@@ -153,21 +157,21 @@ function pageUrl(n: number): string {
 
   <!-- Pagination controls — only when there are multiple pages -->
   {totalPages > 1 && (
-    <nav aria-label="Paginación del blog" class="max-w-6xl mx-auto px-6 pb-20 flex items-center justify-center gap-2">
-      <!-- Anterior -->
+    <nav aria-label="Blog pagination" class="max-w-6xl mx-auto px-6 pb-20 flex items-center justify-center gap-2">
+      <!-- Previous -->
       {page.url.prev ? (
         <a
           href={page.url.prev}
           class="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-white/10 text-sm font-sans font-semibold text-white/70 hover:text-[#e6b319] hover:border-[#e6b319]/40 transition-all duration-200"
-          aria-label="Página anterior"
+          aria-label="Previous page"
         >
           <span class="material-symbols-outlined text-base">arrow_back</span>
-          Anterior
+          Previous
         </a>
       ) : (
         <span class="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-white/5 text-sm font-sans font-semibold text-white/20 cursor-not-allowed" aria-disabled="true">
           <span class="material-symbols-outlined text-base">arrow_back</span>
-          Anterior
+          Previous
         </span>
       )}
 
@@ -187,7 +191,7 @@ function pageUrl(n: number): string {
             <a
               href={pageUrl(n)}
               class="w-9 h-9 flex items-center justify-center rounded-full border border-white/10 text-sm font-sans font-semibold text-white/60 hover:text-[#e6b319] hover:border-[#e6b319]/40 transition-all duration-200"
-              aria-label={`Página ${n}`}
+              aria-label={`Page ${n}`}
             >
               {n}
             </a>
@@ -195,19 +199,19 @@ function pageUrl(n: number): string {
         )}
       </div>
 
-      <!-- Siguiente -->
+      <!-- Next -->
       {page.url.next ? (
         <a
           href={page.url.next}
           class="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-white/10 text-sm font-sans font-semibold text-white/70 hover:text-[#e6b319] hover:border-[#e6b319]/40 transition-all duration-200"
-          aria-label="Página siguiente"
+          aria-label="Next page"
         >
-          Siguiente
+          Next
           <span class="material-symbols-outlined text-base">arrow_forward</span>
         </a>
       ) : (
         <span class="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-white/5 text-sm font-sans font-semibold text-white/20 cursor-not-allowed" aria-disabled="true">
-          Siguiente
+          Next
           <span class="material-symbols-outlined text-base">arrow_forward</span>
         </span>
       )}
