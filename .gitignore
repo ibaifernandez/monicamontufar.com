@@ -26,9 +26,18 @@ pnpm-debug.log*
 # CI/test artifacts
 playwright-report/
 .lighthouseci/
+test-results/
 
-# Informes de cliente (no deben versionarse)
+# Documentos de cliente (confidenciales, no van al repo)
+docs/client-feedback/
 docs/informe-cliente*
+
+# Fuentes Poppins TTF completas (16 pesos del kit de diseño) — los 10 usados
+# están en public/fonts/ como WOFF2. Los extras no se despliegan.
+docs/visual-id/poppins/
+
+# Fotos de testimonios en visual-id — duplicados exactos de src/assets/testimonials/
+docs/visual-id/testimonials/
 
 # Session handoffs (contexto interno de desarrollo, no se versiona)
 .claude/handoffs/
