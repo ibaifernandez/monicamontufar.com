@@ -1,142 +1,107 @@
 # Backlog de Tareas (Task Tracker)
 
-Este archivo centraliza el estado actual del proyecto. Última actualización: 2026-04-28.
+Este archivo centraliza el estado actual del proyecto. **Última actualización: 2026-04-29.**
 
 ---
 
-## ✅ Completado — Coming Soon v1.0 (Production-Ready)
+## ✅ Completado — v1.3.0 (2026-04-29)
 
-- [x] `git init` y vinculación a GitHub
-- [x] Configurar `/netlify.toml`
-- [x] Mapear estructura de `src/pages/` inicial
-- [x] Construir layout central `BaseLayout.astro`
-- [x] Desarrollar `SEO.astro`
-- [x] Diseñar el componente Cookie Banner
-- [x] Implementar el Hero con Tailwind (UI Premium, micro-animaciones)
-- [x] Configurar Playwright (`playwright.config.ts`) + tests de accesibilidad y regresión visual
-- [x] TailwindCSS, Vitest, Playwright
-- [x] Documentación Principal Arquitectónica (8 archivos)
-- [x] Integración Cloudflare Turnstile invisible
-- [x] Self-hosted variable fonts (Inter + Playfair Display)
-- [x] Lighthouse 100/100 en Performance, A11y, SEO, Best Practices
-- [x] Pipeline CI/CD bloqueante (quality-gate.yml)
-- [x] Security headers + `_redirects`
+- [x] **Blog EN** (`/en/blog/` + `/en/blog/[slug]/`): 10 artículos traducidos al inglés con HTML semántico limpio
+- [x] **`posts-en.json`**: fuente de verdad para traducciones del blog
+- [x] **Hreflang ES↔EN** en todas las páginas del blog (índice paginado + posts individuales)
+- [x] **Portafolio → subdominio externo**: todos los enlaces apuntan a `https://portafolio.monicamontufar.com/` con redirect 301 permanente en rutas internas
+- [x] **`public/llms.txt`**: estándar llmstxt.org para rastreo por LLMs
+- [x] **Playwright test fix**: separación de tests de páginas con contenido vs. redirects
 
 ---
 
-## ✅ Completado — Bugfixes & Legal (2026-03-26)
+## ✅ Completado — v1.2.0 Sprint Backlog (PR #11, 2026-04-28)
 
-- [x] Fix: guard `doSubmit()` contra Turnstile auto-callback (ES + EN)
-- [x] Fix: botón "Ver Portafolio" en 404 → ruta interna correcta
-- [x] Política de privacidad: responsable, base legitimadora, derechos, inventario de cookies (ES + EN)
-- [x] Fix hreflang crítico: rutas asimétricas ES ↔ EN con `alternateHref` explícita
-- [x] Self-hosted variable fonts migradas a `@fontsource-variable/*`
-- [x] Turnstile cambiado a modo managed
+- [x] **TTF → WOFF2 subsetting**: -80% peso de fuentes con `pyftsubset` (115 KB total desde 565 KB)
+- [x] **Paginación del blog**: `[...page].astro` con `paginate()`, pageSize 9, nav gold-themed
+- [x] **`blog-thumbnails.ts`**: deduplicación del mapa de thumbnails en SSOT
+- [x] **Rate limiting en `/api/submit-contact`**: 5 req/hora por IP vía Netlify Blobs, 429 + Retry-After
 
 ---
 
-## ✅ Completado — Sitio Completo v1.0 (2026-04-28)
+## ✅ Completado — v1.1.0 Post-Launch (PR #10, 2026-04-28)
 
-**Migraciones y nuevas páginas:**
-- [x] Tipografía migrada a Gilda Display + Poppins (desde `docs/visual-id/`)
-- [x] Logo oficial en navbar (ES + EN)
-- [x] Homepage completa (hero editorial, stats, servicios, blog feed, testimonios, CTA)
-- [x] Homepage EN (equivalente bilingüe)
-- [x] Navbar.astro componente global (responsive, hamburger, bilingual)
-- [x] Footer.astro componente global (bilingual, social links)
-- [x] Blog index (`/blog/`) con featured post + grid de 9 entradas
-- [x] Blog slug (`/blog/[slug]/`) con 10 posts del export WordPress
-  - Elementor HTML sanitizado (strip wrappers, rewrite localhost URLs, a11y fixes)
-- [x] 404 enlace arreglado a ruta interna `/portafolio/`
-- [x] Política de privacidad ES reescrita (eliminado texto "próximamente")
-- [x] Política de privacidad EN completa (GDPR/LOPDGDD)
-- [x] Ruta dev `/preview/[slug]` eliminada de producción
-- [x] Prebuild script: copia automática de `src/assets/wp-content/` a `public/wp-content/` antes del build
-- [x] SEO: hreflang suprimido para páginas sin equivalente EN (`omitAlternate`)
-- [x] CSP + Cache headers actualizados en `public/_headers`
-
-**CI/CD — Quality Gate verde:**
-- [x] Playwright visual + a11y: 6/6 pass (baselines regenerados con Docker Linux)
-- [x] Lighthouse CI: accessibility 1.0, SEO 1.0, best-practices 1.0, performance ≥ 0.70
-- [x] PR #9 mergeado, CI en `main` verde
+- [x] **OG image homepage/sobre-mi**: `og-home.jpg` 1200×630 px landscape
+- [x] **JSON-LD BlogPosting completo**: ImageObject con dimensiones, dateModified, publisher.logo, url
+- [x] **Blog post OG**: cada post usa su propio thumbnail (fix prop `ogImage` vs `image`)
 
 ---
 
-## 🔶 En Progreso — Mejoras Post-Lanzamiento (2026-04-28)
+## ✅ Completado — v1.0.0 Sitio Completo (PR #9, 2026-04-28)
 
-- [ ] **TTF → WOFF2 conversion** *(en ejecución)*
-  - Objetivo: reducir ~40% el tamaño de fuentes (Poppins: 155 KB → ~90 KB)
-  - Impacto: LCP bajo mobile throttling mejora de ~5s a ~3s; subir umbral CI a 0.85
-  - Herramienta: `ttf2woff2` npm package + fallback TTF en `@font-face`
-
-- [ ] **JSON-LD Structured Data** *(en ejecución)*
-  - `BlogPosting` schema en cada post del blog
-  - `Person` schema en homepage
-  - `WebSite` schema global en `SEO.astro`
-  - Impacto: rich snippets en Google (autor, fecha, tipo de contenido)
-
----
-
-## 🟡 Pendiente — Contenido (requiere aportación de Mónica)
-
-Estas tareas están **bloqueadas** hasta recibir materiales o confirmación de la clienta.
-
-- [ ] **Portafolio con casos de estudio reales** (`/portafolio/` + `/en/portfolio/`)
-  - Necesario: 3–6 proyectos con título, descripción, rol, imágenes y (si aplica) resultados
-  - Actualmente la página tiene contenido placeholder
-  - Es la pieza que más convierte visitas en clientes potenciales
-
-- [ ] **Actualización de bio en /sobre-mi/**
-  - Verificar si el texto actual es definitivo o placeholder
-  - Foto de perfil en alta resolución si la disponible no es la oficial
-
-- [ ] **Posts nuevos para el blog**
-  - El blog tiene 10 posts del export de WordPress (contenido existente)
-  - Para SEO real: publicar regularmente (mínimo 1/mes)
-  - Formatos posibles: Astro MDX o integración con CMS headless (TinaCMS, Sanity, Contentful)
-
-- [ ] **Decisión de newsletter**
-  - ¿Quiere capturar emails de lectores del blog?
-  - Si sí: elegir proveedor (Mailchimp, ConvertKit, Brevo, Resend)
-  - Implica añadir formulario en el blog y/o footer
-
-- [ ] **Analytics**
-  - Actualmente sin tracking (se eliminó Sentry del cliente)
-  - Opciones: Google Analytics 4, Plausible (privacy-first), Fathom
-  - Decisión de la clienta (afecta política de privacidad y CSP)
-
-- [ ] **Página de servicios con pricing** (`/servicios/`)
-  - ¿Precios visibles o solo "contacta para presupuesto"?
-  - ¿Qué servicios ofrece exactamente? (diseño gráfico, VA, social media...)
+- [x] Homepage ES + EN (hero, stats, servicios, blog feed, testimonios, CTA, footer)
+- [x] Navbar.astro + Footer.astro componentes globales bilingües
+- [x] Blog index (`/blog/`) featured + grid con 9 entradas
+- [x] Blog slug (`/blog/[slug]/`) 10 posts WordPress con Elementor HTML sanitizado
+- [x] JSON-LD: BlogPosting, Person, WebSite
+- [x] Tipografía oficial: Gilda Display + Poppins (self-hosted, zero render-blocking)
+- [x] Logo oficial en navbar
+- [x] Material Symbols CLS fix
+- [x] Prebuild script `wp-uploads`
+- [x] CSP + Cache headers
+- [x] Playwright CI verde (visual + a11y, Docker baselines)
+- [x] Lighthouse: a11y 1.0, SEO 1.0, best-practices 1.0, perf ≥ 0.78
 
 ---
 
-## 🔵 Backlog Técnico (sin fecha — no requiere cliente)
+## ✅ Completado — Infraestructura Base
 
-- [ ] **Subir umbral CI performance a 0.85** tras conversión TTF→WOFF2
-  - Actualmente en 0.70 (documentado como limitación de TTF bajo throttling)
-  - Con WOFF2 el LCP bajo throttling debería bajar de ~5s a ~3s
+- [x] Pipeline CI/CD bloqueante (Playwright + Axe + LHCI)
+- [x] Security headers (CSP, HSTS, X-Frame-Options)
+- [x] Serverless: `verify-turnstile.ts` + `submit-contact.ts`
+- [x] Sitemap XML automático, robots.txt, RUNBOOK.md
+- [x] Política de privacidad y cookies (ES + EN, RGPD/LOPDGDD)
+- [x] Cookie consent banner (Aceptar todas / Solo esenciales / Rechazar)
+- [x] 404 personalizada
+- [x] Hreflang ES↔EN en todo el sitio
+- [x] Resend Audience integration (contactos) + email de confirmación al suscriptor
+- [x] Cloudflare Turnstile (invisible) + honeypot
 
-- [ ] **Paginación en el blog**
-  - Actualmente se muestran todos los posts en una sola página
-  - Con >20 posts el DOM se infla y el performance baja
-  - Implementar con Astro `paginate()` helper
+---
 
-- [ ] **Deduplicar mapa de thumbnails del blog**
-  - Actualmente duplicado en `blog/index.astro` y `blog/[slug].astro`
-  - Extraer a `src/data/blog-thumbnails.ts` para importar desde ambos
+## 🔴 Bloqueado — Requiere acción de Mónica
 
-- [ ] **Búsqueda en el blog** (client-side con Fuse.js)
-  - Bajo impacto hasta que haya >20 posts
+- [ ] **Test del formulario de contacto en producción**
+  - Hacer un submit real desde monicamontufar.com/contacto/
+  - Confirmar recepción del email de notificación en `hola@monicamontufar.com`
+  - Si no llega: revisar variables de entorno en Netlify (`RESEND_API_KEY`, `CONTACT_EMAIL`, `FROM_EMAIL`)
 
-- [ ] **Formulario de contacto — test en producción**
-  - Verificar que `netlify/functions/submit-contact.ts` está activo en Netlify
-  - Hacer un submit real y confirmar recepción del email
-  - Requiere acceso al panel de Netlify (revisión manual)
+- [ ] **Resend Audience ID** — variable de entorno pendiente en Netlify
+  - En Resend (resend.com → Audiences): crear Audience "Lista monicamontufar.com" y copiar el ID
+  - En Netlify → Site configuration → Environment variables: añadir `RESEND_AUDIENCE_ID = <ID>`
+  - Sin esto los contactos del formulario no se persisten en la lista de Resend (los emails se envían igualmente)
 
-- [ ] **`portafolio.monicamontufar.com`** como subdominio real
-  - Actualmente el botón en 404 apunta a la ruta interna `/portafolio/`
-  - El subdominio estaba en el plan original pero nunca se configuró
+- [ ] **Bio en "Sobre mí"** — verificar si el texto actual (migrado de WordPress) es definitivo
+- [ ] **Foto de perfil** — confirmar si la foto actual es la oficial o hay versión más reciente
+- [ ] **Analytics** — elegir entre: GA4 (gratuito), Plausible (9€/mes, sin cookies), o ninguno
+- [ ] **Newsletter** — decidir si capturar emails del blog y elegir proveedor (Mailchimp / Brevo / Resend)
+- [ ] **Estrategia de publicación del blog** — ¿envía artículos para subida manual o quiere CMS headless?
 
-- [ ] **Rate limiting en `/submit-contact`**
-  - Para cuando haya tráfico real: Netlify Edge Function o Upstash Redis
+---
+
+## 🟡 Técnico — Pendiente sin fecha
+
+- [ ] **Subir umbral CI performance a 0.85–0.90**
+  - Actualmente en 0.78 (documentado: Docker throttling consistentemente da 0.78–0.79)
+  - Con WOFF2 ya implementado, revisar si las puntuaciones mejoradas en prod justifican subir el umbral
+  - Ejecutar serie de 10 runs LHCI para obtener percentil estable
+
+- [ ] **Búsqueda en el blog** (client-side Fuse.js)
+  - Bajo impacto hasta que haya >20 posts. Priorizar cuando el blog crezca.
+
+- [ ] **CMS headless** (TinaCMS / Sanity / Contentful)
+  - Solo si Mónica quiere publicar artículos sin pasar por el dev
+  - Implica migrar de JSON estático a API de contenido
+  - Estimación: 1–2 sprints
+
+- [ ] **Página de servicios con detalle** (`/servicios/` + `/en/services/`)
+  - ¿Pricing visible? ¿Qué servicios exactamente?
+  - Requiere briefing de Mónica
+
+- [ ] **Visual regression baselines** — regenerar si se modifican componentes visuales
+  - Comando: `npm run test:visual:docker:update`

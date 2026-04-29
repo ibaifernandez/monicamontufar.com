@@ -3,6 +3,63 @@ Todos los cambios notables del proyecto se documentarán en este archivo según 
 
 ---
 
+## [1.3.0] — 2026-04-29 · Blog EN + Portafolio Externo + llms.txt
+
+### Added
+- **Blog bilingüe completo**: 10 artículos del blog ahora disponibles en inglés en `/en/blog/` y `/en/blog/[slug]/`, con traducciones completas y fiel voz narrativa de la autora
+- **`src/data/wp-archive/posts-en.json`**: fuente de verdad para el blog EN — HTML semántico limpio sin residuo Elementor
+- **Hreflang ES↔EN bidireccional** en todas las páginas del blog (índice paginado + posts individuales); se elimina `omitAlternate={true}` de las rutas de blog
+- **`public/llms.txt`**: estándar llmstxt.org — listado de páginas, artículos (ES+EN), servicios y redes para rastreo por modelos de lenguaje
+
+### Changed
+- **Portafolio → subdominio externo**: todos los enlaces a `/portafolio/` y `/en/portfolio/` apuntan ahora a `https://portafolio.monicamontufar.com/` con `target="_blank" rel="noopener noreferrer"`
+- **`/portafolio/` y `/en/portfolio/`** redirigen con HTTP 301 permanente al subdominio externo
+- **Navbar EN**: enlace "Blog" actualizado de `/blog/` a `/en/blog/`
+- **Footer**: "Portafolio" y "Portfolio" apuntan al subdominio externo; añadida etiqueta "Privacidad y Cookies" / "Privacy & Cookies" en ambas versiones
+
+### Fixed
+- **`tests/internal-pages.spec.ts`**: rutas de portafolio separadas en su propia categoría de test (`redirects without error`) — el test anterior esperaba `<h1>` pero la página ahora es un redirect 301 puro
+
+---
+
+## [1.2.0] — 2026-04-28 · Sprint Backlog (PR #11)
+
+### Added
+- **WOFF2 font subsetting (-80%)**: 11 ficheros `-subset.woff2` generados con `pyftsubset` sobre rango Unicode Latin+Extended+tipográfico. Poppins: ~50 KB → ~9 KB cada peso. Gilda Display: 27 KB → 20 KB. Total: 565 KB → 115 KB
+- **Paginación del blog** (`[...page].astro`): `getStaticPaths({ paginate })` con `pageSize: 9`. Página 1: featured post + 8 en grid. Páginas 2+: 9 en grid. Nav con números de página gold-themed, primera/última siempre visibles, elipsis inteligente
+- **`src/data/blog-thumbnails.ts`**: fuente de verdad única para el mapa de thumbnails del blog; elimina la duplicación entre `[slug].astro` e `index.astro`
+- **Rate limiting en `/api/submit-contact`**: ventana deslizante de 1 hora / 5 peticiones por IP vía Netlify Blobs (`consistency: 'strong'`). Responde 429 + `Retry-After`. Falla abierto en dev si Blobs no está disponible
+
+### Changed
+- **`src/styles/global.css`**: todos los `@font-face` usan `-subset.woff2` como primera fuente (format `woff2`) con `.ttf` como fallback
+- **`src/layouts/BaseLayout.astro`**: preload links apuntan a `-subset.woff2` con `type="font/woff2"`
+- **Blog grid headings**: `<h3>` → `<h2>` en cards de grid para no saltarse niveles cuando no hay featured post (páginas 2+)
+- **Lighthouse CI threshold**: performance `0.78` (documentado — Docker throttling consistentemente da 0.79 local vs 0.78 CI)
+
+### Fixed
+- **`heading-order` en blog/2+**: páginas sin featured post tenían grid-cards como `<h3>` sin `<h2>` previo → violaba WCAG heading hierarchy
+- **`scripts/prepare-wp-uploads.mjs`**: actualizado para escanear también fuentes Astro además del HTML de WP, evitando borrado accidental de imágenes importadas en páginas
+
+---
+
+## [1.1.0] — 2026-04-28 · Post-Launch Polish (PR #10)
+
+### Added
+- **OG image homepage/sobre-mi**: `/images/og-home.jpg` (1200×630 px, formato landscape correcto) — evita que scrapers de redes elijan una imagen cuadrada o incorrecta
+- **JSON-LD `ImageObject`** en `BlogPosting` schema: `width`, `height` y `url` absolutas → elimina warning "non-critical" de Google Rich Results
+- **`dateModified`** en `BlogPosting` desde `post.modified` — antes solo existía `datePublished`
+- **`publisher.logo`** en `BlogPosting` schema → cumple requisitos Google Rich Results para NewsArticle/BlogPosting
+- **`url`** field en `BlogPosting` (era campo no mapeado)
+
+### Changed
+- **`ogImage` prop en `[slug].astro`**: pasado como `ogImage={thumbUrl}` a BaseLayout (corrección de nombre de prop — antes `image=`)
+- **Lighthouse CI**: threshold performance subido de `0.70` → `0.78` tras subsetting WOFF2
+
+### Fixed
+- **Blog post OG image**: cada artículo ahora muestra su propio thumbnail al compartirlo en redes (antes mostraba la imagen de perfil por defecto)
+
+---
+
 ## [1.0.0] — 2026-04-28 · Sitio Completo en Producción (PR #9)
 
 ### Added
@@ -11,7 +68,7 @@ Todos los cambios notables del proyecto se documentarán en este archivo según 
 - **Footer.astro** componente global (bilingual, enlaces de sitio, redes sociales, copyright)
 - **Blog index** (`/blog/`): hero con featured post + grid de 9 entradas, preload de hero con `imagesrcset`/`imagesizes`, `fetchpriority=high` en primer card
 - **Blog posts** (`/blog/[slug]/`): 10 posts del export WordPress con Elementor HTML sanitizado
-- **JSON-LD structured data**: `BlogPosting` en posts, `Person` en homepage, `WebSite` en SEO.astro *(añadido en sesión de mejoras)*
+- **JSON-LD structured data**: `BlogPosting` en posts, `Person` en homepage, `WebSite` en SEO.astro
 - **Material Symbols CLS fix**: `.material-symbols-outlined { width:1em; height:1em; overflow:hidden }` elimina el layout shift al cargar el font de Google CDN
 - `prebuild` script: copia automática `src/assets/wp-content/` → `public/wp-content/` antes de cada build
 - `omitAlternate` prop en BaseLayout/SEO para suprimir hreflang en páginas sin equivalente EN
@@ -20,92 +77,64 @@ Todos los cambios notables del proyecto se documentarán en este archivo según 
 ### Changed
 - **Tipografía migrada**: Inter+Playfair Display → Gilda Display+Poppins (desde `docs/visual-id/`)
 - **Logo navbar**: texto genérico → `logo-full.png` oficial en navbar ES+EN
-- **`font-display`**: Gilda Display cambiado de `optional` (causaba render delay de 5s bajo throttling) a `swap`
-- **Lighthouse CI threshold**: performance 0.90 → 0.70 con documentación (limitación TTF bajo mobile throttling; BACKLOG: TTF→WOFF2)
-- **LHCI config**: `['warn', { minScore: 0 }]` → `'off'` para audits no-bloqueantes (minScore:0 es falsy en JS y LHCI ignoraba el override)
+- **`font-display: swap`** en Gilda Display (era `optional` → causaba render delay 5s bajo throttling)
+- **Lighthouse CI threshold**: performance `0.90` → `0.70` (limitación TTF bajo mobile throttling)
 
 ### Fixed
-- `cleanContent()` en blog/[slug]: reescritura de URLs `localhost:8083` ampliada a todos los hrefs (antes solo reescribía `/wp-content/`)
-- `cleanContent()`: `aria-hidden=true` en links Elementor `tabindex="-1"` con `alt=""` (fix `link-name` a11y)
-- `cleanContent()`: strip de `color:` inline (Elementor usa `#262626` designed para fondo blanco — invisible en dark theme)
-- `cleanContent()`: `data-elementor-lightbox-title` → `aria-label` en links de galería sin texto
-- `cleanContent()`: eliminar `aria-label="Read more about…"` en inglés sobre texto español (label-content-name-mismatch)
-- `cleanContent()`: rewrite `h3→h2`, `h4→h3` para fix heading-order (post title es h1, Elementor usaba h3)
-- Fechas en blog (`text-white/40` → `text-slate-400`): contraste `text-xs` de 4.26:1 → 7.52:1 (superaba el umbral 4.5:1)
-- Ruta dev `/preview/[slug]` eliminada de producción
+- `cleanContent()`: reescritura localhost URLs, strip Elementor wrappers, a11y fixes (aria-hidden, aria-label, heading promotion h3→h2)
 - Política de privacidad ES: eliminado texto de era "próximamente"
-- Footer: `text-slate-500` → `text-slate-400` en copyright/credits
-- Homepage: `text-slate-500` → `text-slate-400` en fechas de blog feed; underline en link AGLAYA (WCAG 1.4.1)
+- Ruta dev `/preview/[slug]` eliminada de producción
+- 404 enlace portafolio arreglado
 
 ### Performance
-- Accessibility: **1.0** en todas las páginas (era variable 0.93–0.97)
+- Accessibility: **1.0** en todas las páginas
 - CLS: **0** (era 0.175 de Material Symbols CDN)
-- LCP discovery: hint corregido con `imagesrcset`/`imagesizes` en `<link rel="preload">`
-- Visual baselines regeneradas con Docker (playwright:v1.58.2-noble) para CI Linux
+- LCP discovery: hint corregido con `imagesrcset`/`imagesizes`
 
 ---
 
 ## [Unreleased] — 2026-03-30 Documentation Audit & Realignment
 
 ### Changed
-- **`AGENTS.md`**: Corregidas versiones del stack (Astro 5 → 6, sin mención de TailwindCSS → añadida v4 con `@tailwindcss/vite`). Añadida sección completa de Activos de Identidad Visual (`docs/visual-id/`) con tabla de rutas y nota crítica sobre la migración tipográfica pendiente (Gilda Display + Poppins).
-- **`docs/PRD.md`**: Corregida versión de Astro (5 → 6) y Tailwind (genérico → v4). Añadido requerimiento de Identidad Visual Oficial con referencia al kit `docs/visual-id/kIt-diseno-mon-pont-2026.pdf`.
-- **`docs/BACKLOG.md`**: Reestructurado con sistema de prioridades (🟥/🟠/🟡/🟢). Añadidos ítems completados que faltaban (hreflang fix, font migration, Turnstile managed, Resend Audience, scaffold de páginas internas). Añadida nueva sección de Alta Prioridad para migración tipográfica al kit oficial. Añadido bloqueante de feedback de cliente.
-- **`docs/ROADMAP.md`**: Añadidas Fases 7 y 8 (completadas) que faltaban. Restructurado el bloque "Siguiente Fase" con sub-fases 9A/9B/9C y prerequisito bloqueante explícito.
+- `AGENTS.md`: versiones del stack corregidas, sección de activos de identidad visual añadida
+- `docs/PRD.md`: versión Astro y Tailwind corregidas, requerimiento tipografía oficial añadido
+- `docs/BACKLOG.md`: reestructurado con sistema de prioridades
+- `docs/ROADMAP.md`: Fases 7 y 8 completadas añadidas
 
 ---
 
 ## [Unreleased] — 2026-03-26 Bugfixes & Legal Completion
 
 ### Fixed
-- **`doSubmit()` guard (ES + EN):** Turnstile invisible puede disparar su callback automáticamente sin que el usuario pulse el botón ni marque el checkbox de privacidad. Se ha añadido un guard al inicio de `doSubmit()` en `index.astro` (ES) y `en/index.astro` (EN) que verifica el estado del checkbox y el email antes de continuar, independientemente del origen de la llamada.
-- **Botón "Ver Portafolio" en 404:** El enlace apuntaba a `/portafolio` (ruta inexistente en el proyecto actual). Corregido para apuntar a `https://portafolio.monicamontufar.com/` con `target="_blank"` y `rel="noopener noreferrer"`.
+- `doSubmit()` guard (ES + EN): Turnstile invisible puede disparar callback sin acción de usuario
+- Botón "Ver Portafolio" en 404 arreglado
 
 ### Changed
-- **Política de privacidad (`/politica-de-privacidad-y-cookies`):** Completamente reescrita. Añadidos datos del responsable del tratamiento (Mónica Montúfar Quiñónez, hola@monicamontufar.com), base legitimadora (consentimiento expreso), conservación de datos, derechos RGPD completos (acceso, rectificación, supresión, oposición, portabilidad), e inventario honesto de cookies (Cloudflare Turnstile + Sentry; sin analíticas ni publicitarias).
+- Política de privacidad completamente reescrita (RGPD/LOPDGDD)
 
 ---
 
 ## [Unreleased] — 2026-03-24 Performance & Accessibility Overhaul
 
 ### Added
-- **Self-hosted Variable Fonts**: Migración de Google Fonts (render-blocking) a `@fontsource-variable/inter` y `@fontsource-variable/playfair-display`. Elimina 2 peticiones externas render-blocking, mejora FCP y LCP de forma drástica. Fallback chain completo: variable → static → sistema.
-- **`alternateHref` prop en `SEO.astro`**: Permite pasar la URL alternativa (otro idioma) de forma explícita para rutas asimétricas (`/sobre-mi/` ↔ `/en/about-me/`, `/portafolio/` ↔ `/en/portfolio/`). Corrige hreflang que apuntaban a URLs 404.
-- **`isLCP` prop en `PremiumCard`**: Marca explícitamente qué imagen es el LCP de la página, aplicando `loading="eager"` y `fetchpriority="high"` solo donde corresponde.
-
-### Changed
-- **`BaseLayout.astro`**: Eliminados meta tags OG/Twitter duplicados (ya existían en `SEO.astro`). Eliminados hreflang hardcodeados a `/` y `/en/` (solo correctos para home). Material Symbols ahora carga de forma async no-blocking (`rel="preload" as="style"`).
-- **`PremiumCard.astro`**: Añadidos atributos `widths=[400,800,1200]` y `sizes` para generar `srcset` responsive. Resuelve `uses-responsive-images`.
-- **`sobre-mi` y `about-me`**: Imagen de perfil con `loading="eager"` + `fetchpriority="high"` + `widths`/`sizes` responsive. Resuelve `lcp-lazy-loaded` e `image-delivery-insight`.
-- **`global.css`**: Font families actualizadas a nombres de variable fonts con fallback chain explícito.
-- **`astro.config.mjs`**: Sentry configurado con `autoSessionTracking:false`, `replaysSessionSampleRate:0`, `replaysOnErrorSampleRate:0` para reducir bundle JS al cliente.
-- **`lighthouserc.cjs`**: Reescrito con comentarios que documentan cada decisión de assertion. `legacy-javascript` y `unused-javascript` degradados a `warn` (Sentry SDK, tercero). `network-dependency-tree-insight` y `dom-size-insight` a `warn` con justificación arquitectónica.
+- Self-hosted Variable Fonts via `@fontsource-variable/*`
+- `alternateHref` prop en SEO.astro para rutas asimétricas
+- `isLCP` prop en PremiumCard
 
 ### Fixed
-- **`color-contrast`** (Lighthouse A11y 0.95 → 1.0): `btn-reject` en `CookieBanner.astro` tenía `text-slate-400` (`#90A1B9`) sobre fondo gold compuesto por `backdrop-blur`, resultando en 2.63:1. Corregido a `text-white/75` (≥4.5:1).
-- **`heading-order`** (privacidad ES + EN): Los `<h3>` de secciones bajo `<h1>` violaban la jerarquía WCAG. Corregidos a `<h2>`.
-- **hreflang SEO crítico**: `/sobre-mi/` apuntaba a `/en/sobre-mi/` (404) en lugar de `/en/about-me/`. Ídem `/portafolio/` → `/en/portfolio/`. Corregido vía prop explícita.
+- color-contrast CookieBanner btn-reject
+- heading-order privacidad ES+EN
+- hreflang rutas asimétricas (sobre-mi, portafolio)
 
-## [Unreleased — anterior]
+---
+
+## [Unreleased — anterior] · Infraestructura Base
+
 ### Added
-- Infraestructura CI/CD: Pipeline bloqueante en GitHub Actions (`quality-gate.yml`) con validación de tests E2E y build.
-- Quality Gate Automático: Integración de `@lhci/cli` para presupuestos de Performance/SEO y `@axe-core/playwright` para accesibilidad.
-- Pruebas E2E de Accesibilidad y Regresión Visual (Baseline desktop/mobile) usando Playwright en `tests/quality-gate.spec.ts`.
-- Hardening de Seguridad: Cabeceras en `public/_headers` (CSP, HSTS, X-Frame-Options, XSS Protection) y rutas ocultas/denegadas en `_redirects`.
-- Arquitectura Serverless (Netlify): Funciones `verify-turnstile.ts` para validación de CAPTCHA y `submit-contact.ts` con análisis honeypot silencioso.
-- Observabilidad y SEO Técnico: Sitemap generado dinámicamente (`@astrojs/sitemap`), tracking de errores en el frontend con Sentry (`@sentry/astro`), `robots.txt` explícito y un `docs/RUNBOOK.md` operativo P1/P2/P3.
-- Template base en `/html/monicamontufar.com-astro/`.
-- `README.md` y `AGENTS.md` fundacionales.
-- `docs/ARCHITECTURE.md`, `ROADMAP.md`, `BACKLOG.md`, `PRD.md`, `AI-RULES.md`.
-- TailwindCSS, Vitest, Playwright.
-- Páginas internas premium: `Sobre Mí` (`/sobre-mi/`, `/en/about-me/`) y `Portafolio` (`/portafolio/`, `/en/portfolio/`).
-- Componentes UI Premium: `InternalHero`, `PremiumCard`, `PortfolioGrid`.
-- Tests de navegación Playwright para rutas internas.
-
-### Changed
-- None
-
-### Fixed
-- **Accesibilidad y Tests E2E**: Correcciones de contraste de color (`text-slate-400` -> `text-slate-300`/`200`), *landmark regions* (`<aside>` en `CookieBanner`), y *aria-labels* faltantes. Se corrigieron falsos positivos de contraste en Axe-core deshabilitando animaciones CSS en tiempo de ejecución de prueba.
-- **Visual Regression (CI)**: Se actualizó `playwright.config.ts` (`snapshotPathTemplate` sin prefijo de OS) para garantizar la paridad visual multiplataforma en GitHub Actions y se regeneraron los snapshots base utilizando contenedores Docker de Ubuntu (`npm run test:visual:docker`).
-- **Paridad Arquitectónica de Visual Testing**: Se forzó al pipeline de GitHub Actions (`quality-gate.yml`) a ejecutarse íntegramente dentro del contenedor oficial `mcr.microsoft.com/playwright:v1.58.2-noble` en lugar del runner nativo de `ubuntu-latest` para eliminar un salto de línea de 29px causado por discrepancias en las tipografías instaladas por defecto en ambos Linux.
+- Pipeline CI/CD: GitHub Actions con Playwright + Axe + LHCI
+- Quality Gate automatizado bloqueante
+- Hardening de seguridad: CSP, HSTS, X-Frame-Options
+- Arquitectura serverless: `verify-turnstile.ts` + `submit-contact.ts`
+- Sitemap dinámico (`@astrojs/sitemap`), Sentry, `robots.txt`, `RUNBOOK.md`
+- Documentación fundacional: `README.md`, `AGENTS.md`, `ARCHITECTURE.md`, `ROADMAP.md`, `BACKLOG.md`, `PRD.md`, `AI-RULES.md`
+- Páginas internas premium: Sobre Mí, Portafolio con componentes PremiumCard + PortfolioGrid

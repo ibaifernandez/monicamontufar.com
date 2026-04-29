@@ -1,16 +1,12 @@
 # monicamontufar.com
 
-**Personal website for Mónica Montúfar** — VA freelance & designer.
-Production-ready Coming Soon with multi-layer anti-spam waitlist, i18n ES/EN, full CI/CD, and zero critical tech debt.
+**Sitio web personal de Mónica Montúfar** — Diseñadora gráfica, nómada digital y asistente virtual. Bilingüe ES/EN, blog con 10 artículos, CI/CD completo y cero deuda técnica crítica.
 
 [![Quality Gate](https://github.com/ibaifernandez/monicamontufar.com/actions/workflows/quality-gate.yml/badge.svg)](https://github.com/ibaifernandez/monicamontufar.com/actions/workflows/quality-gate.yml)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9aecd914-7663-48c8-a302-117a9e4762b1/deploy-status)](https://monicamontufar.com)
-[![Playwright Tests](https://img.shields.io/badge/playwright-10%2F10-brightgreen?logo=playwright&logoColor=white)](https://github.com/ibaifernandez/monicamontufar.com/actions)
-[![Lighthouse Performance](https://img.shields.io/badge/lighthouse-100%2F100-brightgreen?logo=googlechrome&logoColor=white)](https://github.com/ibaifernandez/monicamontufar.com/actions)
-[![Accessibility](https://img.shields.io/badge/accessibility-100%2F100-brightgreen?logo=googlechrome&logoColor=white)](./docs/QA-COMING-SOON.md)
-[![QA Checks](https://img.shields.io/badge/QA%20checks-85%2F85-brightgreen)](./docs/QA-COMING-SOON.md)
-[![Uptime](https://img.shields.io/badge/uptime-100%25-brightgreen?logo=uptimerobot&logoColor=white)](https://monicamontufar.com)
-[![Security Headers](https://img.shields.io/badge/security%20headers-hardened-brightgreen?logo=cloudflare&logoColor=white)](./public/_headers)
+[![Playwright Tests](https://img.shields.io/badge/playwright-passing-brightgreen?logo=playwright&logoColor=white)](https://github.com/ibaifernandez/monicamontufar.com/actions)
+[![Lighthouse Accessibility](https://img.shields.io/badge/accessibility-100%2F100-brightgreen?logo=googlechrome&logoColor=white)](https://github.com/ibaifernandez/monicamontufar.com/actions)
+[![Lighthouse SEO](https://img.shields.io/badge/SEO-100%2F100-brightgreen?logo=googlechrome&logoColor=white)](https://github.com/ibaifernandez/monicamontufar.com/actions)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Astro](https://img.shields.io/badge/Astro-6-orange?logo=astro&logoColor=white)](https://astro.build)
 
@@ -18,7 +14,8 @@ Production-ready Coming Soon with multi-layer anti-spam waitlist, i18n ES/EN, fu
 
 ## Live
 
-🌐 **[monicamontufar.com](https://monicamontufar.com)** — Production (Netlify, auto-deploy from `main`)
+🌐 **[monicamontufar.com](https://monicamontufar.com)** — Production (Netlify, auto-deploy from `main`)  
+🗂️ **[portafolio.monicamontufar.com](https://portafolio.monicamontufar.com)** — Portfolio (subdominio externo)
 
 ---
 
@@ -29,107 +26,118 @@ Production-ready Coming Soon with multi-layer anti-spam waitlist, i18n ES/EN, fu
 | Framework | [Astro 6](https://astro.build) — SSG, `output: static` |
 | Language | TypeScript (strict mode) |
 | Styles | [TailwindCSS 4](https://tailwindcss.com) — `@import "tailwindcss"`, no config.js |
-| Typography | Inter Variable + Playfair Display Variable via `@fontsource-variable/*` (self-hosted) |
-| Serverless | Netlify Functions (TypeScript) |
+| Typography | Gilda Display + Poppins — self-hosted WOFF2 (subsetted, -80% size), zero render-blocking |
+| Serverless | Netlify Functions v2 (TypeScript) |
 | Testing | Playwright + Axe-core (a11y) + Lighthouse CI |
-| Error tracking | Sentry (`@sentry/astro`) |
-| Email | [Resend](https://resend.com) — region sa-east-1 |
+| Email | [Resend](https://resend.com) — transactional + audience management |
 | Anti-bot | Cloudflare Turnstile (invisible) + honeypot + server-side validation |
-| Monitoring | UptimeRobot — 3 HTTP monitors, 5 min interval |
+| Rate limiting | Netlify Blobs — 5 req/h per IP on `/api/submit-contact` |
 | Deploy | Netlify — auto-deploy on push to `main` |
+
+---
+
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Homepage ES — hero, servicios, blog feed, testimonios |
+| `/en/` | Homepage EN |
+| `/sobre-mi/` | Sobre Mí |
+| `/en/about-me/` | About Me |
+| `/blog/` | Blog index ES — 10 artículos paginados (pageSize: 9) |
+| `/blog/[slug]/` | Blog post individual ES |
+| `/en/blog/` | Blog index EN |
+| `/en/blog/[slug]/` | Blog post individual EN |
+| `/contacto/` | Formulario de contacto |
+| `/politica-de-privacidad-y-cookies/` | Política de privacidad + cookies ES (RGPD/LOPDGDD) |
+| `/en/politica-de-privacidad-y-cookies/` | Privacy & Cookies Policy EN |
+| `/portafolio/` | → 301 redirect a portafolio.monicamontufar.com |
+| `/en/portfolio/` | → 301 redirect a portafolio.monicamontufar.com |
+| `/404` | Página 404 personalizada |
 
 ---
 
 ## Features
 
-- **Coming Soon page** — ES (`/`) and EN (`/en/`) with bidirectional hreflang
-- **Waitlist form** — captures emails, sends confirmation to subscriber + notification to Mónica
-- **Multi-layer anti-spam** — Cloudflare Turnstile (invisible) + honeypot field + server-side validation
-- **CI/CD Quality Gate** — Playwright visual regression + Axe-core a11y + Lighthouse CI, blocking merges to `main`
-- **Lighthouse 100/100** — Performance, Accessibility, SEO, Best Practices
-- **85/85 QA checks** — documented in [`docs/QA-COMING-SOON.md`](./docs/QA-COMING-SOON.md)
-- **Real 404 page** — on-brand, returns HTTP 404 (not a soft 404)
-- **Security headers** — X-Frame-Options, CSP, and more via `public/_headers`
-- **Self-hosted fonts** — no render-blocking Google Fonts requests
+- **Bilingüe completo ES/EN** — todas las páginas disponibles en ambos idiomas con hreflang bidireccional
+- **Blog con 10 artículos** — migración desde WordPress/Elementor, HTML sanitizado, paginación, hreflang ES↔EN
+- **WOFF2 font subsetting** — 11 ficheros de fuente con rango Unicode Latin/Extended (-80% tamaño vs TTF)
+- **JSON-LD structured data** — BlogPosting, Person, WebSite (validado con Google Rich Results Test)
+- **Cookie consent** — banner con 3 opciones (Aceptar todas / Solo esenciales / Rechazar), persistencia localStorage
+- **Rate limiting serverless** — 5 req/hora por IP con Netlify Blobs
+- **CI/CD Quality Gate** — Playwright visual regression + Axe-core a11y + Lighthouse CI, bloqueante en main
+- **Lighthouse 100/100** — Accessibility, SEO, Best Practices; Performance ≥ 78 (throttling simulado)
+- **llms.txt** — estándar llmstxt.org para discoverability por modelos de lenguaje
+- **Security headers** — CSP, HSTS, X-Frame-Options en `public/_headers`
+- **Real 404** — devuelve HTTP 404 (no soft 404)
 
 ---
 
 ## CI/CD Pipeline
 
 ```
-PR to main
+Push to main
   → quality-gate.yml (GitHub Actions)
-      → Playwright 10/10 (Docker: mcr.microsoft.com/playwright:v1.58.2-noble)
-      → Lighthouse CI 100/100 (Performance / Accessibility / SEO / Best Practices)
-  → Merge unblocked
-      → Netlify auto-deploy
+      → npm run build (Astro SSG + wp-uploads prebuild)
+      → Playwright E2E + a11y (Docker: mcr.microsoft.com/playwright:v1.58.2-noble)
+      → Lighthouse CI (Accessibility 1.0 / SEO 1.0 / Perf ≥ 0.78)
+  → Si pasa: Netlify auto-deploy
 ```
 
-Playwright runs in Docker to guarantee identical visual regression snapshots between macOS local and Linux CI runners. Baselines are versioned in `/tests/visual/screenshots/`.
+Playwright corre en Docker para garantizar paridad visual exacta entre macOS local y Linux CI. Los baselines están versionados en `/tests/visual/screenshots/`.
 
 ---
 
 ## Getting Started
 
 ```bash
-# Install dependencies
+# Instalar dependencias
 npm install
 
-# Start dev server
+# Dev server
 npm run dev
 
-# Build for production
+# Build de producción
 npm run build
 
-# Preview production build
+# Preview del build
 npm run preview
 ```
 
-### Environment variables
-
-Copy `.env.example` and fill in your values:
+### Variables de entorno
 
 ```bash
 cp .env.example .env
 ```
 
-| Variable | Description |
+| Variable | Descripción |
 |----------|-------------|
-| `RESEND_API_KEY` | Resend API key for email sending |
-| `CONTACT_EMAIL` | Destination email (Mónica's inbox) |
-| `FROM_EMAIL` | Sender address (verified Resend domain) |
-| `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile secret |
-| `TURNSTILE_SITE_KEY` | Cloudflare Turnstile site key (public) |
-| `PUBLIC_SENTRY_DSN` | Sentry DSN for browser error tracking |
-| `SENTRY_AUTH_TOKEN` | Sentry auth token for source map upload (CI only) |
+| `RESEND_API_KEY` | Clave API de Resend para envío de emails |
+| `RESEND_AUDIENCE_ID` | ID de la Audience en Resend (opcional — para persistir contactos) |
+| `CONTACT_EMAIL` | Email de destino para notificaciones (buzón de Mónica) |
+| `FROM_EMAIL` | Dirección remitente verificada en Resend |
+| `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile secret key |
+| `TURNSTILE_SITE_KEY` | Cloudflare Turnstile site key (pública) |
 
 ---
 
 ## Testing
 
-### Run Playwright tests locally
-
 ```bash
-npm run test
-```
+# E2E + a11y (local)
+npm run test:e2e
 
-### Run with Docker (matches CI environment exactly)
-
-```bash
-# Run tests
+# Visual regression con Docker (idéntico a CI)
 npm run test:visual:docker
 
-# Update visual regression baselines
+# Actualizar baselines visuales
 npm run test:visual:docker:update
-```
 
-> **Note:** If you modify visual components, CI will fail on visual regression until you regenerate the baselines with the Docker command above.
-
-### Run Lighthouse CI
-
-```bash
+# Lighthouse CI
 npm run lhci
 ```
+
+> Si modificas componentes visuales, la CI fallará en visual regression hasta que regeneres los baselines con el comando Docker.
 
 ---
 
@@ -139,35 +147,69 @@ npm run lhci
 monicamontufar.com/
 ├── src/
 │   ├── layouts/
-│   │   └── BaseLayout.astro        # Base layout — fonts, Sentry, head global
+│   │   └── BaseLayout.astro          # Layout base — fuentes, head, SEO, cookie banner
 │   ├── components/
-│   │   └── global/
-│   │       └── SEO.astro           # Meta tags, OG, hreflang (alternateHref required)
-│   └── pages/
-│       ├── index.astro             # Home ES — waitlist form + countdown
-│       ├── 404.astro               # On-brand 404 (real HTTP 404)
-│       └── en/
-│           └── index.astro         # Home EN — keep in sync with ES
+│   │   ├── global/
+│   │   │   ├── SEO.astro             # Meta tags, OG, hreflang, JSON-LD WebSite
+│   │   │   ├── Navbar.astro          # Navbar responsive bilingüe
+│   │   │   ├── Footer.astro          # Footer bilingüe con social links
+│   │   │   └── CookieBanner.astro    # Cookie consent (3 opciones, localStorage)
+│   │   ├── ui/                       # PremiumCard, botones, UI atoms
+│   │   └── sections/                 # Hero, About, PortfolioGrid, InternalHero
+│   ├── data/
+│   │   ├── wp-archive/
+│   │   │   ├── posts.json            # 10 posts exportados de WordPress (ES)
+│   │   │   └── posts-en.json         # 10 posts traducidos al inglés (EN)
+│   │   └── blog-thumbnails.ts        # SSOT del mapa slug → ImageMetadata
+│   ├── pages/
+│   │   ├── index.astro               # Homepage ES
+│   │   ├── 404.astro
+│   │   ├── blog/
+│   │   │   ├── [...page].astro       # Blog index ES paginado
+│   │   │   └── [slug].astro          # Blog post ES
+│   │   ├── sobre-mi/index.astro
+│   │   ├── portafolio/index.astro    # 301 → portafolio.monicamontufar.com
+│   │   ├── contacto/index.astro
+│   │   ├── politica-de-privacidad-y-cookies.astro
+│   │   └── en/
+│   │       ├── index.astro           # Homepage EN
+│   │       ├── about-me/index.astro
+│   │       ├── portfolio/index.astro # 301 → portafolio.monicamontufar.com
+│   │       ├── blog/
+│   │       │   ├── [...page].astro   # Blog index EN paginado
+│   │       │   └── [slug].astro      # Blog post EN
+│   │       └── politica-de-privacidad-y-cookies.astro
+│   └── styles/
+│       └── global.css                # Tailwind, @font-face WOFF2+TTF, custom props
 ├── netlify/
 │   └── functions/
-│       ├── submit-contact.ts       # Serverless: email via Resend
-│       └── verify-turnstile.ts     # Serverless: Turnstile token verification
+│       ├── submit-contact.ts         # Email via Resend + rate limiting Netlify Blobs
+│       └── verify-turnstile.ts       # Validación Cloudflare Turnstile
 ├── tests/
-│   └── visual/
-│       └── screenshots/            # Playwright visual regression baselines (versioned)
-├── docs/
-│   ├── QA-COMING-SOON.md          # QA report v2.1 — 79 checks with rationale
-│   └── QA-COMING-SOON.csv         # QA checklist (importable)
+│   ├── quality-gate.spec.ts          # Visual regression + Lighthouse a11y
+│   └── internal-pages.spec.ts        # Smoke tests rutas internas
+├── scripts/
+│   └── prepare-wp-uploads.mjs        # Prebuild: copia src/assets/wp-content/ → public/
 ├── public/
-│   ├── _headers                   # Security headers
-│   └── _redirects                 # Block .env, .git, wp-admin → 404
-├── sentry.client.config.ts        # Sentry browser SDK init
-├── astro.config.mjs               # Astro config + Sentry source maps
-├── lighthouserc.cjs               # LHCI assertions with documented rationale per warn
-├── playwright.config.ts           # Playwright config
-├── netlify.toml                   # Netlify build config
-├── AGENTS.md                      # Instructions for AI agents working on this repo
-└── .env.example                   # Required env vars with descriptions
+│   ├── _headers                      # Security headers (CSP, HSTS, cache)
+│   ├── _redirects                    # Bloqueo rutas sensibles
+│   ├── fonts/                        # WOFF2 subsetted + TTF fallback
+│   ├── images/                       # Logo, OG image, flags
+│   ├── llms.txt                      # LLM discoverability (llmstxt.org)
+│   └── robots.txt
+├── docs/
+│   ├── CHANGELOG.md
+│   ├── BACKLOG.md
+│   ├── ARCHITECTURE.md
+│   ├── RUNBOOK.md
+│   ├── PRD.md
+│   ├── ROADMAP.md
+│   └── AI-RULES.md
+├── AGENTS.md                         # Instrucciones para agentes IA
+├── lighthouserc.cjs                  # LHCI assertions con rationale documentado
+├── playwright.config.ts
+├── netlify.toml
+└── astro.config.mjs
 ```
 
 ---
@@ -176,25 +218,23 @@ monicamontufar.com/
 
 | Branch | Purpose |
 |--------|---------|
-| `main` | Production — auto-deploys to Netlify. Protected by Quality Gate CI. |
-| `staging` | Active work — deploy preview per PR. |
-
-All merges to `main` go through PR. The CI Quality Gate blocks merges that don't pass Playwright + LHCI.
+| `main` | Producción — auto-deploy a Netlify. Protegida por Quality Gate CI. |
+| `staging-*` | Feature branches — deploy preview por PR. |
 
 ---
 
 ## Known Limitations
 
-These are documented `warn` entries in `lighthouserc.cjs` — accepted consciously, not bugs:
+Entradas documentadas como `warn` en `lighthouserc.cjs`:
 
-- `legacy-javascript` / `unused-javascript` — Sentry SDK internals (third-party limitation)
-- `total-byte-weight` — Self-hosted variable fonts (~3.8 MB). Architectural decision: no render-blocking, no layout shift, acceptable for target audience.
-- `dom-size-insight` (portfolio page) — Pending virtualization/pagination when portfolio content exists.
+- `total-byte-weight` — Fuentes self-hosted (~115 KB tras subsetting). Decisión arquitectónica: zero render-blocking supera el coste de red.
+- `dom-size-insight` (blog con muchos posts) — Acceptable hasta que el blog crezca a >50 posts.
+- Performance CI threshold en `0.78` — Docker throttling consistentemente da 0.78–0.79; en producción real con CDN Cloudflare el LCP es 1–2s.
 
 ---
 
 ## Built by
 
-**[Ibai Fernández](https://ibaifernandez.com)** — Vibe-Coder · AI Automation · Mail Marketing Director @ [LFi](https://lfi.agency) · Founder of [AGLAYA](https://aglaya.agency)
+**[Ibai Fernández](https://ibaifernandez.com)** @ **[AGLAYA](https://aglaya.biz)**
 
 > *Why do it manually when a system can do it for you?*
