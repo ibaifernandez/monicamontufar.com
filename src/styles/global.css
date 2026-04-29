@@ -3,7 +3,7 @@
 /* ── Gilda Display — display/headings (font-serif) ───────────────────────── */
 @font-face {
   font-family: "Gilda Display";
-  src: url("/fonts/GildaDisplay-Regular.woff2") format("woff2"), url("/fonts/GildaDisplay-Regular.ttf") format("truetype");
+  src: url("/fonts/GildaDisplay-Regular-subset.woff2") format("woff2"), url("/fonts/GildaDisplay-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   /* swap: font is preloaded from same origin so it typically arrives before
@@ -16,70 +16,70 @@
 /* ── Poppins — body/UI (font-sans + font-display) ────────────────────────── */
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Light.woff2") format("woff2"), url("/fonts/Poppins-Light.ttf") format("truetype");
+  src: url("/fonts/Poppins-Light-subset.woff2") format("woff2"), url("/fonts/Poppins-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-LightItalic.woff2") format("woff2"), url("/fonts/Poppins-LightItalic.ttf") format("truetype");
+  src: url("/fonts/Poppins-LightItalic-subset.woff2") format("woff2"), url("/fonts/Poppins-LightItalic.ttf") format("truetype");
   font-weight: 300;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Regular.woff2") format("woff2"), url("/fonts/Poppins-Regular.ttf") format("truetype");
+  src: url("/fonts/Poppins-Regular-subset.woff2") format("woff2"), url("/fonts/Poppins-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Italic.woff2") format("woff2"), url("/fonts/Poppins-Italic.ttf") format("truetype");
+  src: url("/fonts/Poppins-Italic-subset.woff2") format("woff2"), url("/fonts/Poppins-Italic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Medium.woff2") format("woff2"), url("/fonts/Poppins-Medium.ttf") format("truetype");
+  src: url("/fonts/Poppins-Medium-subset.woff2") format("woff2"), url("/fonts/Poppins-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-MediumItalic.woff2") format("woff2"), url("/fonts/Poppins-MediumItalic.ttf") format("truetype");
+  src: url("/fonts/Poppins-MediumItalic-subset.woff2") format("woff2"), url("/fonts/Poppins-MediumItalic.ttf") format("truetype");
   font-weight: 500;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-SemiBold.woff2") format("woff2"), url("/fonts/Poppins-SemiBold.ttf") format("truetype");
+  src: url("/fonts/Poppins-SemiBold-subset.woff2") format("woff2"), url("/fonts/Poppins-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-SemiBoldItalic.woff2") format("woff2"), url("/fonts/Poppins-SemiBoldItalic.ttf") format("truetype");
+  src: url("/fonts/Poppins-SemiBoldItalic-subset.woff2") format("woff2"), url("/fonts/Poppins-SemiBoldItalic.ttf") format("truetype");
   font-weight: 600;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Bold.woff2") format("woff2"), url("/fonts/Poppins-Bold.ttf") format("truetype");
+  src: url("/fonts/Poppins-Bold-subset.woff2") format("woff2"), url("/fonts/Poppins-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-BoldItalic.woff2") format("woff2"), url("/fonts/Poppins-BoldItalic.ttf") format("truetype");
+  src: url("/fonts/Poppins-BoldItalic-subset.woff2") format("woff2"), url("/fonts/Poppins-BoldItalic.ttf") format("truetype");
   font-weight: 700;
   font-style: italic;
   font-display: swap;

@@ -1,13 +1,14 @@
 /**
  * submit-contact — Netlify Function
  *
- * Recibe una suscripción de email desde el formulario "Avísame" (coming soon).
+ * Recibe una suscripción de email desde el formulario de contacto.
  * Flujo:
- *   1. Validación de honeypot (anti-bot)
- *   2. Validación de campos requeridos
- *   3. Añadir/actualizar contacto en Resend Audience (idempotente — sin duplicados)
- *   4. Envío de email de notificación a Mónica vía Resend
- *   5. Envío de email de confirmación al suscriptor
+ *   1. Rate limiting por IP (5 req/hora via Netlify Blobs)
+ *   2. Validación de honeypot (anti-bot)
+ *   3. Validación de campos requeridos
+ *   4. Añadir/actualizar contacto en Resend Audience (idempotente — sin duplicados)
+ *   5. Envío de email de notificación a Mónica vía Resend
+ *   6. Envío de email de confirmación al suscriptor
  *
  * Variables de entorno requeridas (Netlify → Site configuration → Environment variables):
  *   RESEND_API_KEY       — API Key de Resend (ej. re_xxxxxxxxxxxx)
@@ -17,11 +18,56 @@
  *                          ⚠️ El dominio debe estar verificado en el panel de Resend.
  */
 import type { Config } from '@netlify/functions';
+import { getStore } from '@netlify/blobs';
 import { Resend } from 'resend';
+
+// ── Rate limiting ─────────────────────────────────────────────────────────────
+const RATE_LIMIT_MAX    = 5;          // max submissions per window
+const RATE_LIMIT_WINDOW = 60 * 60;   // 1 hour in seconds
+
+async function checkRateLimit(ip: string): Promise<{ allowed: boolean; remaining: number }> {
+  try {
+    const store = getStore({ name: 'rate-limits', consistency: 'strong' });
+    const key   = `contact:${ip}`;
+    const now   = Math.floor(Date.now() / 1000);
+
+    const raw = await store.get(key, { type: 'json' }) as { count: number; windowStart: number } | null;
+
+    if (!raw || now - raw.windowStart >= RATE_LIMIT_WINDOW) {
+      // New window
+      await store.setJSON(key, { count: 1, windowStart: now }, { ttl: RATE_LIMIT_WINDOW });
+      return { allowed: true, remaining: RATE_LIMIT_MAX - 1 };
+    }
+
+    if (raw.count >= RATE_LIMIT_MAX) {
+      return { allowed: false, remaining: 0 };
+    }
+
+    await store.setJSON(key, { count: raw.count + 1, windowStart: raw.windowStart }, { ttl: RATE_LIMIT_WINDOW });
+    return { allowed: true, remaining: RATE_LIMIT_MAX - raw.count - 1 };
+  } catch (err) {
+    // If Blobs is unavailable (local dev), fail open
+    console.warn('[submit-contact] Rate limit check failed (Blobs unavailable):', err);
+    return { allowed: true, remaining: RATE_LIMIT_MAX };
+  }
+}
 
 export default async (req: Request) => {
   if (req.method !== 'POST') {
     return new Response('Method Not Allowed', { status: 405 });
+  }
+
+  // ── Rate limit by IP ───────────────────────────────────────────────────────
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+          ?? req.headers.get('x-nf-client-connection-ip')
+          ?? 'unknown';
+
+  const { allowed, remaining } = await checkRateLimit(ip);
+  if (!allowed) {
+    return new Response(
+      JSON.stringify({ success: false, error: 'Demasiadas solicitudes. Inténtalo más tarde.' }),
+      { status: 429, headers: { 'Retry-After': String(RATE_LIMIT_WINDOW) } }
+    );
   }
 
   try {

@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image, getImage } from 'astro:assets';
+import { thumbnails, thumbnailFallback } from '../../data/blog-thumbnails';
+import postsData from '../../data/wp-archive/posts.json';
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+  const posts = postsData.map((p: any) => ({
+    slug:    p.slug,
+    title:   p.title?.rendered ?? '',
+    date:    p.date?.slice(0, 10) ?? '',
+    excerpt: p.excerpt?.rendered?.replace(/<[^>]+>/g, '').trim() ?? '',
+    thumb:   thumbnails[p.slug] ?? thumbnailFallback,
+  }));
+
+  return paginate(posts, { pageSize: 9 });
+}
+
+const { page } = Astro.props;
+const isFirstPage = page.currentPage === 1;
+
+// Page 1: first item is the featured post, rest go into the grid
+// Pages 2+: all 9 items go into the grid
+const featured = isFirstPage ? page.data[0] : null;
+const gridPosts = isFirstPage ? page.data.slice(1) : page.data;
+
+// Preload hero image only on page 1 (LCP optimisation)
+let heroPreload: string | undefined;
+let heroPreloadSrcset: string | undefined;
+let heroPreloadSizes: string | undefined;
+
+if (isFirstPage && featured) {
+  const featW768  = await getImage({ src: featured.thumb, width:  768, format: 'webp', quality: 80 });
+  const featW1280 = await getImage({ src: featured.thumb, width: 1280, format: 'webp', quality: 80 });
+  const featW1600 = await getImage({ src: featured.thumb, width: 1600, format: 'webp', quality: 80 });
+  heroPreload        = featW1280.src;
+  heroPreloadSrcset  = `${featW768.src} 768w, ${featW1280.src} 1280w, ${featW1600.src} 1600w`;
+  heroPreloadSizes   = '(max-width: 768px) 100vw, 90vw';
+}
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+// Pagination helpers
+const totalPages = page.lastPage;
+const current    = page.currentPage;
+
+/** Build the list of page numbers to show (always first + last, current ± 1, with ellipsis) */
+function pageNumbers(): (number | '…')[] {
+  if (totalPages <= 1) return [];
+  const show = new Set<number>();
+  show.add(1);
+  show.add(totalPages);
+  for (let p = Math.max(1, current - 1); p <= Math.min(totalPages, current + 1); p++) show.add(p);
+  const sorted = [...show].sort((a, b) => a - b);
+  const result: (number | '…')[] = [];
+  for (let i = 0; i < sorted.length; i++) {
+    if (i > 0 && sorted[i] - sorted[i - 1] > 1) result.push('…');
+    result.push(sorted[i]);
+  }
+  return result;
+}
+
+function pageUrl(n: number): string {
+  return n === 1 ? '/blog/' : `/blog/${n}/`;
+}
+---
+
+<BaseLayout
+  title="Blog • Mónica Montúfar"
+  description="Nómada digital, diseñadora y viajera. Historias sobre la vida remota, el diseño y los rincones del mundo."
+  lang="es"
+  omitAlternate={true}
+  heroPreload={heroPreload}
+  heroPreloadSrcset={heroPreloadSrcset}
+  heroPreloadSizes={heroPreloadSizes}
+>
+  <!-- Hero del blog -->
+  <section class="max-w-6xl mx-auto px-6 pt-12 pb-8 md:pt-20 md:pb-12">
+    <div class="text-center mb-12">
+      <p class="text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] mb-3">El Blog</p>
+      <h1 class="text-4xl md:text-6xl font-serif font-bold text-white mb-4">Las aventuras de Món Mont</h1>
+      <p class="font-sans text-white/60 font-light text-lg max-w-2xl mx-auto">
+        Historias desde la carretera: nomadismo digital, diseño, gastronomía y los rincones del mundo que me roban el corazón.
+      </p>
+    </div>
+
+    <!-- Entrada destacada — only on page 1 -->
+    {isFirstPage && featured && (
+      <a href={`/blog/${featured.slug}/`} class="group block relative rounded-3xl overflow-hidden border border-white/8 hover:border-[#e6b319]/30 transition-all duration-500">
+        <div class="aspect-[16/7] md:aspect-[16/6]">
+          <Image
+            src={featured.thumb}
+            alt={featured.title}
+            widths={[768, 1280, 1600]}
+            sizes="(max-width: 768px) 100vw, 90vw"
+            quality={80}
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            loading="eager"
+            fetchpriority="high"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#12110e] via-[#12110e]/40 to-transparent"></div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+          <span class="inline-block text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] mb-3">Entrada destacada</span>
+          <h2 class="font-serif text-2xl md:text-4xl font-bold text-white mb-3 group-hover:text-[#e6b319] transition-colors duration-300" set:html={featured.title} />
+          <p class="font-sans text-white/70 font-light text-sm md:text-base line-clamp-2 max-w-2xl">{featured.excerpt}</p>
+          <p class="mt-4 text-xs font-sans text-slate-400">{formatDate(featured.date)}</p>
+        </div>
+      </a>
+    )}
+  </section>
+
+  <!-- Grid de entradas -->
+  <section class="max-w-6xl mx-auto px-6 pb-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {gridPosts.map((post, i) => (
+        <a
+          href={`/blog/${post.slug}/`}
+          class="group flex flex-col rounded-2xl overflow-hidden border border-white/8 hover:border-[#e6b319]/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300"
+        >
+          <div class="aspect-video overflow-hidden">
+            <Image
+              src={post.thumb}
+              alt={post.title}
+              widths={[400, 640, 800]}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              quality={75}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading={i < 3 ? 'eager' : 'lazy'}
+              fetchpriority={i === 0 ? 'high' : undefined}
+            />
+          </div>
+          <div class="flex flex-col flex-grow p-6 gap-3">
+            <p class="text-xs font-sans text-slate-400">{formatDate(post.date)}</p>
+            <h3
+              class="font-serif text-lg font-bold text-white group-hover:text-[#e6b319] transition-colors duration-300 line-clamp-2"
+              set:html={post.title}
+            />
+            <p class="font-sans text-white/60 text-sm font-light leading-relaxed line-clamp-3 flex-grow">
+              {post.excerpt}
+            </p>
+            <span class="inline-flex items-center gap-1 text-xs font-sans font-semibold uppercase tracking-widest text-[#e6b319] group-hover:gap-2 transition-all duration-200 mt-2">
+              Leer más
+              <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Pagination controls — only when there are multiple pages -->
+  {totalPages > 1 && (
+    <nav aria-label="Paginación del blog" class="max-w-6xl mx-auto px-6 pb-20 flex items-center justify-center gap-2">
+      <!-- Anterior -->
+      {page.url.prev ? (
+        <a
+          href={page.url.prev}
+          class="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-white/10 text-sm font-sans font-semibold text-white/70 hover:text-[#e6b319] hover:border-[#e6b319]/40 transition-all duration-200"
+          aria-label="Página anterior"
+        >
+          <span class="material-symbols-outlined text-base">arrow_back</span>
+          Anterior
+        </a>
+      ) : (
+        <span class="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-white/5 text-sm font-sans font-semibold text-white/20 cursor-not-allowed" aria-disabled="true">
+          <span class="material-symbols-outlined text-base">arrow_back</span>
+          Anterior
+        </span>
+      )}
+
+      <!-- Page numbers -->
+      <div class="flex items-center gap-1">
+        {pageNumbers().map((n) =>
+          n === '…' ? (
+            <span class="px-2 py-2 text-sm font-sans text-white/30">…</span>
+          ) : n === current ? (
+            <span
+              class="w-9 h-9 flex items-center justify-center rounded-full bg-[#e6b319] text-[#12110e] text-sm font-sans font-bold"
+              aria-current="page"
+            >
+              {n}
+            </span>
+          ) : (
+            <a
+              href={pageUrl(n)}
+              class="w-9 h-9 flex items-center justify-center rounded-full border border-white/10 text-sm font-sans font-semibold text-white/60 hover:text-[#e6b319] hover:border-[#e6b319]/40 transition-all duration-200"
+              aria-label={`Página ${n}`}
+            >
+              {n}
+            </a>
+          )
+        )}
+      </div>
+
+      <!-- Siguiente -->
+      {page.url.next ? (
+        <a
+          href={page.url.next}
+          class="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-white/10 text-sm font-sans font-semibold text-white/70 hover:text-[#e6b319] hover:border-[#e6b319]/40 transition-all duration-200"
+          aria-label="Página siguiente"
+        >
+          Siguiente
+          <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </a>
+      ) : (
+        <span class="inline-flex items-center gap-1 px-4 py-2 rounded-full border border-white/5 text-sm font-sans font-semibold text-white/20 cursor-not-allowed" aria-disabled="true">
+          Siguiente
+          <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </span>
+      )}
+    </nav>
+  )}
+</BaseLayout>
