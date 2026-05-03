@@ -72,9 +72,13 @@ const t = dict[lang];
     const setConsent = (level) => {
       localStorage.setItem('mm_cookie_consent', level);
       banner.classList.add('translate-y-[200%]');
-      // If scripts needed to be mapped for Analytics based on "level" value, do it here.
-      if(level === 'all') {
-        console.log("Analytics and Tracking enabled organically.");
+      // Propaga la decisión a GA4 Consent Mode v2
+      if (typeof window.gtag === 'function') {
+        if (level === 'all') {
+          window.gtag('consent', 'update', { analytics_storage: 'granted' });
+        } else {
+          window.gtag('consent', 'update', { analytics_storage: 'denied' });
+        }
       }
     };
 

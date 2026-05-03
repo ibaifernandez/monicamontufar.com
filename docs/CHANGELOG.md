@@ -3,6 +3,19 @@ Todos los cambios notables del proyecto se documentarán en este archivo según 
 
 ---
 
+## [1.5.0] — 2026-05-03 · GA4 Analytics + Consent Mode v2
+
+### Added
+- **Google Analytics 4** (`G-DYDJQCWYND`) — propiedad AGLAYA, integrado con Consent Mode v2
+- **Consent Mode v2 completo**: `ad_storage`, `ad_user_data`, `ad_personalization`, `analytics_storage` — todos denegados por defecto hasta que el usuario acepte cookies
+- **Activación reactiva**: `CookieBanner.astro` llama a `gtag('consent', 'update', ...)` en tiempo real cuando el usuario acepta o rechaza
+- **Returning visitors**: si `mm_cookie_consent === 'all'` en localStorage, analytics se activa antes de que cargue el script de configuración (sin perder el pageview)
+
+### Changed
+- **CSP en `public/_headers`**: añadidos `https://www.googletagmanager.com` a `script-src`; `https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com` a `connect-src`
+
+---
+
 ## [1.4.0] — 2026-05-03 · Web Wrap-Up — QA Completo
 
 ### Added

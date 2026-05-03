@@ -76,6 +76,31 @@ const {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"></noscript>
+
+    <!-- GA4 Consent Mode v2 — default: todo denegado hasta que el usuario acepte cookies.
+         El consent 'default' DEBE llegar al navegador antes de que cargue gtag.js. -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage:          'denied',
+        ad_user_data:        'denied',
+        ad_personalization:  'denied',
+        analytics_storage:   'denied',
+        wait_for_update:     500
+      });
+      // Visitante que ya aceptó en sesión anterior → grant antes de que cargue el config
+      if (typeof localStorage !== 'undefined' && localStorage.getItem('mm_cookie_consent') === 'all') {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+      }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DYDJQCWYND"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-DYDJQCWYND');
+    </script>
   </head>
   <body class="bg-[#12110E] text-slate-100 font-sans antialiased overflow-x-hidden min-h-screen flex flex-col selection:bg-primary/30">
 
