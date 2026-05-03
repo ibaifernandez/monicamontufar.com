@@ -17,6 +17,8 @@ export default defineConfig({
           en: 'en',
         },
       },
+      // Exclude 301-redirect pages — they forward to portafolio.monicamontufar.com
+      filter: (page) => !page.includes('/portafolio/') && !page.includes('/en/portfolio/'),
     }),
     sentry({
       // Solo configuración de la integración Astro/Vite (source maps, SDK injection).

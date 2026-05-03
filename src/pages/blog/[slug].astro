@@ -60,7 +60,16 @@ function cleanContent(html: string): string {
 }
 
 const title   = post.title?.rendered ?? '';
-const excerpt = post.excerpt?.rendered?.replace(/<[^>]+>/g, '').trim() ?? '';
+const rawExcerpt = post.excerpt?.rendered?.replace(/<[^>]+>/g, '').trim() ?? '';
+// Fallback: if WP excerpt is too short/truncated, derive from content text
+const excerpt = rawExcerpt.length >= 80
+  ? rawExcerpt
+  : (post.content?.rendered ?? '')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 160)
+      .replace(/\s+\S*$/, '') + '…';
 const content = cleanContent(post.content?.rendered ?? '');
 const dateStr = new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
 
