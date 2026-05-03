@@ -82,13 +82,32 @@ export default async (req: Request) => {
     }
 
     // ── Validación de campos ──────────────────────────────────────────────────
-    const email = (body.email || '').trim().toLowerCase();
+    const email   = (body.email   || '').trim().toLowerCase();
+    const nombre  = (body.nombre  || '').trim();
+    const apellido = (body.apellido || '').trim();
+    const pais    = (body.pais    || '').trim();
+    const mensaje = (body.mensaje || '').trim();
+
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return new Response(
         JSON.stringify({ success: false, error: 'Email inválido' }),
         { status: 400 }
       );
     }
+    if (!nombre) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'El nombre es obligatorio' }),
+        { status: 400 }
+      );
+    }
+    if (!mensaje) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'El mensaje es obligatorio' }),
+        { status: 400 }
+      );
+    }
+
+    const nombreCompleto = [nombre, apellido].filter(Boolean).join(' ');
 
     // ── Variables de entorno ──────────────────────────────────────────────────
     const RESEND_API_KEY     = process.env.RESEND_API_KEY;
@@ -124,51 +143,56 @@ export default async (req: Request) => {
     await resend.emails.send({
       from: `Mónica Montúfar Web <${FROM_EMAIL}>`,
       to: [CONTACT_EMAIL],
-      subject: '🎉 Nueva suscripción en monicamontufar.com',
+      subject: `📬 Nuevo mensaje de contacto — ${nombreCompleto}`,
       html: `
         <div style="font-family: 'Inter', sans-serif; max-width: 600px; margin: 0 auto; background: #12110e; color: #f1f5f9; padding: 40px; border-radius: 12px;">
-          <h1 style="color: #e6b319; font-size: 24px; margin-bottom: 8px;">¡Nueva suscripción!</h1>
-          <p style="color: #94a3b8; font-size: 14px; margin-bottom: 24px;">alguien quiere saber cuándo abres las puertas 🚀</p>
-          <div style="background: #1c1a14; border: 1px solid #2d2b22; border-radius: 8px; padding: 20px; margin-bottom: 24px;">
-            <p style="margin: 0; font-size: 16px;"><strong style="color: #e6b319;">Email:</strong> ${email}</p>
+          <h1 style="color: #e6b319; font-size: 24px; margin-bottom: 8px;">¡Nuevo mensaje!</h1>
+          <p style="color: #94a3b8; font-size: 14px; margin-bottom: 24px;">Desde el formulario de contacto de monicamontufar.com</p>
+          <div style="background: #1c1a14; border: 1px solid #2d2b22; border-radius: 8px; padding: 20px; margin-bottom: 24px; display: grid; gap: 12px;">
+            <p style="margin: 0; font-size: 15px;"><strong style="color: #e6b319;">Nombre:</strong> ${nombreCompleto}</p>
+            <p style="margin: 0; font-size: 15px;"><strong style="color: #e6b319;">Email:</strong> <a href="mailto:${email}" style="color: #cbd5e1;">${email}</a></p>
+            ${pais ? `<p style="margin: 0; font-size: 15px;"><strong style="color: #e6b319;">País:</strong> ${pais}</p>` : ''}
+            <hr style="border: none; border-top: 1px solid #2d2b22; margin: 4px 0;"/>
+            <p style="margin: 0; font-size: 15px; line-height: 1.7; white-space: pre-wrap;">${mensaje.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
           </div>
           <p style="color: #64748b; font-size: 12px;">Enviado desde monicamontufar.com · ${new Date().toLocaleString('es-CO', { timeZone: 'America/Bogota' })}</p>
         </div>
       `,
     });
 
-    // ── Email de confirmación al suscriptor ───────────────────────────────────
+    // ── Email de confirmación al remitente ────────────────────────────────────
     await resend.emails.send({
       from: `Mónica Montúfar <${FROM_EMAIL}>`,
       to: [email],
-      subject: '¡Ya estás en la lista! Te aviso en cuanto abra 🌟',
+      subject: '¡Tu mensaje llegó! Te respondo pronto 💛',
       html: `
         <div style="font-family: 'Inter', sans-serif; max-width: 600px; margin: 0 auto; background: #12110e; color: #f1f5f9; padding: 40px; border-radius: 12px;">
-          <h1 style="color: #e6b319; font-size: 28px; margin-bottom: 8px;">¡Apuntado! 🎉</h1>
-          <p style="color: #94a3b8; font-size: 14px; margin-bottom: 24px;">monicamontufar.com · Próximamente</p>
+          <h1 style="color: #e6b319; font-size: 28px; margin-bottom: 8px;">¡Gracias por escribir! 🎉</h1>
+          <p style="color: #94a3b8; font-size: 14px; margin-bottom: 24px;">monicamontufar.com</p>
           <p style="font-size: 16px; line-height: 1.7; color: #cbd5e1;">
-            Hola,<br/><br/>
-            ¡Muchas gracias por tu interés! He guardado tu correo y serás de los primeros en saber
-            cuando <strong style="color: #e6b319;">monicamontufar.com</strong> abra sus puertas.
+            Hola ${nombre},<br/><br/>
+            He recibido tu mensaje y te responderé en las próximas <strong style="color: #e6b319;">24–48 horas hábiles</strong>.
+            Mientras tanto, si tienes alguna duda urgente puedes escribirme directamente a
+            <a href="mailto:hola@monicamontufar.com" style="color: #e6b319;">hola@monicamontufar.com</a>.
           </p>
           <p style="font-size: 16px; line-height: 1.7; color: #cbd5e1; margin-top: 16px;">
-            Mientras tanto, puedes seguirme en mis redes:
+            ¡Hasta pronto!<br/>
+            <strong style="color: #e6b319;">Mónica Montúfar</strong>
           </p>
-          <div style="margin-top: 8px;">
+          <div style="margin-top: 24px; display: flex; gap: 16px;">
             <a href="https://www.instagram.com/los_pensamientos_de_mon" style="color: #e6b319; font-size: 14px; margin-right: 16px;">Instagram</a>
             <a href="https://www.linkedin.com/in/m%C3%B3nica-mont%C3%BAfar-qui%C3%B1%C3%B3nez-751123146/" style="color: #e6b319; font-size: 14px;">LinkedIn</a>
           </div>
           <hr style="border: none; border-top: 1px solid #2d2b22; margin: 32px 0;"/>
           <p style="color: #475569; font-size: 12px;">
-            Recibiste este email porque te suscribiste en monicamontufar.com.<br/>
-            Si no fuiste tú, puedes ignorar este mensaje.
+            Recibiste este email porque enviaste un mensaje desde monicamontufar.com.
           </p>
         </div>
       `,
     });
 
     return new Response(
-      JSON.stringify({ success: true, message: '¡Perfecto! Te avisamos en cuanto abramos.' }),
+      JSON.stringify({ success: true, message: '¡Mensaje recibido! Te responderé en 24–48 horas.' }),
       { status: 200 }
     );
   } catch (error) {
