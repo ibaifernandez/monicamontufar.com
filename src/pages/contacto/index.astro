@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const TURNSTILE_SITE_KEY = import.meta.env.TURNSTILE_SITE_KEY ?? '';
 ---
 
 <BaseLayout
@@ -182,6 +184,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
             ></textarea>
           </div>
 
+          <!-- Cloudflare Turnstile — widget invisible, se ejecuta en el submit -->
+          <div id="cf-turnstile"
+               class="cf-turnstile"
+               data-sitekey={TURNSTILE_SITE_KEY}
+               data-theme="dark"
+               data-size="invisible"
+               data-callback="onTurnstileSuccess"
+               data-error-callback="onTurnstileError"></div>
+
           <div class="pt-2">
             <button
               type="submit"
@@ -199,6 +210,36 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <script>
+  // ── Turnstile: callbacks globales requeridos por el widget ──────────────────
+  let _turnstileResolve: ((token: string) => void) | null = null;
+
+  (window as any).onTurnstileSuccess = (token: string) => {
+    if (_turnstileResolve) { _turnstileResolve(token); _turnstileResolve = null; }
+  };
+  (window as any).onTurnstileError = () => {
+    // Fail open: si Turnstile falla, dejamos pasar (honeypot + rate limit siguen activos)
+    if (_turnstileResolve) { _turnstileResolve(''); _turnstileResolve = null; }
+  };
+
+  function getTurnstileToken(): Promise<string> {
+    const ts = (window as any).turnstile;
+    if (!ts) return Promise.resolve(''); // script no cargado → fail open
+    return new Promise((resolve) => {
+      _turnstileResolve = resolve;
+      ts.execute('#cf-turnstile');
+    });
+  }
+
+  // ── Carga el script de Turnstile de forma lazy ──────────────────────────────
+  if (!document.querySelector('script[src*="challenges.cloudflare.com"]')) {
+    const s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+    s.async = true;
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+
+  // ── Form ────────────────────────────────────────────────────────────────────
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const btn = document.getElementById('submit-btn') as HTMLButtonElement | null;
   const label = document.getElementById('submit-label');
@@ -206,15 +247,49 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   const successEl = document.getElementById('form-success');
   const errorEl = document.getElementById('form-error');
 
+  function resetBtn() {
+    if (btn) btn.disabled = false;
+    if (label) label.textContent = 'Enviar mensaje';
+    if (icon) icon.textContent = 'send';
+  }
+
+  function showError(msg: string) {
+    if (errorEl) { errorEl.textContent = msg; errorEl.classList.remove('hidden'); }
+    resetBtn();
+    (window as any).turnstile?.reset('#cf-turnstile');
+  }
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form || !btn) return;
 
-    // Loading state
-    btn.disabled = true;
-    if (label) label.textContent = 'Enviando…';
+    if (btn) btn.disabled = true;
+    if (label) label.textContent = 'Verificando…';
     if (icon) icon.textContent = 'hourglass_empty';
     if (errorEl) { errorEl.textContent = ''; errorEl.classList.add('hidden'); }
+
+    // ── Paso 1: verificar Turnstile ─────────────────────────────────────────
+    const cfToken = await getTurnstileToken();
+
+    if (cfToken) {
+      try {
+        const verifyRes = await fetch('/api/verify-turnstile', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: cfToken }),
+        });
+        if (!verifyRes.ok) {
+          showError('Verificación de seguridad fallida. Recarga la página e inténtalo de nuevo.');
+          return;
+        }
+      } catch {
+        // Fail open: si el endpoint de verificación no responde, continuamos
+        console.warn('[contacto] Turnstile verify endpoint unreachable — failing open');
+      }
+    }
+
+    // ── Paso 2: enviar formulario ───────────────────────────────────────────
+    if (label) label.textContent = 'Enviando…';
 
     const data = Object.fromEntries(new FormData(form));
 
@@ -231,20 +306,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         form.classList.add('hidden');
         if (successEl) successEl.classList.remove('hidden');
       } else {
-        const msg = json.error || 'Error al enviar el mensaje. Inténtalo de nuevo.';
-        if (errorEl) { errorEl.textContent = msg; errorEl.classList.remove('hidden'); }
-        btn.disabled = false;
-        if (label) label.textContent = 'Enviar mensaje';
-        if (icon) icon.textContent = 'send';
+        showError(json.error || 'Error al enviar el mensaje. Inténtalo de nuevo.');
       }
     } catch {
-      if (errorEl) {
-        errorEl.textContent = 'Error de conexión. Verifica tu internet e inténtalo de nuevo.';
-        errorEl.classList.remove('hidden');
-      }
-      btn.disabled = false;
-      if (label) label.textContent = 'Enviar mensaje';
-      if (icon) icon.textContent = 'send';
+      showError('Error de conexión. Verifica tu internet e inténtalo de nuevo.');
     }
   });
 </script>
