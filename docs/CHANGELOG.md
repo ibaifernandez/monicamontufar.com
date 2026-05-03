@@ -3,6 +3,29 @@ Todos los cambios notables del proyecto se documentarán en este archivo según 
 
 ---
 
+## [1.4.0] — 2026-05-03 · Web Wrap-Up — QA Completo
+
+### Added
+- **`/informacion-legal/` + `/en/legal-information/`**: páginas de información legal bilingüe. Jurisdicción neutral (Mónica es nómada digital internacional, no aplica LSSI-CE española). Cubre titularidad, propiedad intelectual, exención de responsabilidad y referencia a política de privacidad. Enlazadas desde footer ES+EN.
+
+### Changed
+- **Formulario de contacto**: reemplazado `data-netlify="true"` (Netlify native forms, nunca funcionó) por JS fetch a `/api/submit-contact`. El form ahora envía JSON, muestra estado de éxito/error inline sin redirección. Botón con `cursor-pointer` y estado `disabled` durante envío.
+- **`submit-contact.ts`**: actualizado para capturar todos los campos (nombre, apellido, país, mensaje), validar campos requeridos, y emails con copy real (no "coming soon"). Notificación a Mónica incluye todos los datos del mensaje.
+- **Footer ES+EN**: añadidos enlaces a Información Legal.
+
+### Fixed
+- **`SEO.astro` x-default hreflang**: doble slash `https://monicamontufar.com//` → corregido usando variable `site` normalizada en lugar de `Astro.site` crudo
+- **Blog meta descriptions**: 6 posts tenían excerpts truncados mid-sentence en `posts.json` (datos WP). Fallback: si excerpt < 80 chars, deriva descripción del comienzo del contenido. Aplica a ES y EN.
+- **Sitemap**: `/portafolio/` y `/en/portfolio/` excluidos — son 301 redirects, no deben estar en sitemap
+- **`404.astro`**: añadido `omitAlternate={true}` — `/en/404/` no existe como ruta real, el hreflang generaba links muertos
+- **`_redirects`**: añadidos 301 para `/mi-viaje-hacia-ser-una-nomada-digital/` y `/13-pasos-para-convertirte-en-un-nomada-digital/` → `/blog/` (posts referenciados desde contenido WP pero no migrados)
+
+### Infrastructure
+- **SPF**: actualizado a `v=spf1 include:spf.migadu.com include:spf.resend.com -all` (Cloudflare DNS)
+- **Todas las variables de entorno** confirmadas activas en Netlify producción: `RESEND_API_KEY`, `CONTACT_EMAIL`, `FROM_EMAIL`, `TURNSTILE_SECRET_KEY`, `TURNSTILE_SITE_KEY`, `PUBLIC_SENTRY_DSN`, `SENTRY_AUTH_TOKEN`
+
+---
+
 ## [1.3.0] — 2026-04-29 · Blog EN + Portafolio Externo + llms.txt
 
 ### Added
