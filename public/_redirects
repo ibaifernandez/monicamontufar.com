@@ -6,5 +6,9 @@
 /wp-login*   /404.html  404
 /xmlrpc.php  /404.html  404
 
+# Blog posts referenced from content but not migrated from WordPress → redirect to blog
+/mi-viaje-hacia-ser-una-nomada-digital/          /blog/  301
+/13-pasos-para-convertirte-en-un-nomada-digital/ /blog/  301
+
 # Netlify sirve /404.html automáticamente para rutas no encontradas (generado por src/pages/404.astro).
 # No se necesita catch-all: el SSG genera la página correcta con HTTP 404.
