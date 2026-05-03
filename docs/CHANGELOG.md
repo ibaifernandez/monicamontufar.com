@@ -3,6 +3,17 @@ Todos los cambios notables del proyecto se documentarán en este archivo según 
 
 ---
 
+## [1.6.0] — 2026-05-03 · Turnstile + Visual Regression
+
+### Added
+- **Cloudflare Turnstile invisible** en formulario de contacto. Flujo: verificar token con `/api/verify-turnstile` → si pasa, POST a `/api/submit-contact`. Falla abierto si el script o endpoint no están disponibles (honeypot + rate limiting siguen activos como capas de respaldo).
+- **Visual regression baselines actualizadas**: 6 tests Docker pasan con snapshots frescos.
+
+### Changed
+- **CSP en `public/_headers`**: `script-src` y `connect-src` añaden `https://challenges.cloudflare.com`; `frame-src` cambia de `'none'` a `https://challenges.cloudflare.com` (Turnstile usa un iframe).
+
+---
+
 ## [1.5.0] — 2026-05-03 · GA4 Analytics + Consent Mode v2
 
 ### Added
